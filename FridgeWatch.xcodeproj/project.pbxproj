@@ -7,13 +7,44 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C453E1A7214ADBED0091E2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */; };
-		C453E1A9214ADBED0091E2B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1A8214ADBED0091E2B2 /* ViewController.swift */; };
 		C453E1AC214ADBED0091E2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AA214ADBED0091E2B2 /* Main.storyboard */; };
 		C453E1AE214ADBEE0091E2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */; };
 		C453E1B1214ADBEE0091E2B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */; };
 		C453E1BC214ADBEE0091E2B2 /* FridgeWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */; };
 		C453E1C7214ADBEE0091E2B2 /* FridgeWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */; };
+		C453E1D7214ADCFB0091E2B2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1D6214ADCFB0091E2B2 /* AppCoordinator.swift */; };
+		C453E1DA214ADD1F0091E2B2 /* RouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1D9214ADD1F0091E2B2 /* RouterType.swift */; };
+		C453E1DE214ADE7C0091E2B2 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1DD214ADE7C0091E2B2 /* Router.swift */; };
+		C453E1E1214ADF520091E2B2 /* PresentableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1E0214ADF520091E2B2 /* PresentableType.swift */; };
+		C453E1E3214ADFA70091E2B2 /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1E2214ADFA70091E2B2 /* CoordinatorType.swift */; };
+		C453E1E7214AE0290091E2B2 /* ModuleFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1E6214AE0290091E2B2 /* ModuleFactoryType.swift */; };
+		C453E1EA214AE1D80091E2B2 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1E9214AE1D80091E2B2 /* ModuleFactory.swift */; };
+		C453E1EC214AE22D0091E2B2 /* StorageModuleFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1EB214AE22D0091E2B2 /* StorageModuleFactoryType.swift */; };
+		C453E1EE214AE2460091E2B2 /* StorageModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1ED214AE2450091E2B2 /* StorageModuleFactory.swift */; };
+		C4B566E1214AE6390029F25B /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566E0214AE6390029F25B /* BaseCoordinator.swift */; };
+		C4B566E6214AE7300029F25B /* Storage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4B566E3214AE7300029F25B /* Storage.storyboard */; };
+		C4B566E7214AE7300029F25B /* StorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566E4214AE7300029F25B /* StorageCoordinator.swift */; };
+		C4B566EB214AE9AD0029F25B /* CoordinatorFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566EA214AE9AD0029F25B /* CoordinatorFactoryType.swift */; };
+		C4B566ED214AE9B50029F25B /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566EC214AE9B50029F25B /* CoordinatorFactory.swift */; };
+		C4B566F6214AECFA0029F25B /* StorageContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566F2214AECFA0029F25B /* StorageContentController.swift */; };
+		C4B566F7214AECFA0029F25B /* StorageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566F3214AECFA0029F25B /* StorageContentView.swift */; };
+		C4B566F8214AECFA0029F25B /* StorageContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566F4214AECFA0029F25B /* StorageContentViewModel.swift */; };
+		C4B566F9214AECFA0029F25B /* StorageContentViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566F5214AECFA0029F25B /* StorageContentViewModelType.swift */; };
+		C4B5670C214AF6630029F25B /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B566FF214AF6620029F25B /* RxCocoa.framework */; };
+		C4B5670D214AF6640029F25B /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56700214AF6620029F25B /* RxDataSources.framework */; };
+		C4B5670E214AF6640029F25B /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56701214AF6620029F25B /* RxSwift.framework */; };
+		C4B5670F214AF6640029F25B /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56702214AF6620029F25B /* SwiftMessages.framework */; };
+		C4B56710214AF6640029F25B /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56703214AF6620029F25B /* Rswift.framework */; };
+		C4B56711214AF6640029F25B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56704214AF6630029F25B /* Realm.framework */; };
+		C4B56712214AF6640029F25B /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56705214AF6630029F25B /* Differentiator.framework */; };
+		C4B56713214AF6640029F25B /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56706214AF6630029F25B /* RxBlocking.framework */; };
+		C4B56714214AF6640029F25B /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56707214AF6630029F25B /* RxGesture.framework */; };
+		C4B56715214AF6640029F25B /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56708214AF6630029F25B /* SwiftyBeaver.framework */; };
+		C4B56716214AF6640029F25B /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56709214AF6630029F25B /* SwipeCellKit.framework */; };
+		C4B56718214AF6640029F25B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5670B214AF6630029F25B /* RealmSwift.framework */; };
+		C4B5671C214AF6BA0029F25B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671B214AF6BA0029F25B /* BaseView.swift */; };
+		C4B5671E214AF6DE0029F25B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671D214AF6DE0029F25B /* Message.swift */; };
+		C4B56720214AF7330029F25B /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671F214AF7330029F25B /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,8 +66,6 @@
 
 /* Begin PBXFileReference section */
 		C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C453E1A8214ADBED0091E2B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C453E1AB214ADBED0091E2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C453E1B0214ADBEE0091E2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +76,40 @@
 		C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchUITests.swift; sourceTree = "<group>"; };
 		C453E1C8214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C453E1D6214ADCFB0091E2B2 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		C453E1D9214ADD1F0091E2B2 /* RouterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterType.swift; sourceTree = "<group>"; };
+		C453E1DD214ADE7C0091E2B2 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C453E1E0214ADF520091E2B2 /* PresentableType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentableType.swift; sourceTree = "<group>"; };
+		C453E1E2214ADFA70091E2B2 /* CoordinatorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
+		C453E1E6214AE0290091E2B2 /* ModuleFactoryType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleFactoryType.swift; sourceTree = "<group>"; };
+		C453E1E9214AE1D80091E2B2 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		C453E1EB214AE22D0091E2B2 /* StorageModuleFactoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageModuleFactoryType.swift; sourceTree = "<group>"; };
+		C453E1ED214AE2450091E2B2 /* StorageModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageModuleFactory.swift; sourceTree = "<group>"; };
+		C4B566E0214AE6390029F25B /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		C4B566E3214AE7300029F25B /* Storage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storage.storyboard; sourceTree = "<group>"; };
+		C4B566E4214AE7300029F25B /* StorageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoordinator.swift; sourceTree = "<group>"; };
+		C4B566EA214AE9AD0029F25B /* CoordinatorFactoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryType.swift; sourceTree = "<group>"; };
+		C4B566EC214AE9B50029F25B /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		C4B566F2214AECFA0029F25B /* StorageContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContentController.swift; sourceTree = "<group>"; };
+		C4B566F3214AECFA0029F25B /* StorageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContentView.swift; sourceTree = "<group>"; };
+		C4B566F4214AECFA0029F25B /* StorageContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContentViewModel.swift; sourceTree = "<group>"; };
+		C4B566F5214AECFA0029F25B /* StorageContentViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContentViewModelType.swift; sourceTree = "<group>"; };
+		C4B566FF214AF6620029F25B /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
+		C4B56700214AF6620029F25B /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		C4B56701214AF6620029F25B /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
+		C4B56702214AF6620029F25B /* SwiftMessages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftMessages.framework; path = Carthage/Build/iOS/SwiftMessages.framework; sourceTree = "<group>"; };
+		C4B56703214AF6620029F25B /* Rswift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rswift.framework; path = Carthage/Build/iOS/Rswift.framework; sourceTree = "<group>"; };
+		C4B56704214AF6630029F25B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		C4B56705214AF6630029F25B /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
+		C4B56706214AF6630029F25B /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
+		C4B56707214AF6630029F25B /* RxGesture.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxGesture.framework; path = Carthage/Build/iOS/RxGesture.framework; sourceTree = "<group>"; };
+		C4B56708214AF6630029F25B /* SwiftyBeaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyBeaver.framework; path = Carthage/Build/iOS/SwiftyBeaver.framework; sourceTree = "<group>"; };
+		C4B56709214AF6630029F25B /* SwipeCellKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwipeCellKit.framework; path = Carthage/Build/iOS/SwipeCellKit.framework; sourceTree = "<group>"; };
+		C4B5670A214AF6630029F25B /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		C4B5670B214AF6630029F25B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		C4B5671B214AF6BA0029F25B /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		C4B5671D214AF6DE0029F25B /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C4B5671F214AF7330029F25B /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +117,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4B5670C214AF6630029F25B /* RxCocoa.framework in Frameworks */,
+				C4B5670D214AF6640029F25B /* RxDataSources.framework in Frameworks */,
+				C4B5670E214AF6640029F25B /* RxSwift.framework in Frameworks */,
+				C4B5670F214AF6640029F25B /* SwiftMessages.framework in Frameworks */,
+				C4B56710214AF6640029F25B /* Rswift.framework in Frameworks */,
+				C4B56711214AF6640029F25B /* Realm.framework in Frameworks */,
+				C4B56712214AF6640029F25B /* Differentiator.framework in Frameworks */,
+				C4B56713214AF6640029F25B /* RxBlocking.framework in Frameworks */,
+				C4B56714214AF6640029F25B /* RxGesture.framework in Frameworks */,
+				C4B56715214AF6640029F25B /* SwiftyBeaver.framework in Frameworks */,
+				C4B56716214AF6640029F25B /* SwipeCellKit.framework in Frameworks */,
+				C4B56718214AF6640029F25B /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +156,7 @@
 				C453E1BA214ADBEE0091E2B2 /* FridgeWatchTests */,
 				C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */,
 				C453E1A4214ADBED0091E2B2 /* Products */,
+				C4B566FE214AF6610029F25B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +173,10 @@
 		C453E1A5214ADBED0091E2B2 /* FridgeWatch */ = {
 			isa = PBXGroup;
 			children = (
-				C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */,
-				C453E1A8214ADBED0091E2B2 /* ViewController.swift */,
-				C453E1AA214ADBED0091E2B2 /* Main.storyboard */,
-				C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */,
-				C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */,
-				C453E1B2214ADBEE0091E2B2 /* Info.plist */,
+				C453E1D4214ADC9C0091E2B2 /* Core */,
+				C4B566E9214AE7640029F25B /* Storyboards */,
+				C453E1D8214ADD020091E2B2 /* Flow */,
+				C4B566DF214AE5C10029F25B /* Ressources */,
 			);
 			path = FridgeWatch;
 			sourceTree = "<group>";
@@ -125,6 +199,143 @@
 			path = FridgeWatchUITests;
 			sourceTree = "<group>";
 		};
+		C453E1D4214ADC9C0091E2B2 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1E5214AE01C0091E2B2 /* Factories */,
+				C453E1E4214ADFF60091E2B2 /* FlowControl */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C453E1D8214ADD020091E2B2 /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1D6214ADCFB0091E2B2 /* AppCoordinator.swift */,
+				C4B566E2214AE71F0029F25B /* StorageFlow */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		C453E1DF214ADECF0091E2B2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C4B5671B214AF6BA0029F25B /* BaseView.swift */,
+				C453E1E2214ADFA70091E2B2 /* CoordinatorType.swift */,
+				C453E1D9214ADD1F0091E2B2 /* RouterType.swift */,
+				C453E1E0214ADF520091E2B2 /* PresentableType.swift */,
+				C4B5671F214AF7330029F25B /* ViewModelType.swift */,
+				C4B5671D214AF6DE0029F25B /* Message.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C453E1E4214ADFF60091E2B2 /* FlowControl */ = {
+			isa = PBXGroup;
+			children = (
+				C4B566E0214AE6390029F25B /* BaseCoordinator.swift */,
+				C453E1DD214ADE7C0091E2B2 /* Router.swift */,
+				C453E1DF214ADECF0091E2B2 /* Protocols */,
+			);
+			path = FlowControl;
+			sourceTree = "<group>";
+		};
+		C453E1E5214AE01C0091E2B2 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1E8214AE02B0091E2B2 /* Protocols */,
+				C4B566EC214AE9B50029F25B /* CoordinatorFactory.swift */,
+				C453E1E9214AE1D80091E2B2 /* ModuleFactory.swift */,
+				C453E1ED214AE2450091E2B2 /* StorageModuleFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		C453E1E8214AE02B0091E2B2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C4B566EA214AE9AD0029F25B /* CoordinatorFactoryType.swift */,
+				C453E1E6214AE0290091E2B2 /* ModuleFactoryType.swift */,
+				C453E1EB214AE22D0091E2B2 /* StorageModuleFactoryType.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		C4B566DF214AE5C10029F25B /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1AA214ADBED0091E2B2 /* Main.storyboard */,
+				C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */,
+				C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */,
+				C453E1B2214ADBEE0091E2B2 /* Info.plist */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		C4B566E2214AE71F0029F25B /* StorageFlow */ = {
+			isa = PBXGroup;
+			children = (
+				C4B566E4214AE7300029F25B /* StorageCoordinator.swift */,
+				C4B566FA214AED000029F25B /* Content */,
+			);
+			path = StorageFlow;
+			sourceTree = "<group>";
+		};
+		C4B566E9214AE7640029F25B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C4B566E3214AE7300029F25B /* Storage.storyboard */,
+				C4B566FC214AEE620029F25B /* Shared Views */,
+				C4B566FB214AEE580029F25B /* Special Views */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C4B566FA214AED000029F25B /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				C4B566F2214AECFA0029F25B /* StorageContentController.swift */,
+				C4B566F3214AECFA0029F25B /* StorageContentView.swift */,
+				C4B566F4214AECFA0029F25B /* StorageContentViewModel.swift */,
+				C4B566F5214AECFA0029F25B /* StorageContentViewModelType.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		C4B566FB214AEE580029F25B /* Special Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Special Views";
+			sourceTree = "<group>";
+		};
+		C4B566FC214AEE620029F25B /* Shared Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Shared Views";
+			sourceTree = "<group>";
+		};
+		C4B566FE214AF6610029F25B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C4B56705214AF6630029F25B /* Differentiator.framework */,
+				C4B56704214AF6630029F25B /* Realm.framework */,
+				C4B5670B214AF6630029F25B /* RealmSwift.framework */,
+				C4B56703214AF6620029F25B /* Rswift.framework */,
+				C4B56706214AF6630029F25B /* RxBlocking.framework */,
+				C4B566FF214AF6620029F25B /* RxCocoa.framework */,
+				C4B56700214AF6620029F25B /* RxDataSources.framework */,
+				C4B56707214AF6630029F25B /* RxGesture.framework */,
+				C4B56701214AF6620029F25B /* RxSwift.framework */,
+				C4B5670A214AF6630029F25B /* RxTest.framework */,
+				C4B56702214AF6620029F25B /* SwiftMessages.framework */,
+				C4B56708214AF6630029F25B /* SwiftyBeaver.framework */,
+				C4B56709214AF6630029F25B /* SwipeCellKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +346,8 @@
 				C453E19F214ADBED0091E2B2 /* Sources */,
 				C453E1A0214ADBED0091E2B2 /* Frameworks */,
 				C453E1A1214ADBED0091E2B2 /* Resources */,
+				C4B566EF214AEB780029F25B /* Carthage */,
+				C4B566F0214AEB8E0029F25B /* R.Swift */,
 			);
 			buildRules = (
 			);
@@ -231,6 +444,7 @@
 			files = (
 				C453E1B1214ADBEE0091E2B2 /* LaunchScreen.storyboard in Resources */,
 				C453E1AE214ADBEE0091E2B2 /* Assets.xcassets in Resources */,
+				C4B566E6214AE7300029F25B /* Storage.storyboard in Resources */,
 				C453E1AC214ADBED0091E2B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,13 +465,73 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C4B566EF214AEB780029F25B /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Rswift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxGesture.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftMessages.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyBeaver.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwipeCellKit.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		C4B566F0214AEB8E0029F25B /* R.Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = R.Swift;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/rswift generate \"$SRCROOT\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C453E19F214ADBED0091E2B2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C453E1A9214ADBED0091E2B2 /* ViewController.swift in Sources */,
-				C453E1A7214ADBED0091E2B2 /* AppDelegate.swift in Sources */,
+				C453E1E3214ADFA70091E2B2 /* CoordinatorType.swift in Sources */,
+				C453E1EA214AE1D80091E2B2 /* ModuleFactory.swift in Sources */,
+				C4B566E1214AE6390029F25B /* BaseCoordinator.swift in Sources */,
+				C4B566F9214AECFA0029F25B /* StorageContentViewModelType.swift in Sources */,
+				C4B566F7214AECFA0029F25B /* StorageContentView.swift in Sources */,
+				C4B566F8214AECFA0029F25B /* StorageContentViewModel.swift in Sources */,
+				C4B566E7214AE7300029F25B /* StorageCoordinator.swift in Sources */,
+				C453E1D7214ADCFB0091E2B2 /* AppCoordinator.swift in Sources */,
+				C4B56720214AF7330029F25B /* ViewModelType.swift in Sources */,
+				C4B566F6214AECFA0029F25B /* StorageContentController.swift in Sources */,
+				C4B566EB214AE9AD0029F25B /* CoordinatorFactoryType.swift in Sources */,
+				C453E1E7214AE0290091E2B2 /* ModuleFactoryType.swift in Sources */,
+				C453E1DE214ADE7C0091E2B2 /* Router.swift in Sources */,
+				C453E1DA214ADD1F0091E2B2 /* RouterType.swift in Sources */,
+				C453E1EC214AE22D0091E2B2 /* StorageModuleFactoryType.swift in Sources */,
+				C453E1E1214ADF520091E2B2 /* PresentableType.swift in Sources */,
+				C4B5671C214AF6BA0029F25B /* BaseView.swift in Sources */,
+				C4B5671E214AF6DE0029F25B /* Message.swift in Sources */,
+				C453E1EE214AE2460091E2B2 /* StorageModuleFactory.swift in Sources */,
+				C4B566ED214AE9B50029F25B /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,7 +706,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AJXPA827PK;
-				INFOPLIST_FILE = FridgeWatch/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/FridgeWatch/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,7 +728,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AJXPA827PK;
-				INFOPLIST_FILE = FridgeWatch/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/FridgeWatch/Ressources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

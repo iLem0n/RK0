@@ -1,0 +1,28 @@
+# Rx
+github "RxSwiftCommunity/RxGesture"
+github "RxSwiftCommunity/RxDataSources"
+github "ReactiveX/RxSwift"
+
+# Database
+github "realm/realm-cocoa"
+
+# Visualisation
+github "SwiftKickMobile/SwiftMessages"
+github "mac-cain13/R.swift.Library"
+github "jerkoch/SwipeCellKit"
+#github "iLem0n/AMTooltip"
+
+# Logging
+github "SwiftyBeaver/SwiftyBeaver"
+
+# network abstraction layer
+#github "Moya/Moya"
+#github "bignerdranch/Freddy"
+
+# text recognition
+#github "garnele007/SwiftOCR"
+#github "BradLarson/GPUImage"
+
+# XML Parser 
+#github "yahoojapan/SwiftyXMLParser"
+#github "gali8/Tesseract-OCR-iOS" ~> 4.0.0
