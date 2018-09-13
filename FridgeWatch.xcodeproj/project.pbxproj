@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C453E1A7214ADBED0091E2B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */; };
+		C453E1A9214ADBED0091E2B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1A8214ADBED0091E2B2 /* ViewController.swift */; };
+		C453E1AC214ADBED0091E2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AA214ADBED0091E2B2 /* Main.storyboard */; };
+		C453E1AE214ADBEE0091E2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */; };
+		C453E1B1214ADBEE0091E2B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */; };
+		C453E1BC214ADBEE0091E2B2 /* FridgeWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */; };
+		C453E1C7214ADBEE0091E2B2 /* FridgeWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C453E1B8214ADBEE0091E2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C453E19B214ADBED0091E2B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C453E1A2214ADBED0091E2B2;
+			remoteInfo = FridgeWatch;
+		};
+		C453E1C3214ADBEE0091E2B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C453E19B214ADBED0091E2B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C453E1A2214ADBED0091E2B2;
+			remoteInfo = FridgeWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FridgeWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C453E1A8214ADBED0091E2B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C453E1AB214ADBED0091E2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C453E1B0214ADBEE0091E2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C453E1B2214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchTests.swift; sourceTree = "<group>"; };
+		C453E1BD214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchUITests.swift; sourceTree = "<group>"; };
+		C453E1C8214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C453E1A0214ADBED0091E2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1B4214ADBEE0091E2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1BF214ADBEE0091E2B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C453E19A214ADBED0091E2B2 = {
+			isa = PBXGroup;
+			children = (
+				C453E1A5214ADBED0091E2B2 /* FridgeWatch */,
+				C453E1BA214ADBEE0091E2B2 /* FridgeWatchTests */,
+				C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */,
+				C453E1A4214ADBED0091E2B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C453E1A4214ADBED0091E2B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */,
+				C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */,
+				C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C453E1A5214ADBED0091E2B2 /* FridgeWatch */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1A6214ADBED0091E2B2 /* AppDelegate.swift */,
+				C453E1A8214ADBED0091E2B2 /* ViewController.swift */,
+				C453E1AA214ADBED0091E2B2 /* Main.storyboard */,
+				C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */,
+				C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */,
+				C453E1B2214ADBEE0091E2B2 /* Info.plist */,
+			);
+			path = FridgeWatch;
+			sourceTree = "<group>";
+		};
+		C453E1BA214ADBEE0091E2B2 /* FridgeWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */,
+				C453E1BD214ADBEE0091E2B2 /* Info.plist */,
+			);
+			path = FridgeWatchTests;
+			sourceTree = "<group>";
+		};
+		C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */,
+				C453E1C8214ADBEE0091E2B2 /* Info.plist */,
+			);
+			path = FridgeWatchUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C453E1A2214ADBED0091E2B2 /* FridgeWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C453E1CB214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatch" */;
+			buildPhases = (
+				C453E19F214ADBED0091E2B2 /* Sources */,
+				C453E1A0214ADBED0091E2B2 /* Frameworks */,
+				C453E1A1214ADBED0091E2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FridgeWatch;
+			productName = FridgeWatch;
+			productReference = C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C453E1B6214ADBEE0091E2B2 /* FridgeWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C453E1CE214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */;
+			buildPhases = (
+				C453E1B3214ADBEE0091E2B2 /* Sources */,
+				C453E1B4214ADBEE0091E2B2 /* Frameworks */,
+				C453E1B5214ADBEE0091E2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C453E1B9214ADBEE0091E2B2 /* PBXTargetDependency */,
+			);
+			name = FridgeWatchTests;
+			productName = FridgeWatchTests;
+			productReference = C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C453E1C1214ADBEE0091E2B2 /* FridgeWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C453E1D1214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchUITests" */;
+			buildPhases = (
+				C453E1BE214ADBEE0091E2B2 /* Sources */,
+				C453E1BF214ADBEE0091E2B2 /* Frameworks */,
+				C453E1C0214ADBEE0091E2B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C453E1C4214ADBEE0091E2B2 /* PBXTargetDependency */,
+			);
+			name = FridgeWatchUITests;
+			productName = FridgeWatchUITests;
+			productReference = C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C453E19B214ADBED0091E2B2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Peter Christian Glade";
+				TargetAttributes = {
+					C453E1A2214ADBED0091E2B2 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					C453E1B6214ADBEE0091E2B2 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = C453E1A2214ADBED0091E2B2;
+					};
+					C453E1C1214ADBEE0091E2B2 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = C453E1A2214ADBED0091E2B2;
+					};
+				};
+			};
+			buildConfigurationList = C453E19E214ADBED0091E2B2 /* Build configuration list for PBXProject "FridgeWatch" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C453E19A214ADBED0091E2B2;
+			productRefGroup = C453E1A4214ADBED0091E2B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C453E1A2214ADBED0091E2B2 /* FridgeWatch */,
+				C453E1B6214ADBEE0091E2B2 /* FridgeWatchTests */,
+				C453E1C1214ADBEE0091E2B2 /* FridgeWatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C453E1A1214ADBED0091E2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C453E1B1214ADBEE0091E2B2 /* LaunchScreen.storyboard in Resources */,
+				C453E1AE214ADBEE0091E2B2 /* Assets.xcassets in Resources */,
+				C453E1AC214ADBED0091E2B2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1B5214ADBEE0091E2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1C0214ADBEE0091E2B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C453E19F214ADBED0091E2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C453E1A9214ADBED0091E2B2 /* ViewController.swift in Sources */,
+				C453E1A7214ADBED0091E2B2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1B3214ADBEE0091E2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C453E1BC214ADBEE0091E2B2 /* FridgeWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C453E1BE214ADBEE0091E2B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C453E1C7214ADBEE0091E2B2 /* FridgeWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C453E1B9214ADBEE0091E2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C453E1A2214ADBED0091E2B2 /* FridgeWatch */;
+			targetProxy = C453E1B8214ADBEE0091E2B2 /* PBXContainerItemProxy */;
+		};
+		C453E1C4214ADBEE0091E2B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C453E1A2214ADBED0091E2B2 /* FridgeWatch */;
+			targetProxy = C453E1C3214ADBEE0091E2B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C453E1AA214ADBED0091E2B2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C453E1AB214ADBED0091E2B2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C453E1B0214ADBEE0091E2B2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C453E1C9214ADBEE0091E2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C453E1CA214ADBEE0091E2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C453E1CC214ADBEE0091E2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C453E1CD214ADBEE0091E2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C453E1CF214ADBEE0091E2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
+			};
+			name = Debug;
+		};
+		C453E1D0214ADBEE0091E2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
+			};
+			name = Release;
+		};
+		C453E1D2214ADBEE0091E2B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FridgeWatch;
+			};
+			name = Debug;
+		};
+		C453E1D3214ADBEE0091E2B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FridgeWatch;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C453E19E214ADBED0091E2B2 /* Build configuration list for PBXProject "FridgeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C453E1C9214ADBEE0091E2B2 /* Debug */,
+				C453E1CA214ADBEE0091E2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C453E1CB214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C453E1CC214ADBEE0091E2B2 /* Debug */,
+				C453E1CD214ADBEE0091E2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C453E1CE214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C453E1CF214ADBEE0091E2B2 /* Debug */,
+				C453E1D0214ADBEE0091E2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C453E1D1214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C453E1D2214ADBEE0091E2B2 /* Debug */,
+				C453E1D3214ADBEE0091E2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C453E19B214ADBED0091E2B2 /* Project object */;
+}
