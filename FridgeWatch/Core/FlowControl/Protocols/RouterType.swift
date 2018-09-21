@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol RouterType {
+protocol RouterType: PresentableType {
     func present(_ module: PresentableType?)
     func present(_ module: PresentableType?, animated: Bool)
     
@@ -17,9 +17,9 @@ protocol RouterType {
     
     
     func push(_ module: PresentableType?)
-    func push(_ module: PresentableType?, animated: Bool)
-    func push(_ module: PresentableType?, animated: Bool, completion: (() -> Void)?)
-    
+    func push(_ module: PresentableType?, animated: Bool, hideBar: Bool)    
+    func push(_ module: PresentableType?, animated: Bool, hideBar: Bool, completion: (() -> Void)?)
+
     func popModule()
     func popModule(animated: Bool)
     

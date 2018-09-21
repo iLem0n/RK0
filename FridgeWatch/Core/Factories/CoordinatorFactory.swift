@@ -9,7 +9,12 @@
 import Foundation
 
 final class CoordinatorFactory: CoordinatorFactoryType {
-    static func makeStorageCoordinator(router: RouterType) -> CoordinatorType {
+    static func makeScanCoordinator() -> (ScanCoordinatorType, RouterType) {
+        let coordinator = ScanCoordinator(factory: ModuleFactory())
+        return (coordinator, coordinator.router)
+    }
+    
+    static func makeStorageCoordinator(router: RouterType) -> StorageCoordinatorType {
         return StorageCoordinator(router: router, factory: ModuleFactory())
     }
 }

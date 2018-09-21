@@ -9,5 +9,6 @@
 import Foundation
 
 protocol CoordinatorFactoryType {
-    static func makeStorageCoordinator(router: RouterType) -> CoordinatorType
+    static func makeScanCoordinator() -> (ScanCoordinatorType, RouterType)
+    static func makeStorageCoordinator(router: RouterType) -> StorageCoordinatorType
 }

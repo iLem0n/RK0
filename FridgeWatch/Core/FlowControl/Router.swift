@@ -44,16 +44,21 @@ final class Router: NSObject, RouterType {
     }
     
     func push(_ module: PresentableType?, animated: Bool)  {
-        push(module, animated: animated, completion: nil)
+        push(module, animated: animated, hideBar: false)
     }
     
-    func push(_ module: PresentableType?, animated: Bool, completion: (() -> Void)?) {
+    func push(_ module: PresentableType?, animated: Bool, hideBar: Bool) {
+        push(module, animated: animated, hideBar: hideBar, completion: nil)
+    }
+    
+    func push(_ module: PresentableType?, animated: Bool, hideBar: Bool, completion: (() -> Void)?) {
         guard let controller = module?.toPresent() else { return }
         
         if let completion = completion {
             completions[controller] = completion
         }
-        rootController?.pushViewController(controller, animated: animated)
+        self.rootController?.pushViewController(controller, animated: animated)
+        self.rootController?.setNavigationBarHidden(hideBar, animated: animated)
     }
     
     func popModule()  {

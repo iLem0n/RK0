@@ -9,5 +9,14 @@
 import Foundation
 
 extension ModuleFactory: StorageModuleFactoryType {
-    
+    func makeContentModule(viewModel: StorageContent_ViewModelType, _ tableControllerHandler: @escaping (StorageContent_TableView) -> Void) -> StorageContent_View? {
+        let controller = R.storyboard.storage.storageContentView()!
+        controller.viewModel = viewModel
+        controller.onTableViewSegue = { tableController in
+            tableController.viewModel = viewModel
+            tableControllerHandler(tableController)
+        }
+        return controller
+    }
+
 }
