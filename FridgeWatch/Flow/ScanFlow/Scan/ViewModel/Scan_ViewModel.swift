@@ -23,11 +23,18 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
     lazy var gtin: Observable<String?> = self.gtinSubject.asObservable()
     private let gtinSubject = BehaviorSubject<String?>(value: nil)
     
-    lazy var date: Observable<Date?> = self.dateSubject.asObservable()
-    private let dateSubject = BehaviorSubject<Date?>(value: nil)
+    lazy var productName: Observable<String?> = self.productNameSubject.asObservable()
+    private let productNameSubject = BehaviorSubject<String?>(value: nil)
+    
+    let date = BehaviorSubject<Date?>(value: nil)
+    lazy var dateViewState: Observable<ViewState> = self.date
+        .map({
+            guard let date = $0 else { return .standard }
+            return self.isValidDate(date) ? .success : .error            
+        })
     
     private lazy var combinedDataSubject = Observable
-        .combineLatest(self.gtin, self.date)
+        .combineLatest(self.gtin, self.date.asObservable())
     
     let scannedItems = BehaviorSubject<[FoodItem]>(value: [])
     
@@ -35,6 +42,11 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
 
     private let gtinRecognizer = BarcodeRecognizer()
     private let dateRecognizer = DateRecognizer()
+    
+    private var isValidDate: (Date) -> Bool = { date in
+        let range = DateRange(Date(), Date().addingTimeInterval(60*60*24*7*52*5)) // 5 Years        
+        return date.isInRange(range)
+    }
     
     override init() {
         super.init()
@@ -44,29 +56,64 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
     
     private func linkData() {
         combinedDataSubject
-            .debug()
+            .filter({ [weak self] in
+                guard
+                    let strong = self,              //  weak reference
+                    let _ = $0.0,                   //  GTIN != nil
+                    let date = $0.1,                //  Date != nil
+                    strong.isValidDate(date),       //  Date is valid
+                    try! strong.scanEnabled.value() //  can scan next element
+                else { return false }
+                return true
+            })
             .subscribe { [weak self] next in
                 guard let strong = self,
-                    try! strong.scanEnabled.value(),
-                    var prevItems = try? strong.scannedItems.value(),
-                    let (nextGtin, nextDate) = next.element,
-                    nextGtin != nil && nextDate != nil
+                    var prevItems = try? strong.scannedItems.value(),   // get actual elements
+                    let (nextGtin, nextDate) = next.element             // deconstruct combined data
                 else { return }
                 
-                strong.scanEnabled.onNext(false)
+                strong.scanEnabled.onNext(false)                        // disable next element until done
                 
-                prevItems.append(FoodItem(gtin: nextGtin!, date: nextDate!))
+                FoodFactory
+                    .prepareFoodItem(productID: nextGtin!, bestBeforeDate: nextDate!, { (result) in
+                        switch result {
+                        case .success(let foodItem):
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                                prevItems.append(foodItem)
+                                strong.scannedItems.onNext(prevItems)
+                                strong.gtinRecognizer.reset()
+                                strong.dateRecognizer.reset()
+                                strong.gtinSubject.onNext(nil)
+                                strong.date.onNext(nil)
+                                
+                                strong.scanEnabled.onNext(true)
+                            })
+                        case .failure(let error):
+                            strong.message.onNext(Message(type: .error, title: "FoodFactoryError", text: error.localizedDescription))
+                        }
+                    })
+            }
+            .disposed(by: disposeBag)
+        
+        gtin
+            .subscribe { [weak self] next in
+                guard let strong = self,
+                    let element = next.element
+                else { return }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
-                    
-                    strong.scannedItems.onNext(prevItems)
-                    strong.gtinRecognizer.reset()
-                    strong.dateRecognizer.reset()
-                    strong.gtinSubject.onNext(nil)
-                    strong.dateSubject.onNext(nil)
-                    
-                    strong.scanEnabled.onNext(true)
-                })
+                if let gtin = element {
+                    FoodFactory.makeProduct(gtin, { (result) in
+                        switch result {
+                        case .success(let product):
+                            log.debug("Can update product name: \(product.name)")
+                            strong.productNameSubject.onNext(product.name)
+                        case .failure(let error):
+                            strong.message.onNext(Message(type: .error, title: "ProductDataError", text: error.localizedDescription))
+                        }
+                    })
+                } else {
+                    strong.productNameSubject.onNext(nil)
+                }                
             }
             .disposed(by: disposeBag)
         
@@ -78,7 +125,7 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
                 case .ready:
                     log.debug("DateRecognizer is ready")
                 case .result(let result):
-                    self.dateSubject.onNext(result)
+                    self.date.onNext(result)
                 case .error(let error):
                     log.error(error.localizedDescription)
                 }

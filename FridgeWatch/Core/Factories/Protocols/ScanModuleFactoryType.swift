@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ScanModuleFactoryType {
+protocol ScanModuleFactoryType: ModulFactoryType, SharedFactoryType {
     func makeScanNavigationRouter() -> UINavigationController 
     
     func makeScanModule(

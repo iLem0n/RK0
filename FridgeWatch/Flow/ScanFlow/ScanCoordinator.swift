@@ -44,6 +44,23 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
             strong.showScanresultsModules(results: results)
         }
         
+        module?.onBBDButtonTouched = { date in
+            let datePickerModul = self.factory
+                .makeDatePickerModul(date: date ?? Date(),
+                                     onApply: { date in
+                                        viewModel.date.onNext(date)
+                                        self.router.dismissTopModule()
+                }, onClear: {
+                    viewModel.date.onNext(nil)
+                    self.router.dismissTopModule()
+                }, onCancel: {
+                    self.router.dismissTopModule()
+                }
+            )
+            self.router.present(datePickerModul)
+        }
+
+        
         module?.onCloseButtonTouched = { [weak self] in
             self?.router.dismissModule(animated: true, completion: {
                 self?.onScanFinished?()
@@ -57,6 +74,12 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         let viewModel = ScanResults_ViewModel(results: results)
         let module = factory.makeScanResultsModule(viewModel: viewModel) { (tableController) in
             
+        }
+        
+        module?.onSaved = { [weak self] in 
+            self?.router.dismissModule(animated: true, completion: {
+                self?.onScanFinished?()
+            })
         }
         
         router.push(module, animated: true, hideBar: false)

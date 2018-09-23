@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwipeCellKit
 
 final class StorageContent_TableController: UITableViewController, StorageContent_TableView {
     
@@ -28,8 +29,8 @@ final class StorageContent_TableController: UITableViewController, StorageConten
         
         viewModel.tableDataSource.configureCell = { (source, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.foodItemCell, for: indexPath)!
-            
-            //<#ConfigureCell#>
+            cell.item = item
+            cell.delegate = self
             return cell
         }
         
@@ -51,5 +52,28 @@ final class StorageContent_TableController: UITableViewController, StorageConten
                 //<#Handle Selection#>
             }
             .disposed(by: disposeBag)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        var actions: [SwipeAction] = []
+        switch orientation {
+        case .left: break
+        case .right:
+            actions.append(SwipeAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
+                self.viewModel?.delete(at: indexPath)
+            }))
+        }
+        return actions
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        switch orientation {
+        case .left: break
+        case .right:
+            options.expansionStyle = .destructive(automaticallyDelete: false)
+        }
+        return options
     }
 }

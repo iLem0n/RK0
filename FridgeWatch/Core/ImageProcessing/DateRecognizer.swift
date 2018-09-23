@@ -49,7 +49,6 @@ final class DateRecognizer: NSObject, RecognizerType {
     }
     
     func reset() {
-//        self.runner.cancelProcessing()
         self.runner.resetState()
         self.stateSubject.onNext(.ready)
     }

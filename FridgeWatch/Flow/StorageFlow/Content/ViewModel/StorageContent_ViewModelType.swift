@@ -17,4 +17,5 @@ protocol StorageContent_ViewModelType: ViewModelType {
     var configureCell: RxTableViewSectionedReloadDataSource<StorageContent_SectionModel>.ConfigureCell! { get set }
     
     func item(at indexPath: IndexPath) -> StorageContent_SectionModel.Item?
+    func delete(at indexPath: IndexPath)
 }

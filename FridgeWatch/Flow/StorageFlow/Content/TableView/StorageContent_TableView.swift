@@ -9,7 +9,8 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwipeCellKit
 
-protocol StorageContent_TableView: BaseViewType {
+protocol StorageContent_TableView: BaseViewType, SwipeTableViewCellDelegate {
     var viewModel: StorageContent_ViewModelType? { get set }
 }

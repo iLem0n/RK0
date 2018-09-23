@@ -14,6 +14,9 @@ protocol RouterType: PresentableType {
     
     func dismissModule()
     func dismissModule(animated: Bool, completion: (() -> Void)?)
+    func dismissTopModule()
+    func dismissTopModule(animated: Bool, completion: (() -> Void)?)
+    
     
     
     func push(_ module: PresentableType?)

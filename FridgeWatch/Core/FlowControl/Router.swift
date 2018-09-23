@@ -31,12 +31,21 @@ final class Router: NSObject, RouterType {
         rootController?.present(controller, animated: animated, completion: nil)
     }
     
+    
     func dismissModule() {
         dismissModule(animated: true, completion: nil)
     }
     
     func dismissModule(animated: Bool, completion: (() -> Void)?) {
         rootController?.dismiss(animated: animated, completion: completion)
+    }
+    
+    func dismissTopModule() {
+        dismissTopModule(animated: true, completion: nil)
+    }
+    
+    func dismissTopModule(animated: Bool, completion: (() -> Void)?) {
+        rootController?.presentedViewController?.dismiss(animated: animated, completion: completion)
     }
     
     func push(_ module: PresentableType?)  {

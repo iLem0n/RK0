@@ -20,25 +20,19 @@ final class Scan_Controller: UIViewController, Scan_View {
     //----------------- UI ELEMENTS ------------------
     var onCloseButtonTouched: (() -> Void)?
     var onResultsListButtonTouched: (() -> Void)?
+    var onBBDButtonTouched: ((Date?) -> Void)?
 
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var resultListButton: UIButton!
     @IBOutlet var resultCountLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var dateButton: UIButton!
     @IBOutlet var gtinLabel: UILabel!
 
     //----------------- LIFYCYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         linkViewModel()
-        
-        // ensure navigation bar hidden 
-        if let nav = self.navigationController {
-            if !nav.isNavigationBarHidden {
-                nav.setNavigationBarHidden(true, animated: true)
-            }
-        }
     }
     
     var onCameraViewSegue: ((Scan_CameraView) -> Void)?
@@ -92,6 +86,12 @@ final class Scan_Controller: UIViewController, Scan_View {
             }
             .disposed(by: disposeBag)
         
+        dateButton.rx.tap
+            .subscribe { [weak self] next in
+                self?.onBBDButtonTouched?(try! viewModel.date.value() ?? nil)
+            }
+            .disposed(by: disposeBag)
+        
         viewModel
             .scannedItems
             .debug()
@@ -101,24 +101,26 @@ final class Scan_Controller: UIViewController, Scan_View {
             }
             .disposed(by: disposeBag)
         
-        viewModel
-            .gtin
-            .debug()
+        Observable
+            .combineLatest(viewModel.gtin, viewModel.productName)
+            .map({ $0.1 ?? $0.0 })
             .bind(to: gtinLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel
             .date
-            .filter({ $0 != nil }).map({ $0! })            
-            .map({ DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: $0) })
-            .bind(to: dateLabel.rx.text)
+            .map({
+                $0 != nil ? DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: $0!) : "Choose Date"
+            })
+            .bind(to: dateButton.rx.title(for: .normal))
             .disposed(by: disposeBag)
         
         viewModel
-            .date
-            .filter({ $0 == nil })
-            .map({ _ in "" })
-            .bind(to: dateLabel.rx.text)
+            .dateViewState
+            .subscribe { [weak self] next in
+                guard let strong = self, let state = next.element else { return }
+                strong.dateButton.setState(state)
+            }
             .disposed(by: disposeBag)
     }
 }

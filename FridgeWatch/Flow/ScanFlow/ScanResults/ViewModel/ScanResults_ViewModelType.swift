@@ -18,4 +18,6 @@ protocol ScanResults_ViewModelType: ViewModelType {
     func item(at indexPath: IndexPath) -> ScanResults_SectionModel.Item?
     
     init(results: [FoodItem])
+    
+    func save(_ completion: (Bool) -> Void)
 }

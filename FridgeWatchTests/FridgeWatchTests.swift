@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import FridgeWatch
+@testable import Pods_FridgeWatch
 
 class FridgeWatchTests: XCTestCase {
     

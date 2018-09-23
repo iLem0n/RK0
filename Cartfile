@@ -2,9 +2,14 @@
 github "RxSwiftCommunity/RxGesture"
 github "RxSwiftCommunity/RxDataSources"
 github "ReactiveX/RxSwift"
+github "antitypical/Result"
 
 # Database
 github "realm/realm-cocoa"
+
+# network abstraction layer
+github "Moya/Moya"
+github "bignerdranch/Freddy"
 
 # Visualisation
 github "SwiftKickMobile/SwiftMessages"
@@ -15,9 +20,6 @@ github "jerkoch/SwipeCellKit"
 # Logging
 github "SwiftyBeaver/SwiftyBeaver"
 
-# network abstraction layer
-#github "Moya/Moya"
-#github "bignerdranch/Freddy"
 
 # text recognition
 #github "garnele007/SwiftOCR"

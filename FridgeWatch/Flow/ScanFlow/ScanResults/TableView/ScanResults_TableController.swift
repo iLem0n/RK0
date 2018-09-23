@@ -26,7 +26,7 @@ final class ScanResults_TableController: UITableViewController, ScanResults_Tabl
         
         viewModel.tableDataSource = RxTableViewSectionedReloadDataSource<ScanResults_SectionModel>(configureCell: { (source, tableView, indexPath, item) in
             let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.foodItemCell, for: indexPath)!
-            //<#ConfigureCell#>
+            cell.item = item
             return cell
         })
         

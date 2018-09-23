@@ -16,5 +16,5 @@ protocol Scan_View: BaseViewType {
     
     var onCloseButtonTouched: (() -> Void)? { get set }
     var onResultsListButtonTouched: (() -> Void)? { get set }
-
+    var onBBDButtonTouched: ((Date?) -> Void)? { get set }
 }

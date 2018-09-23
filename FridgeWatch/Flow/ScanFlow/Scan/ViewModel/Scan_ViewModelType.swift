@@ -18,7 +18,10 @@ protocol Scan_ViewModelType: ViewModelType, AVCaptureVideoDataOutputSampleBuffer
     var isFlashlightOn: BehaviorSubject<Bool> { get }
     
     var gtin: Observable<String?> { get }
-    var date: Observable<Date?> { get }
+    var productName: Observable<String?> { get }
+    
+    var date: BehaviorSubject<Date?> { get }
+    var dateViewState: Observable<ViewState> { get }
     
     var scannedItems: BehaviorSubject<[FoodItem]> { get }
 }

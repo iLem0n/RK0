@@ -10,16 +10,13 @@ import Foundation
 import RealmSwift
 
 final class Realms: NSObject, RealmsType {
-    static let shared: RealmsType = Realms()
-    
-    public var local: Realm? {
-        let config = Realm.Configuration.init(deleteRealmIfMigrationNeeded: true, objectTypes: [FoodItem.self])
+    static var local: Realm {
+        let config = Realm.Configuration.init(deleteRealmIfMigrationNeeded: true, objectTypes: [Product.self, FoodItem.self])
         
         do {
             return try Realm(configuration: config)
         } catch (let error) {
-            log.error(error)
-            return nil
+            fatalError(error.localizedDescription)
         }
     }
 }

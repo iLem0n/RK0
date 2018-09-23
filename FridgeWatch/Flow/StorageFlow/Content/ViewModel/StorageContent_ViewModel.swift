@@ -39,18 +39,13 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     
     //-------------------- LOAD DATA -------------------------
     private func loadData() {
-        guard let localRealm = Realms.shared.local
-        else {
-            message.onNext(Message(type: Theme.error, title: "Database Error", text: "Unable to get local Realm."))
-            return
-        }
         
-        self.updateFoodItemsToken = localRealm
+        self.updateFoodItemsToken = Realms.local
             .objects(FoodItem.self)
             .observe { (changes) in
                 switch changes {
                 case .update(let objects, _, _, _),
-                     .initial(let objects):
+                     .initial(let objects):                                        
                     
                     self.sectionsSubject.onNext(
                         [
@@ -74,5 +69,17 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             else { return nil }
         
         return sections[indexPath.section].items[indexPath.row]
+    }
+    
+    func delete(at indexPath: IndexPath) {
+        guard let item = item(at: indexPath) else { return }
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(item)
+            }
+        } catch {
+            message.onNext(Message(type: .error, title: "Deletion failed.", text: error.localizedDescription))
+        }
     }
 }

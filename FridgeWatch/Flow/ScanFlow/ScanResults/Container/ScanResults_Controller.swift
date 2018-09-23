@@ -13,16 +13,23 @@ import SwiftMessages
 
 final class ScanResults_Controller: UIViewController, ScanResults_View {
     
+    //----------------- PREPARE ------------------
     var viewModel: ScanResults_ViewModelType?
     let disposeBag = DisposeBag()
     
+    //----------------- COORDINATOR LINKS ------------------
+    var onSaved: (() -> Void)?
+    
+    //----------------- LIFYCYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
         linkViewModel()
     }
     
     var onTableViewSegue: ((ScanResults_TableView) -> Void)?
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
@@ -33,6 +40,7 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
         }
     }
     
+    //----------------- VIEW MODEL LINKING ------------------
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
@@ -52,5 +60,13 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
             }
             .disposed(by: disposeBag)
         
+        self.navigationItem.rightBarButtonItem!.rx.tap
+            .subscribe { [weak self] _ in
+                viewModel.save { success in
+                    guard success else { return }
+                    self?.onSaved?()
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }

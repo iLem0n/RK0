@@ -14,8 +14,10 @@ import RxSwift
 class FoodItemCell: SwipeTableViewCell {
     
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
 
     private var disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,22 +26,14 @@ class FoodItemCell: SwipeTableViewCell {
         didSet {
             self.disposeBag = DisposeBag()
             if let item = item {
-                // TODO: set view
-                titleLabel.text = item.gtin
+                titleLabel.text = item.product.name ?? "<\(String(describing: item.product.gtin))>"                
+                dateLabel.text = DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: item.bestBeforeDate)
             } else {
-                // TODO: reset view
-//                self.dateLabel.setState(.none)
-//                self.titleLabel?.text = nil
-//                self.dateLabel?.text = nil
-//                self.backgroundColor = .white
-//                self.productImageView.image = nil
-//                imageActivityIndicator.startAnimating()
+                //  reset view
+                self.titleLabel.text = nil
+                self.dateLabel.text = nil
+                self.disposeBag = DisposeBag()
             }
         }
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.item = nil
     }
 }

@@ -13,4 +13,7 @@ import RxCocoa
 protocol ScanResults_View: BaseViewType {
     var viewModel: ScanResults_ViewModelType? { get set }
     var onTableViewSegue: ((ScanResults_TableView) -> Void)? { get set }
+
+    var onSaved: (() -> Void)? { get set }
+
 }

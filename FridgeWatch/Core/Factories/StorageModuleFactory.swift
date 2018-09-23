@@ -18,5 +18,4 @@ extension ModuleFactory: StorageModuleFactoryType {
         }
         return controller
     }
-
 }

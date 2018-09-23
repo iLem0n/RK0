@@ -10,5 +10,5 @@ import Foundation
 import RealmSwift
 
 protocol RealmsType: class {
-    var local: Realm? { get }
+    static var local: Realm { get }
 }

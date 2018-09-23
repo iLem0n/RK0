@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxDataSources
+import RealmSwift
 
 final class ScanResults_ViewModel: NSObject, ScanResults_ViewModelType {
     
@@ -34,5 +35,20 @@ final class ScanResults_ViewModel: NSObject, ScanResults_ViewModelType {
             .onNext(
                 [ScanResults_SectionModel(header: "Scanning Results", items: results, footer: "")]
         )
+    }
+    
+    func save(_ completion: (Bool) -> Void) {
+        do {
+            let objects: [FoodItem] = (try self.sectionsSubject.value()).map({ $0.items }).flatMap({ $0 })
+            
+            let realm = Realms.local
+            try realm.write {
+                realm.add(objects)
+                completion(true)
+            }
+        } catch {
+            self.message.onNext(Message(type: .error, title: "Save Error", text: error.localizedDescription))
+            completion(false)
+        }
     }
 }

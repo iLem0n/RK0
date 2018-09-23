@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import Realm
 import RealmSwift
+import RxSwift
 
 final class FoodItem: Object {
-    @objc dynamic var gtin: String!
-    @objc dynamic var date: Date!
-
-    convenience init(gtin: String, date: Date) {
+    @objc dynamic var bestBeforeDate: Date!
+    @objc dynamic var product: Product!
+    
+    convenience init(bestBeforeDate: Date, product: Product) {
         self.init()
-        self.gtin = gtin
-        self.date = date
+        self.bestBeforeDate = bestBeforeDate
+        self.product = product
     }
 }
