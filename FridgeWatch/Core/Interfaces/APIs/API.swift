@@ -11,15 +11,25 @@ import Freddy
 
 protocol APIType {
     var parser: ProductDataResponseParserType { get }
+    
     func makeProduct(data: Data) -> Product?
 }
 
 enum API: APIType {
     case datakick
     case gtinsuche
-    case google
+    case googleImageSearch
     case codecheck
 
+    var supportedDataTypes: [APIDataTypeKey] {
+        switch self {
+        case .googleImageSearch:
+            return [.productImage]
+        default:
+            return []
+        }
+    }
+    
     func makeProduct(data: Data) -> Product? {
         guard itemFound(data: data) else { return nil }
         var data = data
@@ -33,7 +43,7 @@ enum API: APIType {
             gtinKey = "gtin"
             nameKey = "name"
             brandKey = "brand"
-        case .google:
+        case .googleImageSearch:
             gtinKey = "gtin"
             nameKey = "name"
             brandKey = "brand"
@@ -71,7 +81,7 @@ enum API: APIType {
         switch self {
         case .codecheck:
             return false
-        case .google:
+        case .googleImageSearch:
             return false
         case .gtinsuche:
             guard let string = String(data: data, encoding: String.Encoding.utf8) else { return false }
@@ -97,7 +107,7 @@ enum API: APIType {
             return CodecheckResponseParser()
         case .datakick:
             return DataKickResponseParser()
-        case .google:
+        case .googleImageSearch:
             return GoogleSearchResponseParser()
         }
     }

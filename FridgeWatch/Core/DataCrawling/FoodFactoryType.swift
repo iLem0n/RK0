@@ -10,6 +10,6 @@ import Foundation
 import Result
 
 protocol FoodFactoryType {
-    static func makeProduct(_ gtin: String, _ completion: (Result<Product, FoodCrawlerError>) -> Void)
-    static func prepareFoodItem(productID: String, bestBeforeDate: Date, _ completion: (Result<FoodItem, FoodFactoryError>) -> Void)
+    static func makeProduct(_ gtin: String, _ completion: @escaping (Result<Product, FoodCrawlerError>) -> Void)
+    static func prepareFoodItem(productID: String, bestBeforeDate: Date, _ completion: @escaping (Result<FoodItem, FoodFactoryError>) -> Void)
 }

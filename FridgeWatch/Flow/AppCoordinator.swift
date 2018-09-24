@@ -23,6 +23,9 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
         prepareLogging()
         prepareMicroblink()
         start()
+        
+        let _ = DataCollector.shared
+        DataCollector.shared.test()
     }
     
     //-------------------- PREPARATION -------------------------

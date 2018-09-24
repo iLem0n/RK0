@@ -58,7 +58,6 @@ fileprivate struct GooglePageMap {
     private(set) var imageUrl: URL?
     
     init?(jsonDict: [String: JSON]) {
-        log.debug(jsonDict)
         do {
             guard let infoArray = try jsonDict["product"]?.getArray() else { return nil }
             for info in infoArray {
@@ -89,11 +88,11 @@ fileprivate struct GooglePageMap {
 //            }
 //        }
 //
-//        //  parse product image
-//        if let imageUrlValue = try? jsonDict["cse_image"]?.getArray().first?.getDictionary()["src"]?.getString(),
-//            let imageUrlString = imageUrlValue,
-//            let imageUrl = URL(string: imageUrlString) {
-//            self.imageUrl = imageUrl
-//        }
+        //  parse product image
+        if let imageUrlValue = try? jsonDict["cse_image"]?.getArray().first?.getDictionary()["src"]?.getString(),
+            let imageUrlString = imageUrlValue,
+            let imageUrl = URL(string: imageUrlString) {
+                self.imageUrl = imageUrl
+            }
     }
 }

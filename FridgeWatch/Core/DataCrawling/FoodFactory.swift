@@ -14,7 +14,7 @@ enum FoodFactoryError: Error {
 }
 
 final class FoodFactory: FoodFactoryType {
-    public static func makeProduct(_ gtin: String, _ completion: (Result<Product, FoodCrawlerError>) -> Void) {
+    public static func makeProduct(_ gtin: String, _ completion: @escaping (Result<Product, FoodCrawlerError>) -> Void) {
         let realm = Realms.local
         if let existing = realm.object(ofType: Product.self, forPrimaryKey: gtin) {
             ProductCrawler.shared.getProductData(gtin, completion)
@@ -28,7 +28,7 @@ final class FoodFactory: FoodFactoryType {
         ProductCrawler.shared.getProductData(gtin, completion)
     }
     
-    public static func prepareFoodItem(productID: String, bestBeforeDate: Date, _ completion: (Result<FoodItem, FoodFactoryError>) -> Void) {
+    public static func prepareFoodItem(productID: String, bestBeforeDate: Date, _ completion: @escaping (Result<FoodItem, FoodFactoryError>) -> Void) {
         makeProduct(productID) { (result) in
             switch result {
             case .success(let product):

@@ -11,6 +11,6 @@ import Foundation
 protocol StorageModuleFactoryType {
     func makeContentModule(
         viewModel: StorageContent_ViewModelType,
-        _ tableControllerHandler: @escaping (StorageContent_TableView) -> Void)
+        _ tableControllerHandler: @escaping (StorageContent_CollectionView) -> Void)
     -> StorageContent_View?
 }

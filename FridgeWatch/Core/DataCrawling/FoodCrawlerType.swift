@@ -16,6 +16,7 @@ enum FoodCrawlerError: Error {
 protocol FoodCrawlerType {
     static var shared: FoodCrawlerType { get }
     
-    func getProductData(_ gtin: String, _ resultHandler: (Result<Product, FoodCrawlerError>) -> Void)
-    func updateProductData(_ gtin: String)
+    func getProductData(_ gtin: String, _ resultHandler:  @escaping (Result<Product, FoodCrawlerError>) -> Void)
+    func updateProductData(_ gtin: String) 
+    func updateProductData(_ gtin: String, _ completion: (() -> Void)?)
 }

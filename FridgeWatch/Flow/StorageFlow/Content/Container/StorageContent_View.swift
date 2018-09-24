@@ -12,7 +12,7 @@ import RxCocoa
 
 protocol StorageContent_View: BaseViewType {
     var viewModel: StorageContent_ViewModelType? { get set }
-    var onTableViewSegue: ((StorageContent_TableView) -> Void)? { get set }
+    var onCollectionViewSegue: ((StorageContent_CollectionView) -> Void)? { get set }
     
     var onStartScanButtonTouched: (() -> Void)? { get set }
 }

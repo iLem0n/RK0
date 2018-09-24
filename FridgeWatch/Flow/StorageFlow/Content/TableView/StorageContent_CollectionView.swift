@@ -1,5 +1,5 @@
 //
-//  StorageContent_TableView.swift
+//  StorageContent_CollectionView.swift
 //
 //  FridgeWatch
 //
@@ -11,6 +11,6 @@ import RxSwift
 import RxCocoa
 import SwipeCellKit
 
-protocol StorageContent_TableView: BaseViewType, SwipeTableViewCellDelegate {
+protocol StorageContent_CollectionView: BaseViewType, SwipeCollectionViewCellDelegate {
     var viewModel: StorageContent_ViewModelType? { get set }
 }

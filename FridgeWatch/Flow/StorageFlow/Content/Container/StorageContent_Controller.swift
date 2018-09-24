@@ -18,7 +18,7 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     let disposeBag = DisposeBag()
     
     //-------------------- COORDINATOR LINKS -------------------------
-    var onTableViewSegue: ((StorageContent_TableView) -> Void)?
+    var onCollectionViewSegue: ((StorageContent_CollectionView) -> Void)?
     var onStartScanButtonTouched: (() -> Void)?
     
     //-------------------- UI ELEMENTS -------------------------
@@ -33,8 +33,8 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else { return }
         switch identifier {
-        case let i where i == R.segue.storageContent_Controller.showTableView.identifier:
-            self.onTableViewSegue?(segue.destination as! StorageContent_TableView)
+        case let i where i == R.segue.storageContent_Controller.showCollectionView.identifier:
+            self.onCollectionViewSegue?(segue.destination as! StorageContent_CollectionView)
         default:
             fatalError("Unhandled segue: \(identifier)")
         }

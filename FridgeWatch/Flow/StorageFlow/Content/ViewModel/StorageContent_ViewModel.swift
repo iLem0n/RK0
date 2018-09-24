@@ -20,12 +20,12 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     lazy var sections: Observable<[StorageContent_SectionModel]> = self.sectionsSubject.asObservable()
     private let sectionsSubject = BehaviorSubject<[StorageContent_SectionModel]>(value: [])
  
-    private(set) var tableDataSource = RxTableViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell:  { (_, _, _, _) -> UITableViewCell in
-        return UITableViewCell(frame: .zero)
+    private(set) var collectionDataSource = RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell:  { (_, _, _, _) -> UICollectionViewCell in
+        return UICollectionViewCell(frame: .zero)
     })
-    var configureCell: RxTableViewSectionedReloadDataSource<StorageContent_SectionModel>.ConfigureCell! {
+    var configureCell: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>.ConfigureCell! {
         didSet {
-            tableDataSource = RxTableViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell: configureCell)
+            collectionDataSource = RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell: configureCell)
         }
     }
     

@@ -40,7 +40,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
     /// Image `closeButton`.
     static let closeButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "closeButton")
@@ -48,6 +48,8 @@ struct R: Rswift.Validatable {
     static let flashButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "flashButton")
     /// Image `listButton`.
     static let listButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "listButton")
+    /// Image `placeholer`.
+    static let placeholer = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholer")
     
     /// `UIImage(named: "closeButton", bundle: ..., traitCollection: ...)`
     static func closeButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -64,18 +66,33 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.listButton, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "placeholer", bundle: ..., traitCollection: ...)`
+    static func placeholer(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.placeholer, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 0 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
   struct nib {
+    /// Nib `FoodItemCollectionCell`.
+    static let foodItemCollectionCell = _R.nib._FoodItemCollectionCell()
+    
+    /// `UINib(name: "FoodItemCollectionCell", in: bundle)`
+    static func foodItemCollectionCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.foodItemCollectionCell)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `FoodItemCell`.
     static let foodItemCell: Rswift.ReuseIdentifier<FoodItemCell> = Rswift.ReuseIdentifier(identifier: "FoodItemCell")
+    /// Reuse identifier `FoodItemCollectionCell`.
+    static let foodItemCollectionCell: Rswift.ReuseIdentifier<FoodItemCollectionCell> = Rswift.ReuseIdentifier(identifier: "FoodItemCollectionCell")
     
     fileprivate init() {}
   }
@@ -114,14 +131,14 @@ struct R: Rswift.Validatable {
     
     /// This struct is generated for `StorageContent_Controller`, and contains static references to 1 segues.
     struct storageContent_Controller {
-      /// Segue identifier `showTableView`.
-      static let showTableView: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, StorageContent_Controller, StorageContent_TableController> = Rswift.StoryboardSegueIdentifier(identifier: "showTableView")
+      /// Segue identifier `showCollectionView`.
+      static let showCollectionView: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, StorageContent_Controller, StorageContent_CollectionController> = Rswift.StoryboardSegueIdentifier(identifier: "showCollectionView")
       
-      /// Optionally returns a typed version of segue `showTableView`.
+      /// Optionally returns a typed version of segue `showCollectionView`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showTableView(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, StorageContent_Controller, StorageContent_TableController>? {
-        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.storageContent_Controller.showTableView, segue: segue)
+      static func showCollectionView(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, StorageContent_Controller, StorageContent_CollectionController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.storageContent_Controller.showCollectionView, segue: segue)
       }
       
       fileprivate init() {}
@@ -185,9 +202,32 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
   }
   
-  struct nib {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _FoodItemCollectionCell.validate()
+    }
+    
+    struct _FoodItemCollectionCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = FoodItemCollectionCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "FoodItemCollectionCell"
+      let name = "FoodItemCollectionCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> FoodItemCollectionCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? FoodItemCollectionCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "placeholer", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'placeholer' is used in nib 'FoodItemCollectionCell', but couldn't be loaded.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
@@ -261,20 +301,26 @@ struct _R: Rswift.Validatable {
     struct storage: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let name = "Storage"
-      let storageContentTableView = StoryboardViewControllerResource<StorageContent_TableController>(identifier: "StorageContentTableView")
       let storageContentView = StoryboardViewControllerResource<StorageContent_Controller>(identifier: "StorageContentView")
-      
-      func storageContentTableView(_: Void = ()) -> StorageContent_TableController? {
-        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: storageContentTableView)
-      }
+      let storageContent_CollectionView = StoryboardViewControllerResource<StorageContent_CollectionController>(identifier: "StorageContent_CollectionView")
+      let storageContent_TableView = StoryboardViewControllerResource<StorageContent_CollectionController>(identifier: "StorageContent_TableView")
       
       func storageContentView(_: Void = ()) -> StorageContent_Controller? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: storageContentView)
       }
       
+      func storageContent_CollectionView(_: Void = ()) -> StorageContent_CollectionController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: storageContent_CollectionView)
+      }
+      
+      func storageContent_TableView(_: Void = ()) -> StorageContent_CollectionController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: storageContent_TableView)
+      }
+      
       static func validate() throws {
+        if _R.storyboard.storage().storageContent_TableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContent_TableView' could not be loaded from storyboard 'Storage' as 'StorageContent_CollectionController'.") }
         if _R.storyboard.storage().storageContentView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContentView' could not be loaded from storyboard 'Storage' as 'StorageContent_Controller'.") }
-        if _R.storyboard.storage().storageContentTableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContentTableView' could not be loaded from storyboard 'Storage' as 'StorageContent_TableController'.") }
+        if _R.storyboard.storage().storageContent_CollectionView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContent_CollectionView' could not be loaded from storyboard 'Storage' as 'StorageContent_CollectionController'.") }
       }
       
       fileprivate init() {}

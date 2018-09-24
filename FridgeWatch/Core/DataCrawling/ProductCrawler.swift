@@ -10,26 +10,50 @@ import Foundation
 import Result
 import Moya
 import Freddy
+import UIKit
 
 final class ProductCrawler: NSObject, FoodCrawlerType {
+
     static var shared: FoodCrawlerType = ProductCrawler()
     
-    func getProductData(_ gtin: String, _ resultHandler: (Result<Product, FoodCrawlerError>) -> Void) {
+    func getProductData(_ gtin: String, _ resultHandler: @escaping (Result<Product, FoodCrawlerError>) -> Void) {
         log.debug(#function)
         if let matchingProdcut = Realms.local.object(ofType: Product.self, forPrimaryKey: gtin) {
-            resultHandler(.success(matchingProdcut))
+            if matchingProdcut.name == nil {
+                self.updateProductData(gtin) {
+                    resultHandler(.failure(.unknownProduct))
+                }
+            } else {
+                resultHandler(.success(matchingProdcut))
+            }
+            
         } else {
-            resultHandler(.failure(.unknownProduct))
-            self.updateProductData(gtin)
+            self.updateProductData(gtin) {
+                resultHandler(.failure(.unknownProduct))
+            }
         }
     }
     
     func updateProductData(_ gtin: String) {
+        updateProductData(gtin, nil)
+    }
+    
+    func updateProductData(_ gtin: String, _ completion: (() -> Void)? = nil) {
         if let product = Realms.local.object(ofType: Product.self, forPrimaryKey: gtin) {
             collectAPIResponses(gtin: gtin) { [weak self] (responses) in
                 guard let strong = self else { return }
                 
                 var namesFound = responses.flatMap({ $0.names })
+                var newImage: UIImage? = nil
+                
+                if product.imageData == nil {
+                    newImage = responses.flatMap({ $0.imageUrls }).compactMap({
+                        guard let data = try? Data(contentsOf: $0.absoluteURL) else { return nil }
+                        return UIImage(data: data)
+                    }).first
+                }
+                
+                
                 if let existingName = product.name {
                     namesFound.append(existingName)
                 }
@@ -39,13 +63,16 @@ final class ProductCrawler: NSObject, FoodCrawlerType {
                     if let name = strong.suggestName(namesFound) {
                         product.name = name
                     }
+                    product.image = newImage
+                    log.debug(product)
                 }
+                completion?()
             }
         } else {
-            FoodFactory.makeProduct(gtin) { (result) in
+            FoodFactory.makeProduct(gtin) { [weak self] (result) in
                 switch result {
                 case .success(_):
-                    updateProductData(gtin)
+                    self?.updateProductData(gtin)
                 case .failure(let error):
                     log.error(error.localizedDescription)
                 }
@@ -63,7 +90,7 @@ final class ProductCrawler: NSObject, FoodCrawlerType {
     }
     
     //------------------ APIs ---------------------
-    private var apis: [API] = [.google, .datakick, .gtinsuche]
+    private var apis: [API] = [.googleImageSearch, .datakick, .gtinsuche]
     private func collectAPIResponses(gtin: String, _ completion: @escaping ([ProductDataResponseType]) -> Void) {
         var results: [ProductDataResponseType] = []
         var apiCnt = apis.count
@@ -92,18 +119,19 @@ final class ProductCrawler: NSObject, FoodCrawlerType {
             }
             
             //  TODO: Only use else if limitation is
-            if api == .google {//  since request are limited
-                let token: GTINAPITarget = .getInfo(api, gtin)
-                let url = URL(string: "http://www.google.de")!
-                gtinBackend.stubRequest(token,
-                                        request: URLRequest(url: url),
-                                        callbackQueue: DispatchQueue.global(qos: .background),
-                                        completion: responseHandler,
-                                        endpoint: gtinBackend.endpoint(token),
-                                        stubBehavior: StubBehavior.immediate)
-            } else {
-                gtinBackend.request(.getInfo(api, gtin), completion: responseHandler)
-            }
+            
+//            if api == .googleImageSearch {//  since request are limited
+//                let token: APITarget = .getInfo(api, gtin)
+//                let url = URL(string: "http://www.google.de")!
+//                searchProviderOld.stubRequest(token,
+//                                        request: URLRequest(url: url),
+//                                        callbackQueue: DispatchQueue.global(qos: .background),
+//                                        completion: responseHandler,
+//                                        endpoint: searchProviderOld.endpoint(token),
+//                                        stubBehavior: StubBehavior.immediate)
+//            } else {
+//                searchProviderOld.request(.getInfo(api, gtin), completion: responseHandler)
+//            }
         }
     }
 }

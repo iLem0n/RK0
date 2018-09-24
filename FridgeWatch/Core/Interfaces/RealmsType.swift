@@ -11,4 +11,5 @@ import RealmSwift
 
 protocol RealmsType: class {
     static var local: Realm { get }
+    static var shared: Realm { get }
 }

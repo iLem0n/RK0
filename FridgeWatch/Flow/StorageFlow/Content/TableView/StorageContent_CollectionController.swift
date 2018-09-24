@@ -1,5 +1,5 @@
 //
-//  StorageContent_TableController.swift
+//  StorageContent_CollectionController.swift
 //
 //  FridgeWatch
 //
@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SwipeCellKit
 
-final class StorageContent_TableController: UITableViewController, StorageContent_TableView {
+final class StorageContent_CollectionController: UICollectionViewController, StorageContent_CollectionView {
     
     //-------------------- PREPARATION -------------------------
     var viewModel: StorageContent_ViewModelType?
@@ -27,26 +27,29 @@ final class StorageContent_TableController: UITableViewController, StorageConten
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
-        viewModel.tableDataSource.configureCell = { (source, tableView, indexPath, item) in
-            let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.foodItemCell, for: indexPath)!
+        self.collectionView.register(R.nib.foodItemCollectionCell)
+        
+        viewModel.collectionDataSource.configureCell = { (source, tableView, indexPath, item) in
+            let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.foodItemCollectionCell, for: indexPath)!
+            
             cell.item = item
             cell.delegate = self
             return cell
         }
         
-        viewModel.tableDataSource.titleForHeaderInSection = { (source, section) in
-            return source.sectionModels[section].header
-        }
-        
-        viewModel.tableDataSource.titleForFooterInSection = { (source, section) in
-            return source.sectionModels[section].footer
-        }
+//        viewModel.collectionDataSource.header.titleForHeaderInSection = { (source, section) in
+//            return source.sectionModels[section].header
+//        }
+//        
+//        viewModel.collectionDataSource.titleForFooterInSection = { (source, section) in
+//            return source.sectionModels[section].footer
+//        }
         
         viewModel.sections
-            .bind(to: tableView.rx.items(dataSource: viewModel.tableDataSource))
+            .bind(to: collectionView.rx.items(dataSource: viewModel.collectionDataSource))
             .disposed(by: disposeBag)
         
-        tableView.rx.itemSelected
+        collectionView.rx.itemSelected
             .subscribe {
                 guard let next = $0.element else { return }
                 //<#Handle Selection#>
@@ -55,7 +58,7 @@ final class StorageContent_TableController: UITableViewController, StorageConten
         
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+    func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         var actions: [SwipeAction] = []
         switch orientation {
         case .left: break
