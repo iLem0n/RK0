@@ -17,15 +17,14 @@ final class FoodFactory: FoodFactoryType {
     public static func makeProduct(_ gtin: String, _ completion: @escaping (Result<Product, FoodCrawlerError>) -> Void) {
         let realm = Realms.local
         if let existing = realm.object(ofType: Product.self, forPrimaryKey: gtin) {
-            ProductCrawler.shared.getProductData(gtin, completion)
-            return
+            completion(.success(existing))
+        } else {
+            let product = Product(gtin: gtin)
+            try? realm.write {
+                realm.add(product)
+            }
+            completion(.success(product))
         }
-        
-        let product = Product(gtin: gtin)
-        try? realm.write {
-            realm.add(product)
-        }
-        ProductCrawler.shared.getProductData(gtin, completion)
     }
     
     public static func prepareFoodItem(productID: String, bestBeforeDate: Date, _ completion: @escaping (Result<FoodItem, FoodFactoryError>) -> Void) {

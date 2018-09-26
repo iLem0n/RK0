@@ -10,6 +10,7 @@ github "realm/realm-cocoa"
 # network abstraction layer
 github "Moya/Moya"
 github "bignerdranch/Freddy"
+github "scinfu/SwiftSoup"
 
 # Visualisation
 github "SwiftKickMobile/SwiftMessages"

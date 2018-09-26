@@ -56,6 +56,7 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
     
     private func linkData() {
         combinedDataSubject
+            .debug()
             .filter({ [weak self] in
                 guard
                     let strong = self,              //  weak reference
@@ -66,6 +67,7 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
                 else { return false }
                 return true
             })
+            .debug()
             .subscribe { [weak self] next in
                 guard let strong = self,
                     var prevItems = try? strong.scannedItems.value(),   // get actual elements

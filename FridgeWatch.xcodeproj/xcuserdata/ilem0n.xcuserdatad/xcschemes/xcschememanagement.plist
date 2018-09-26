@@ -4,10 +4,28 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>FridgeWatch.xcscheme</key>
+		<key>FridgeWatch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C453E1A2214ADBED0091E2B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C453E1B6214ADBEE0091E2B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C453E1C1214ADBEE0091E2B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

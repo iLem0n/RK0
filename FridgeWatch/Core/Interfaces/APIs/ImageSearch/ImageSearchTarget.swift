@@ -12,28 +12,37 @@ import RxMoya
 import UIKit
 import Freddy
 
-let imageSearchBackend = MoyaProvider<ImageSearchAPI>()
+let imageSearchBackend = MoyaProvider<ImageSearchTarget>()
 
-enum ImageSearchAPI: TargetType {
-    case getImage(String)
+enum ImageSearchTarget: TargetType {
+    case googleImageSearch(String)
 }
 
-extension ImageSearchAPI {
+extension ImageSearchTarget {
     var baseURL: URL {
+        switch self {
+        case .googleImageSearch:
         return URL(string: "https://www.googleapis.com")!
+        }
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        case .googleImageSearch:
+            return nil
+        }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .googleImageSearch:
+            return .get
+        }
     }
     
     var path: String {
         switch self {
-        case .getImage(_):
+        case .googleImageSearch:
             return "/customsearch/v1"
         }
     }
@@ -44,7 +53,7 @@ extension ImageSearchAPI {
     
     var parameters: [String: String]? {
         switch self {
-        case .getImage(let searchTerm):
+        case .googleImageSearch(let searchTerm):
             return [
                 "key": "AIzaSyDtKuugX8IZST_53LnIMkTjpazmBzfLUK8",
                 "cx": "008282570450252504370:pgdswsw7nxo",
@@ -54,10 +63,20 @@ extension ImageSearchAPI {
     }
     
     var task: Task {
-        return .requestParameters(parameters: self.parameters!, encoding: URLEncoding(destination: .queryString))
+        switch self {
+        case .googleImageSearch:
+            return .requestParameters(parameters: self.parameters!, encoding: URLEncoding(destination: .queryString))
+        }
     }
     
     var validate: Bool {
         return false
+    }
+    
+    var responseParser: ResponseParserType {
+        switch self {
+        case .googleImageSearch:
+            return GoogleImageResponseParser()
+        }
     }
 }

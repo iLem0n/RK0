@@ -25,7 +25,6 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
         start()
         
         let _ = DataCollector.shared
-        DataCollector.shared.test()
     }
     
     //-------------------- PREPARATION -------------------------
@@ -34,7 +33,8 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     }
     
     private func prepareMicroblink() {
-        MBMicroblinkSDK.init().setLicenseKey("sRwAAAEVZGUuaWxlbTBuLmZyaWRnZXdhdGNowaMxfPvmxnXelUmmoaypIreyh4spTleVfYD1yjbuTwItHnICkkZXgxEi9EXWptEOmmNNWchPGvBy4qSD27NJYfbCfHcX3FSzAX29GjdpUxDQG7n9anFydgpFfYJuMvnm11PgRoaL+LLSYNlbNqO13HbnjP2WVhMqZ//4VPmoozcI6n691B1Cxqhpn0ZI")
+        MBMicroblinkSDK.init()
+            .setLicenseKey("sRwAAAEVZGUuaWxlbTBuLmZyaWRnZXdhdGNowaMxfPvmxnXelUmmoaypIreyh4spTleVfYD1yjbuTwItHnICkkZXgxEi9EXWptEOmmNNWchPGvBy4qSD27NJYfbCfHcX3FSzAX29GjdpUxDQG7n9anFydgpFfYJuMvnm11PgRoaL+LLSYNlbNqO13HbnjP2WVhMqZ//4VPmoozcI6n691B1Cxqhpn0ZI")
     }
     
     //-------------------- FLOW START -------------------------

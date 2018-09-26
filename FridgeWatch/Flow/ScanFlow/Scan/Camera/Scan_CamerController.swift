@@ -61,10 +61,11 @@ final class Scan_CamerController: UIViewController, Scan_CameraView {
         //  prepare device and session
         captureSession = AVCaptureSession()
         captureDevice = AVCaptureDevice.default(for: .video)
+        guard let captureDevice = captureDevice else { return }
         
         guard
             let captureSession = captureSession,
-            let input = try? AVCaptureDeviceInput(device: captureDevice!)
+            let input = try? AVCaptureDeviceInput(device: captureDevice)
         else {
             viewModel.cameraAvailable.onNext(false)
             viewModel.message.onNext(Message(type: .error, title: "Camera Error", text: "Unable to initialize camera session."))

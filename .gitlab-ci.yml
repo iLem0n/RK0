@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project FridgeWatch.xcodeproj -scheme FridgeWatch | xcpretty
+    - xcodebuild test -project FridgeWatch.xcodeproj -scheme FridgeWatch -destination 'platform=iOS Simulator,name=iPhone XS Max,OS=12.0' | xcpretty -s
+  tags:
+    - ios_12
