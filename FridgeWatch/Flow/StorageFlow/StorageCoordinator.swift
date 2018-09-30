@@ -40,8 +40,4 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
         
         router.setRootModule(module)
     }
-    
-    private func showScanModule() {
-        
-    }
 }

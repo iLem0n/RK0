@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIButton {
-    convenience init(title: String? = nil, initialState: ViewState = .standard) {
+    convenience init(title: String? = nil, initialState: ValidationState = .standard) {
         self.init(type: .custom)
         self.setState(initialState)
         self.setTitle(title, for: .normal)

@@ -9,5 +9,8 @@
 import UIKit
 
 protocol SharedFactoryType {
-    func makeDatePickerModul(date: Date, onApply: @escaping (Date) -> Void, onClear: (() -> Void)?, onCancel: @escaping () -> Void) -> UIAlertController
+    func makeDatePickerModul(
+        viewModel: DatePickerViewModelType,
+        onCompleted: @escaping () -> Void)
+    -> UIAlertController
 }

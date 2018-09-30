@@ -32,7 +32,7 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
         viewModel.collectionDataSource.configureCell = { (source, tableView, indexPath, item) in
             let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.foodItemCollectionCell, for: indexPath)!
             
-            cell.item = item
+            cell.itemID = item.id
             cell.delegate = self
             return cell
         }

@@ -12,12 +12,18 @@ import RealmSwift
 import RxSwift
 
 final class FoodItem: Object {
+    @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var bestBeforeDate: Date!
     @objc dynamic var product: Product!
     
-    convenience init(bestBeforeDate: Date, product: Product) {
+    convenience init(bestBeforeDate: Date, productGTIN: String) {
         self.init()
         self.bestBeforeDate = bestBeforeDate
-        self.product = product
+        
+        self.product = Realms.shared.object(ofType: Product.self, forPrimaryKey: productGTIN)!
+    }
+    
+    override static func primaryKey() -> String {
+        return "id"
     }
 }

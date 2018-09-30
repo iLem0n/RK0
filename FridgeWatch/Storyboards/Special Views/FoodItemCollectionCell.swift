@@ -21,21 +21,22 @@ class FoodItemCollectionCell: SwipeCollectionViewCell {
         super.awakeFromNib()
     }
     
-    var item: FoodItem? {
+    var itemID: String? {
         didSet {
-            self.disposeBag = DisposeBag()
-            if let item = item {
-                titleLabel.text = item.product.name ?? "<\(String(describing: item.product.gtin))>"
-                if let image = item.product.image {
-                    imageView.image = image
-                }
-                dateLabel.text = DateFormatter(timeStyle: .none, dateStyle: .short).string(from: item.bestBeforeDate)
-            } else {
+            disposeBag = DisposeBag()
+            guard let itemID = itemID, let item = Realms.local.object(ofType: FoodItem.self, forPrimaryKey: itemID) else {
                 //  reset view
-                self.titleLabel.text = nil
-                self.dateLabel.text = nil
-                self.disposeBag = DisposeBag()
+                titleLabel.text = nil
+                dateLabel.text = nil
+                disposeBag = DisposeBag()
+                return
             }
+
+            titleLabel.text = item.product.name ?? "<\(String(describing: item.product.gtin))>"
+            if let image = item.product.image {
+                imageView.image = image
+            }
+            dateLabel.text = DateFormatter(timeStyle: .none, dateStyle: .short).string(from: item.bestBeforeDate)
         }
     }
 }

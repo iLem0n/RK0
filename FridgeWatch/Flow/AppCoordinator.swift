@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyBeaver
 import MicroBlink
+import RealmSwift
 
 let log = SwiftyBeaver.self
 
@@ -19,12 +20,28 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     var window: UIWindow?
     var router: RouterType!
     
+    private var flushProductDataToken: NotificationToken?
     func applicationDidFinishLaunching(_ application: UIApplication) {
         prepareLogging()
         prepareMicroblink()
-        start()
         
-        let _ = DataCollector.shared
+        //  FLUSH ALL PRODUCT DATA
+        //  TODO: Remove on PROD
+//        let realm = Realms.shared
+//        flushProductDataToken = realm.objects(Product.self).observe { (change) in
+//            switch change {
+//            case .initial(let objects), .update(let objects, _,_,_):
+//                try! realm.write {
+//                    objects.forEach({ (prod) in
+//                        realm.delete(prod)
+//                    })
+//                }
+//            case .error(let error):
+//                log.error(error.localizedDescription)
+//            }
+//        }
+        
+        start()
     }
     
     //-------------------- PREPARATION -------------------------

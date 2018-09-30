@@ -26,6 +26,7 @@ class FoodItemCell: SwipeTableViewCell {
         didSet {
             self.disposeBag = DisposeBag()
             if let item = item {
+                log.debug(Thread.isMainThread)
                 titleLabel.text = item.product.name ?? "<\(String(describing: item.product.gtin))>"                
                 dateLabel.text = DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: item.bestBeforeDate)
             } else {

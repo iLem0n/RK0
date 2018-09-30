@@ -46,17 +46,12 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         
         module?.onBBDButtonTouched = { date in
             let datePickerModul = self.factory
-                .makeDatePickerModul(date: date ?? Date(),
-                                     onApply: { date in
-                                        viewModel.date.onNext(date)
-                                        self.router.dismissTopModule()
-                }, onClear: {
-                    viewModel.date.onNext(nil)
-                    self.router.dismissTopModule()
-                }, onCancel: {
-                    self.router.dismissTopModule()
-                }
-            )
+                .makeDatePickerModul(
+                    viewModel: viewModel,
+                    onCompleted: {
+                        self.router.dismissTopModule()
+                    }
+                )            
             self.router.present(datePickerModul)
         }
 

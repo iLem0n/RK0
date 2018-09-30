@@ -9,8 +9,6 @@
 import UIKit
 import RxSwift
 
-protocol DatePickerViewModelType: ViewModelType {
-    init(date: Date?) 
+protocol DatePickerViewModelType {
     var dateSubject: BehaviorSubject<Date?> { get }
-    func save(completion: (Date?) -> Void) 
 }

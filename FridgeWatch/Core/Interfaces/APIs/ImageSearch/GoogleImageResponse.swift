@@ -12,31 +12,29 @@ import UIKit
 struct GoogleImageResponse: Decodable, ImageResponse {
     struct Item: Decodable {
         struct Pagemap: Decodable {
-            struct Image: Decodable {
-                let src: String?
+            struct ImageSrc: Decodable {
+                let src: String
                 
                 private enum CodingKeys: String, CodingKey {
                     case src = "src"
                 }
             }
             
-            let image: [Image]
+            let imageSrc: [ImageSrc]?
             
             private enum CodingKeys: String, CodingKey {
-                case image = "cse_image"
+                case imageSrc = "cse_image"
             }
         }
         
-        let title: String
         let pagemap: Pagemap
         
         private enum CodingKeys: String, CodingKey {
-            case title = "title"
             case pagemap = "pagemap"
         }
     }
     
-    let items: [Item] = []
+    let items: [Item]
     
     private enum CodingKeys: String, CodingKey {
         case items = "items"
@@ -44,7 +42,7 @@ struct GoogleImageResponse: Decodable, ImageResponse {
     
     var images: [UIImage] {
         return self.items.compactMap({
-            $0.pagemap.image
+            $0.pagemap.imageSrc?
                 .compactMap({ $0.src })
                 .compactMap({ URL(string: $0) })
                 .compactMap({ try? Data(contentsOf: $0) })

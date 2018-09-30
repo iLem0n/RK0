@@ -20,6 +20,7 @@ final class DateRecognizer: NSObject, RecognizerType {
     private let runner: MBRecognizerRunner
     private let recognizer: MBBlinkInputRecognizer
     private let parsers: [MBParser]
+    private var isPaused: Bool = false
     
     override init() {
         //  self.parsers = [MBRawParser(), MBDateParser()]
@@ -43,14 +44,20 @@ final class DateRecognizer: NSObject, RecognizerType {
     }
     
     func process(_ sampleBuffer: CMSampleBuffer) {
+        guard !self.isPaused else { return }
         let image = MBImage(cmSampleBuffer: sampleBuffer)
         image.orientation = MBProcessingOrientation.left
         self.runner.processImage(image)
     }
     
+    func pause() {
+        self.isPaused = true
+    }
+    
     func reset() {
         self.runner.resetState()
         self.stateSubject.onNext(.ready)
+        self.isPaused = false
     }
     
     func recognizerRunner(_ recognizerRunner: MBRecognizerRunner, didFinishScanningWith state: MBRecognizerResultState) {

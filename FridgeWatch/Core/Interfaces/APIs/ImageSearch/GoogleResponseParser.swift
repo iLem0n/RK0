@@ -26,6 +26,8 @@ class GoogleImageResponseParser: ResponseParserType {
                 resultCount > 0
             else { return nil }
             
+            
+            
             return try decoder.decode(GoogleImageResponse.self, from: data)
         } catch (let error) {
             log.error(error)

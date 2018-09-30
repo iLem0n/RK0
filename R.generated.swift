@@ -117,12 +117,12 @@ struct R: Rswift.Validatable {
     /// This struct is generated for `Scan_Controller`, and contains static references to 1 segues.
     struct scan_Controller {
       /// Segue identifier `showCameraView`.
-      static let showCameraView: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, Scan_Controller, Scan_CamerController> = Rswift.StoryboardSegueIdentifier(identifier: "showCameraView")
+      static let showCameraView: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, Scan_Controller, Scan_CameraController> = Rswift.StoryboardSegueIdentifier(identifier: "showCameraView")
       
       /// Optionally returns a typed version of segue `showCameraView`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func showCameraView(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, Scan_Controller, Scan_CamerController>? {
+      static func showCameraView(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, Scan_Controller, Scan_CameraController>? {
         return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.scan_Controller.showCameraView, segue: segue)
       }
       
@@ -257,14 +257,14 @@ struct _R: Rswift.Validatable {
     
     struct scan: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
-      let cameraView = StoryboardViewControllerResource<Scan_CamerController>(identifier: "CameraView")
+      let cameraView = StoryboardViewControllerResource<Scan_CameraController>(identifier: "CameraView")
       let name = "Scan"
       let scanNavigation = StoryboardViewControllerResource<UIKit.UINavigationController>(identifier: "ScanNavigation")
       let scanResultsTableView = StoryboardViewControllerResource<ScanResults_TableController>(identifier: "ScanResultsTableView")
       let scanResultsView = StoryboardViewControllerResource<ScanResults_Controller>(identifier: "ScanResultsView")
       let scanView = StoryboardViewControllerResource<Scan_Controller>(identifier: "ScanView")
       
-      func cameraView(_: Void = ()) -> Scan_CamerController? {
+      func cameraView(_: Void = ()) -> Scan_CameraController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: cameraView)
       }
       
@@ -291,7 +291,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.scan().scanNavigation() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scanNavigation' could not be loaded from storyboard 'Scan' as 'UIKit.UINavigationController'.") }
         if _R.storyboard.scan().scanResultsView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scanResultsView' could not be loaded from storyboard 'Scan' as 'ScanResults_Controller'.") }
         if _R.storyboard.scan().scanView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scanView' could not be loaded from storyboard 'Scan' as 'Scan_Controller'.") }
-        if _R.storyboard.scan().cameraView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'cameraView' could not be loaded from storyboard 'Scan' as 'Scan_CamerController'.") }
+        if _R.storyboard.scan().cameraView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'cameraView' could not be loaded from storyboard 'Scan' as 'Scan_CameraController'.") }
         if _R.storyboard.scan().scanResultsTableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'scanResultsTableView' could not be loaded from storyboard 'Scan' as 'ScanResults_TableController'.") }
       }
       

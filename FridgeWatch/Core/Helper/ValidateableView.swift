@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol StateableView {
-    func setState(_ state: ViewState)
+protocol ValidateableView {
+    func setState(_ state: ValidationState)
 }
 
-enum ViewState {
+enum ValidationState {
     case none, standard, success, warning, info, error
     
     var primaryColor: UIColor {
@@ -35,8 +35,8 @@ enum ViewState {
     }
 }
 
-extension StateableView where Self: UIView {
-    func setState(_ state: ViewState) {
+extension ValidateableView where Self: UIView {
+    func setState(_ state: ValidationState) {
         layer.cornerRadius = self.frame.size.height / 3
         
         self.backgroundColor = state.secondaryColor
@@ -46,8 +46,8 @@ extension StateableView where Self: UIView {
     }
 }
 
-extension UIButton: StateableView {
-    func setState(_ state: ViewState) {
+extension UIButton: ValidateableView {
+    func setState(_ state: ValidationState) {
         layer.cornerRadius = 5.0
         
         self.backgroundColor = state.secondaryColor
@@ -59,10 +59,23 @@ extension UIButton: StateableView {
         self.setTitleColor(.white, for: .normal)
     }
 }
-extension UILabel: StateableView {}
-extension UITextField: StateableView {}
-extension UITableViewCell: StateableView {
-    func setState(_ state: ViewState) {        
+
+extension UILabel: ValidateableView {
+    func setState(_ state: ValidationState) {
+        layer.masksToBounds = true
+        layer.cornerRadius = 5.0
+        
+        self.backgroundColor = state.secondaryColor.withAlphaComponent(state.secondaryColor.cgColor.alpha - 0.15)
+        layer.shadowColor = state.primaryColor.cgColor
+        layer.borderColor = state.primaryColor.cgColor
+        
+        self.textColor = .white
+    }
+}
+
+extension UITextField: ValidateableView {}
+extension UITableViewCell: ValidateableView {
+    func setState(_ state: ValidationState) {        
         self.backgroundColor = state.secondaryColor
         layer.shadowColor = state.primaryColor.cgColor
         layer.borderColor = state.primaryColor.cgColor

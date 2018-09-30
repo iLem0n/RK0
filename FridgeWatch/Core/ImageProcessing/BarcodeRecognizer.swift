@@ -19,6 +19,7 @@ final class BarcodeRecognizer: NSObject, RecognizerType {
     
     private let runner: MBRecognizerRunner
     private let recognizer: MBBarcodeRecognizer
+    private var isPaused: Bool = false
     
     override init() {
         self.recognizer = MBBarcodeRecognizer()
@@ -39,14 +40,20 @@ final class BarcodeRecognizer: NSObject, RecognizerType {
     }
     
     func process(_ sampleBuffer: CMSampleBuffer) {
+        guard !self.isPaused else { return }
         let image = MBImage(cmSampleBuffer: sampleBuffer)
         image.orientation = MBProcessingOrientation.left
         self.runner.processImage(image)
     }
     
+    func pause() {
+        self.isPaused = true
+    }
+    
     func reset() {
         self.runner.resetState()
         self.stateSubject.onNext(.ready)
+        self.isPaused = false
     }
     
     func recognizerRunner(_ recognizerRunner: MBRecognizerRunner, didFinishScanningWith state: MBRecognizerResultState) {

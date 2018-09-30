@@ -26,13 +26,18 @@ final class Scan_Controller: UIViewController, Scan_View {
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var resultListButton: UIButton!
     @IBOutlet var resultCountLabel: UILabel!
-    @IBOutlet var dateButton: UIButton!
-    @IBOutlet var gtinLabel: UILabel!
+    @IBOutlet var clearDataButton: UIButton!
+    @IBOutlet var chooseDateButton: UIButton!
+    @IBOutlet var productLabel: UILabel!
+    @IBOutlet var showResultProgressView: UIProgressView!
 
     //----------------- LIFYCYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         linkViewModel()
+        
+        chooseDateButton.setState(.standard)
+        productLabel.setState(.standard)
     }
     
     var onCameraViewSegue: ((Scan_CameraView) -> Void)?
@@ -51,7 +56,7 @@ final class Scan_Controller: UIViewController, Scan_View {
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
-        //  Messages
+        //------ Messages --------
         viewModel.message
             .subscribe{
                 guard let next = $0.element else { return }
@@ -74,9 +79,15 @@ final class Scan_Controller: UIViewController, Scan_View {
             }
             .disposed(by: disposeBag)
         
+        clearDataButton.rx.tap
+            .subscribe { _ in
+                viewModel.resetScanData()
+            }
+            .disposed(by: disposeBag)
+        
         flashButton.rx.tap
             .subscribe { _ in
-                viewModel.isFlashlightOn.toggle()                
+                viewModel.toggleFlashlight()
             }
             .disposed(by: disposeBag)
         
@@ -86,40 +97,67 @@ final class Scan_Controller: UIViewController, Scan_View {
             }
             .disposed(by: disposeBag)
         
-        dateButton.rx.tap
+        chooseDateButton.rx.tap
             .subscribe { [weak self] next in
-                self?.onBBDButtonTouched?(try! viewModel.date.value() ?? nil)
+                self?.onBBDButtonTouched?(try! viewModel.dateSubject.value() ?? nil)
             }
             .disposed(by: disposeBag)
         
+        viewModel.resultShowProgress
+            .debug()
+            .bind(to: showResultProgressView.rx.progress)            
+            .disposed(by: disposeBag)
+        
+        viewModel.resultShowProgress
+            .map({ $0 > 0 ? false : true })
+            .bind(to: showResultProgressView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        //  Item count label
         viewModel
             .scannedItems
-            .debug()
+            .map({ $0.count })
+            .map({ "\($0)" })            
+            .bind(to: resultCountLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+    
+        //  GTIN label content
+        viewModel.product
+            .map({ $0?.name ?? $0?.gtin ?? "No Product" })
+            .bind(to: productLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        //  Date button content & state
+        viewModel
+            .dateSubject
+            .map({
+                guard let date = $0 else { return NSLocalizedString("Choose Date", comment: "Choose Date Button") }
+                return DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: date)
+            })
+            .bind(to: chooseDateButton.rx.title(for: .normal))
+            .disposed(by: disposeBag)
+        
+        viewModel
+            .dateValidationState
             .subscribe { [weak self] next in
-                guard let strong = self, let items = next.element else { return }
-                strong.resultCountLabel.text = "\(items.count)"
+                guard let strong = self, let state = next.element else { return }
+                strong.chooseDateButton.setState(state)
             }
             .disposed(by: disposeBag)
         
+        //  switch list and clear button
         Observable
-            .combineLatest(viewModel.gtin, viewModel.productName)
-            .map({ $0.1 ?? $0.0 })
-            .bind(to: gtinLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        viewModel
-            .date
-            .map({
-                $0 != nil ? DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: $0!) : "Choose Date"
-            })
-            .bind(to: dateButton.rx.title(for: .normal))
-            .disposed(by: disposeBag)
-        
-        viewModel
-            .dateViewState
+            .combineLatest(viewModel.dateValidationState, viewModel.productValidationState)
+            .debug()
+            .map({ $0.0 != .standard || $0.1 != .standard })
             .subscribe { [weak self] next in
-                guard let strong = self, let state = next.element else { return }
-                strong.dateButton.setState(state)
+                
+                DispatchQueue.main.async {
+                    guard let strong = self, let hasData = next.element else { return }
+                    strong.resultListButton.isHidden = hasData
+                    strong.clearDataButton.isHidden = !hasData
+                }
             }
             .disposed(by: disposeBag)
     }

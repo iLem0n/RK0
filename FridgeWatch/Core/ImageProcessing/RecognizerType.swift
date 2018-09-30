@@ -25,4 +25,5 @@ protocol RecognizerType: MBScanningRecognizerRunnerDelegate {
     
     func process(_ sampleBuffer: CMSampleBuffer)
     func reset()
+    func pause()
 }

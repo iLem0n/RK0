@@ -13,6 +13,7 @@ let dataSearchProvider = MoyaProvider<DataSearchTarget>()
 
 enum DataSearchTarget: TargetType {
     case gtinsuche(String)
+    case codecheck(String)
 }
 
 extension DataSearchTarget {
@@ -22,15 +23,19 @@ extension DataSearchTarget {
     
     var baseURL: URL {
         switch self {
-        case .gtinsuche(_):
+        case .gtinsuche:
             return URL(string: "https://www.gtinsuche.de")!
+        case .codecheck:
+            return URL(string: "https://www.codecheck.info")!
         }
     }
     
     var path: String {
         switch self {
-        case .gtinsuche(_):
+        case .gtinsuche:
             return "/detail"
+        case .codecheck:
+            return "/product.search"
         }
     }
     
@@ -52,7 +57,14 @@ extension DataSearchTarget {
                 parameters: [
                     "ean": gtin
                 ],
-                encoding: URLEncoding.default)                    
+                encoding: URLEncoding.default)
+        case .codecheck(let gtin):
+            return .requestParameters(
+                parameters: [
+                    "q": gtin
+                ],
+                encoding: URLEncoding.default)
+            
         }
     }
     
@@ -64,6 +76,9 @@ extension DataSearchTarget {
         switch self {
         case .gtinsuche:
             return GTINSucheResponseParser()
+        case .codecheck:
+            return CodecheckResponseParser()
         }
     }
 }
+
