@@ -42,21 +42,16 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
         self.updateFoodItemsToken = Realms.local
             .objects(FoodItem.self)
-            .observe { (changes) in
+            .observe { [weak self] (changes) in
+                guard let strong = self else { return }
                 switch changes {
                 case .update(let objects, _, _, _),
                      .initial(let objects):                                        
                     
-                    self.sectionsSubject.onNext(
-                        [
-                            StorageContent_SectionModel(
-                                header: "Fridge",
-                                items: objects.map({ $0 }),
-                                footer: "")
-                        ]
-                    )
+                    strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 })))
+                    
                 case .error(let error):
-                    self.message.onNext(Message(type: .error, title: "Database Error", text: "Unable to fetch objects: \(error)"))
+                    strong.message.onNext(Message(type: .error, title: "Database Error", text: "Unable to fetch objects: \(error)"))
                 }
         }
     }
@@ -82,4 +77,51 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             message.onNext(Message(type: .error, title: "Deletion failed.", text: error.localizedDescription))
         }
     }
+    
+    private func sections(for items: [FoodItem]) -> [StorageContent_SectionModel] {
+        var dict: [MonthKey: [FoodItem]] = [:]
+        let redItems = items
+            .filter({ $0.bestBeforeDate.isWithin(days: 3) })
+        
+        let yellowItems = items
+            .filter({ !redItems.contains($0) })
+            .filter({ $0.bestBeforeDate.isWithin(days: 7) })
+        
+        for item in items {
+            guard !redItems.contains(item), !yellowItems.contains(item) else { continue }
+            
+            let monthKey = MonthKey(date: item.bestBeforeDate)
+            if dict.keys.contains(monthKey) {
+                dict[monthKey]?.append(item)
+            } else {
+                dict[monthKey] = [item]
+            }
+        }
+        
+        var result: [StorageContent_SectionModel] = []
+        if redItems.count > 0 {
+            result.append(StorageContent_SectionModel(header: "Next \(3) Days", items: redItems, footer: ""))
+        }
+        
+        if yellowItems.count > 0 {
+            result.append(StorageContent_SectionModel(header: "Next \(7) Days", items: yellowItems, footer: ""))
+        }
+        
+        result.append(contentsOf: dict
+            .keys
+            .sorted { $0 < $1 }
+            .map { key in
+                var cal = Calendar(identifier: .gregorian)
+                cal.locale = Locale.current
+                let monthSymbol = cal.monthSymbols[key.month - 1]
+                let monthItems = dict[key]!.sorted { $0.bestBeforeDate.day < $1.bestBeforeDate.day }
+                var footer: String = ""
+                if monthItems.count == 0 {
+                    footer = "No items found. Either you filter is to restrictive or there are no items, yet."
+                }
+                return StorageContent_SectionModel(header: "\(monthSymbol) \(key.year)", items: monthItems, footer: footer)
+        })
+        return result
+    }
+
 }

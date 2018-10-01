@@ -14,6 +14,9 @@
 		C40AE97E215F9103005E4CF4 /* CodecheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AE97D215F9103005E4CF4 /* CodecheckResponse.swift */; };
 		C40C59612157BC2E000E3E8D /* FoodItemCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C59602157BC2E000E3E8D /* FoodItemCollectionCell.swift */; };
 		C40C59632157C065000E3E8D /* FoodItemCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C40C59622157C065000E3E8D /* FoodItemCollectionCell.xib */; };
+		C4132F0C21628BDE000FBE07 /* Date+isToday+isWithin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */; };
+		C4132F0E21628BE6000FBE07 /* MonthKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0D21628BE6000FBE07 /* MonthKey.swift */; };
+		C4132F1021628C42000FBE07 /* Date+QuickValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */; };
 		C417E5CE215BDB290007A5E5 /* GTINSucheResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5CD215BDB290007A5E5 /* GTINSucheResponse.swift */; };
 		C417E5D0215BDB690007A5E5 /* ParsedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5CF215BDB690007A5E5 /* ParsedResponse.swift */; };
 		C417E5D2215BDC040007A5E5 /* ProductDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5D1215BDC040007A5E5 /* ProductDataResponse.swift */; };
@@ -129,6 +132,7 @@
 		C4F59D532160B70400FE535D /* DataSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F59D522160B70400FE535D /* DataSearchOperation.swift */; };
 		C4F59D552160B9D500FE535D /* ImageSearchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F59D542160B9D500FE535D /* ImageSearchOperation.swift */; };
 		C4F59D592160F12E00FE535D /* UIImage+area.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F59D582160F12E00FE535D /* UIImage+area.swift */; };
+		C4F59D5B2161386F00FE535D /* GTINValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F59D5A2161386F00FE535D /* GTINValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,9 @@
 		C40AE97D215F9103005E4CF4 /* CodecheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodecheckResponse.swift; sourceTree = "<group>"; };
 		C40C59602157BC2E000E3E8D /* FoodItemCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemCollectionCell.swift; sourceTree = "<group>"; };
 		C40C59622157C065000E3E8D /* FoodItemCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodItemCollectionCell.xib; sourceTree = "<group>"; };
+		C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+isToday+isWithin.swift"; sourceTree = "<group>"; };
+		C4132F0D21628BE6000FBE07 /* MonthKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthKey.swift; sourceTree = "<group>"; };
+		C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+QuickValues.swift"; sourceTree = "<group>"; };
 		C417E5CD215BDB290007A5E5 /* GTINSucheResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTINSucheResponse.swift; sourceTree = "<group>"; };
 		C417E5CF215BDB690007A5E5 /* ParsedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsedResponse.swift; sourceTree = "<group>"; };
 		C417E5D1215BDC040007A5E5 /* ProductDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataResponse.swift; sourceTree = "<group>"; };
@@ -282,6 +289,7 @@
 		C4F59D522160B70400FE535D /* DataSearchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSearchOperation.swift; sourceTree = "<group>"; };
 		C4F59D542160B9D500FE535D /* ImageSearchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchOperation.swift; sourceTree = "<group>"; };
 		C4F59D582160F12E00FE535D /* UIImage+area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+area.swift"; sourceTree = "<group>"; };
+		C4F59D5A2161386F00FE535D /* GTINValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTINValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -770,8 +778,12 @@
 				C48787B92157A1B3000DE66A /* ValidateableView.swift */,
 				C48787C12157A398000DE66A /* SyncButton.swift */,
 				C4F5416B2157B6030073448A /* DateRange.swift */,
+				C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */,
+				C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */,
+				C4132F0D21628BE6000FBE07 /* MonthKey.swift */,
 				C4F5416D2157B6330073448A /* Interval.swift */,
 				C4A23EAC21514E3700FBB0C6 /* Common Extensions */,
+				C4F59D5A2161386F00FE535D /* GTINValidator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1081,6 +1093,7 @@
 				C4C0B573214B8EF2007748FD /* Realms.swift in Sources */,
 				C48787A92156CB75000DE66A /* ProductDataResponseType.swift in Sources */,
 				C470121B215AD1AB00756231 /* GoogleSearchInformationResponse.swift in Sources */,
+				C4132F0E21628BE6000FBE07 /* MonthKey.swift in Sources */,
 				C4F59D532160B70400FE535D /* DataSearchOperation.swift in Sources */,
 				C48787902156C270000DE66A /* EndpointTarget.swift in Sources */,
 				C453E1EA214AE1D80091E2B2 /* ModuleFactory.swift in Sources */,
@@ -1131,6 +1144,7 @@
 				C453E1DA214ADD1F0091E2B2 /* RouterType.swift in Sources */,
 				C48787A42156CB75000DE66A /* CodecheckResponseParserOld.swift in Sources */,
 				C40AE97C215F90F6005E4CF4 /* CodecheckResponseParser.swift in Sources */,
+				C4132F1021628C42000FBE07 /* Date+QuickValues.swift in Sources */,
 				C48787C02157A380000DE66A /* UIDatePicker+init(pickerMode).swift in Sources */,
 				C40AE973215E75D5005E4CF4 /* ScannerState.swift in Sources */,
 				C4C0B578214B8FCA007748FD /* FoodItem.swift in Sources */,
@@ -1141,6 +1155,7 @@
 				C4C0B575214B8F27007748FD /* RealmsType.swift in Sources */,
 				C453E1EC214AE22D0091E2B2 /* StorageModuleFactoryType.swift in Sources */,
 				C478834B2151758B00C82B1F /* DateFromatter+ShortStyle.swift in Sources */,
+				C4F59D5B2161386F00FE535D /* GTINValidator.swift in Sources */,
 				C417E5D4215BDC2C0007A5E5 /* ImageResponse.swift in Sources */,
 				C439EC4A214B9B3C00FECAED /* StorageContent_ViewModelType.swift in Sources */,
 				C453E1E1214ADF520091E2B2 /* PresentableType.swift in Sources */,
@@ -1165,6 +1180,7 @@
 				C439EC49214B9B3C00FECAED /* StorageContent_ViewModel.swift in Sources */,
 				C4A23EBB2151541B00FBB0C6 /* ScanResults_View.swift in Sources */,
 				C4A23EBC2151541B00FBB0C6 /* ScanResults_ViewModel.swift in Sources */,
+				C4132F0C21628BDE000FBE07 /* Date+isToday+isWithin.swift in Sources */,
 				C4B566ED214AE9B50029F25B /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

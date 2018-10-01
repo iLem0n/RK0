@@ -69,21 +69,6 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
                 }
             }
             .disposed(by: disposeBag)
-        
-        //  TODO: implement flashlight state
-//        viewModel.isCapturing
-//            .subscribe { [weak self] next in
-//                guard let strong = self, let isCapturing = next.element else { return }
-//                isCapturing ? strong.startCapture() : strong.stopCapture()
-//            }
-//            .disposed(by: disposeBag)
-//
-//        viewModel.isFlashlightOn
-//            .subscribe { [weak self] next in
-//                guard let strong = self, let on = next.element else { return }
-//                strong.turnFlashlightOn(on)
-//            }
-//            .disposed(by: disposeBag)
     }
     
     //----------------- CAMERA ------------------

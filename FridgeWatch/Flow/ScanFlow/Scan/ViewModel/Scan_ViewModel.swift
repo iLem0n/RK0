@@ -92,16 +92,14 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
         
         Observable
             .combineLatest(dateSubject.asObservable(), dateRecognizer.stateObservable)
-            .debug()
-            .filter({
-                switch $0.1 {
-                case .result:
-                    return false
-                default: return $0.0 != nil
-                }
-            })
-            .subscribe { [weak self] _ in
-                log.debug("Pause recognizer due manuall date selection")
+            .subscribe { [weak self] in
+                //  pause date recognizer if we have a valid date
+                guard
+                    let strong = self,
+                    let next = $0.element,
+                    strong.validate(date: next.0) == .success
+                else { return }
+                
                 self?.dateRecognizer.pause()
             }
             .disposed(by: disposeBag)
@@ -130,7 +128,7 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
                 case .ready: break
                 case .result(let result):
                     
-                    if !(try! strong.isFetchingProductData.value()) {
+                    if GTINValidator.validate(result) &&  !(try! strong.isFetchingProductData.value()) {
                         strong.isFetchingProductData.onNext(true)
                         log.debug("Will get product data ...")
                         ProductManager.shared.getProductData(result, { (productResult) in
@@ -167,6 +165,11 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType {
                 self?.resultShowProgressSubject.onNext(0.0)
             }
         }
+    }
+
+    private func validate(gtin: String?) -> Bool {
+        guard gtin != nil else { return false }
+        return GTINValidator.validate(gtin!)
     }
     
     private func validate(product: Product?) -> ValidationState {
