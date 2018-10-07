@@ -52,7 +52,7 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
                     SwiftMessages.show {
                         let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
                         view.configureTheme(next.type)
-                        view.configureContent(title: next.title, body: next.text)
+                        view.configureContent(title: next.title, body: next.message)
                         view.button?.isHidden = true
                         return view
                     }
@@ -62,7 +62,7 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
         
         self.navigationItem.rightBarButtonItem!.rx.tap
             .subscribe { [weak self] _ in
-                viewModel.save { success in
+                viewModel.saveScanResults { success in
                     guard success else { return }
                     self?.onSaved?()
                 }

@@ -61,9 +61,7 @@ final class ProductManager: NSObject {
             
             product.name = dataSearchOperation.resultName
             product.image = imageSearchOperation.resultImage
-            
-            log.debug("Completed all requests: \(product)")
-            
+                        
             completion()
         }
     }

@@ -27,7 +27,19 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     //-------------------- INITIALISATION -------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareStartScanButton()
         linkViewModel()
+    }
+    
+    private func prepareStartScanButton() {
+        startScanButton.layer.cornerRadius = startScanButton.frame.size.width / 2
+        startScanButton.backgroundColor = UIColor.white.withAlphaComponent(1)
+        startScanButton.layer.borderColor = UIColor.black.cgColor
+        startScanButton.layer.borderWidth = 0.25
+        startScanButton.layer.shadowColor = UIColor.black.cgColor
+        startScanButton.layer.shadowOpacity = 1
+        startScanButton.layer.shadowOffset = CGSize.zero
+        startScanButton.layer.shadowRadius = 5
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,14 +64,14 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
                     SwiftMessages.show {
                         let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
                         view.configureTheme(next.type)
-                        view.configureContent(title: next.title, body: next.text)
+                        view.configureContent(title: next.title, body: next.message)
                         view.button?.isHidden = true
                         return view
                     }
                 }
             }
             .disposed(by: disposeBag)
-        
+                
         startScanButton.rx.tap
             .subscribe { [weak self] _ in
                 self?.onStartScanButtonTouched?()

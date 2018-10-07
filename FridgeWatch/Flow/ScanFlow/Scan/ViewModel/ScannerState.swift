@@ -15,7 +15,7 @@ enum ScannerError: Error {
 enum ScannerState {
     case tearUp
     case ready
-    case processing
+    case pause
     case tearDown
     case error(ScannerError)
 }
@@ -36,9 +36,9 @@ func ==(_ lhs: ScannerState, _ rhs: ScannerState) -> Bool {
             return true
         default: return false
         }
-    case .processing:
+    case .pause:
         switch rhs {
-        case .processing:
+        case .pause:
             return true
         default: return false
         }

@@ -13,21 +13,14 @@ import SwiftMessages
 import RealmSwift
 
 final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
- 
+     
     //-------------------- PREPARATION -------------------------
     let message = PublishSubject<Message>()
     
     lazy var sections: Observable<[StorageContent_SectionModel]> = self.sectionsSubject.asObservable()
     private let sectionsSubject = BehaviorSubject<[StorageContent_SectionModel]>(value: [])
  
-    private(set) var collectionDataSource = RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell:  { (_, _, _, _) -> UICollectionViewCell in
-        return UICollectionViewCell(frame: .zero)
-    })
-    var configureCell: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>.ConfigureCell! {
-        didSet {
-            collectionDataSource = RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell: configureCell)
-        }
-    }
+    var collectionDataSource: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>!
     
     private var updateFoodItemsToken: NotificationToken?
     
@@ -46,12 +39,12 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
                 guard let strong = self else { return }
                 switch changes {
                 case .update(let objects, _, _, _),
-                     .initial(let objects):                                        
+                     .initial(let objects):
                     
-                    strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 })))
+                    strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 }).filter({ $0.available }) ))
                     
                 case .error(let error):
-                    strong.message.onNext(Message(type: .error, title: "Database Error", text: "Unable to fetch objects: \(error)"))
+                    strong.message.onNext(Message(type: .error, title: "Database Error", message: "Unable to fetch objects: \(error)"))
                 }
         }
     }
@@ -66,19 +59,42 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         return sections[indexPath.section].items[indexPath.row]
     }
     
-    func delete(at indexPath: IndexPath) {
+    func consume(at indexPath: IndexPath, amount: Int) {
         guard let item = item(at: indexPath) else { return }
         do {
-            let realm = try Realm()
+            let realm = Realms.local
             try realm.write {
-                realm.delete(item)
+                item.consumed += amount
             }
         } catch {
-            message.onNext(Message(type: .error, title: "Deletion failed.", text: error.localizedDescription))
+            message.onNext(Message(type: .error, title: "Consume failed.", message: error.localizedDescription))
         }
     }
     
+    func throwAway(at indexPath: IndexPath, amount: Int) {
+        guard let item = item(at: indexPath) else { return }
+        do {
+            let realm = Realms.local
+            try realm.write {
+                item.thrownAway += amount
+            }
+        } catch {
+            message.onNext(Message(type: .error, title: "ThrowAway failed.", message: error.localizedDescription))
+        }
+    }
+    
+    func sectionHeader(for section: Int) -> String? {
+        guard
+            let sections = try? sectionsSubject.value(),
+            section < sections.count
+        else { return nil }
+        
+        return sections[section].header
+    }
+    
     private func sections(for items: [FoodItem]) -> [StorageContent_SectionModel] {
+        let innerSort: (FoodItem, FoodItem) -> Bool = { $0.bestBeforeDate < $1.bestBeforeDate }
+        
         var dict: [MonthKey: [FoodItem]] = [:]
         let redItems = items
             .filter({ $0.bestBeforeDate.isWithin(days: 3) })
@@ -100,11 +116,11 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
         var result: [StorageContent_SectionModel] = []
         if redItems.count > 0 {
-            result.append(StorageContent_SectionModel(header: "Next \(3) Days", items: redItems, footer: ""))
+            result.append(StorageContent_SectionModel(header: "Next \(3) Days", items: redItems.sorted(by: innerSort), footer: ""))
         }
         
         if yellowItems.count > 0 {
-            result.append(StorageContent_SectionModel(header: "Next \(7) Days", items: yellowItems, footer: ""))
+            result.append(StorageContent_SectionModel(header: "Next \(7) Days", items: yellowItems.sorted(by: innerSort), footer: ""))
         }
         
         result.append(contentsOf: dict
@@ -119,8 +135,9 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
                 if monthItems.count == 0 {
                     footer = "No items found. Either you filter is to restrictive or there are no items, yet."
                 }
-                return StorageContent_SectionModel(header: "\(monthSymbol) \(key.year)", items: monthItems, footer: footer)
+                return StorageContent_SectionModel(header: "\(monthSymbol) \(key.year)", items: monthItems.sorted(by: innerSort), footer: footer)
         })
+        
         return result
     }
 

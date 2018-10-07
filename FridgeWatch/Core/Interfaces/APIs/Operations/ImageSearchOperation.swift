@@ -85,20 +85,17 @@ final class ImageSearchOperation: Operation {
                 return
             }
             
-            log.debug("IMAGE SEARCH")
-            
             switch result {
             case .success(let response):
                 log.debug(response)
                 guard let parsed: ImageResponse = target.responseParser.parse(response.data) as? ImageResponse else {
-                    log.debug("Response not parsed as Image Response")
+                    log.error("Response not parsed as Image Response")
                     self.state = .finished
                     return
                 }
                 
                 let largestImage = parsed.images.sorted(by: { $0.area > $1.area }).first
                 
-                log.debug("Got Image: \(largestImage)")
                 self.resultImage = largestImage
                 self.state = .finished
                 

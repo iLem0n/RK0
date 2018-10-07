@@ -9,6 +9,7 @@
 import Foundation
 
 class BaseCoordinator: NSObject, CoordinatorType {
+    
     private var childCoordinators: [CoordinatorType] = []
     
     func start() { }

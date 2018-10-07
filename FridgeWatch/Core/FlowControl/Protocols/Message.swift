@@ -12,6 +12,6 @@ import SwiftMessages
 struct Message {
     let type: Theme
     let title: String
-    let text: String
+    let message: String
     let dismiss: Bool = true
 }

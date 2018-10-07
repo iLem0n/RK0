@@ -10,18 +10,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SwiftMessages
+import RxGesture
 
 final class Scan_Controller: UIViewController, Scan_View {
     
-    //----------------- PREPARE ------------------
+    //----------------- PREPARE --------------------
     var viewModel: Scan_ViewModelType?
     let disposeBag = DisposeBag()
     
-    //----------------- UI ELEMENTS ------------------
+    //------------- COORDINATOR HOOKS ---------------
     var onCloseButtonTouched: (() -> Void)?
     var onResultsListButtonTouched: (() -> Void)?
     var onBBDButtonTouched: ((Date?) -> Void)?
 
+    //----------------- UI ELEMENTS ------------------
     @IBOutlet var flashButton: UIButton!
     @IBOutlet var closeButton: UIButton!
     @IBOutlet var resultListButton: UIButton!
@@ -29,11 +31,14 @@ final class Scan_Controller: UIViewController, Scan_View {
     @IBOutlet var clearDataButton: UIButton!
     @IBOutlet var chooseDateButton: UIButton!
     @IBOutlet var productLabel: UILabel!
-    @IBOutlet var showResultProgressView: UIProgressView!
+    @IBOutlet var addToListButton: UIButton!
+    @IBOutlet var amountLabel: UILabel!
+    @IBOutlet var amountSlider: VSSlider!
 
     //----------------- LIFYCYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        linkButtonHandler()
         linkViewModel()
         
         chooseDateButton.setState(.standard)
@@ -53,10 +58,57 @@ final class Scan_Controller: UIViewController, Scan_View {
     }
     
     //----------------- VIEW MODEL LINKING ------------------
-    private func linkViewModel() {
+    private func linkButtonHandler() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
-        //------ Messages --------
+        //  - Close
+        closeButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.onCloseButtonTouched?()
+            }
+            .disposed(by: disposeBag)
+        
+        //  - Clear Data
+        clearDataButton.rx.tap
+            .subscribe { _ in
+                viewModel.resetScanData()
+            }
+            .disposed(by: disposeBag)
+        
+        //  - Flashlight
+        flashButton.rx.tap
+            .subscribe { _ in
+                viewModel.toggleFlashlight()
+            }
+            .disposed(by: disposeBag)
+        
+        //  - Show Scan results
+        resultListButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.onResultsListButtonTouched?()
+            }
+            .disposed(by: disposeBag)
+        
+        //  - Manual Date Selection
+        chooseDateButton.rx.tap
+            .subscribe { [weak self] next in
+                guard let dateValue = try? viewModel.dateSubject.value() else { return }
+                self?.onBBDButtonTouched?(dateValue ?? nil)
+            }
+            .disposed(by: disposeBag)
+        
+        //  - Add Scanned item to list
+        addToListButton.rx.tap
+            .subscribe { _ in
+                viewModel.addItemToList()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func linkViewModel() {
+        guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
+     
+        //  Messages
         viewModel.message
             .subscribe{
                 guard let next = $0.element else { return }
@@ -64,101 +116,75 @@ final class Scan_Controller: UIViewController, Scan_View {
                     SwiftMessages.show {
                         let view = MessageView.viewFromNib(layout: MessageView.Layout.messageView)
                         view.configureTheme(next.type)
-                        view.configureContent(title: next.title, body: next.text)
+                        view.configureContent(title: next.title, body: next.message)
                         view.button?.isHidden = true
                         return view
                     }
                 }
             }
             .disposed(by: disposeBag)
-        
-        //----- Button Handler -----
-        closeButton.rx.tap
-            .subscribe { [weak self] _ in
-                self?.onCloseButtonTouched?()
-            }
+
+        //  Amount Slider ~> amount ~> Amount Label
+        amountSlider.rx.value
+            .map({ Int($0) })
+            .bind(to: viewModel.amountSubject)
             .disposed(by: disposeBag)
-        
-        clearDataButton.rx.tap
-            .subscribe { _ in
-                viewModel.resetScanData()
-            }
+
+        viewModel.amountSubject
+            .map({ "\($0)" })
+            .bind(to: amountLabel.rx.text)
             .disposed(by: disposeBag)
-        
-        flashButton.rx.tap
-            .subscribe { _ in
-                viewModel.toggleFlashlight()
-            }
-            .disposed(by: disposeBag)
-        
-        resultListButton.rx.tap
-            .subscribe { [weak self] _ in
-                self?.onResultsListButtonTouched?()
-            }
-            .disposed(by: disposeBag)
-        
-        chooseDateButton.rx.tap
-            .subscribe { [weak self] next in
-                self?.onBBDButtonTouched?(try! viewModel.dateSubject.value() ?? nil)
-            }
-            .disposed(by: disposeBag)
-        
-        viewModel.resultShowProgress
-            .debug()
-            .bind(to: showResultProgressView.rx.progress)            
-            .disposed(by: disposeBag)
-        
-        viewModel.resultShowProgress
-            .map({ $0 > 0 ? false : true })
-            .bind(to: showResultProgressView.rx.isHidden)
-            .disposed(by: disposeBag)
-        
-        //  Item count label
-        viewModel
-            .scannedItems
-            .map({ $0.count })
-            .map({ "\($0)" })            
-            .bind(to: resultCountLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-    
-        //  GTIN label content
-        viewModel.product
-            .map({ $0?.name ?? $0?.gtin ?? "No Product" })
-            .bind(to: productLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        //  Date button content & state
-        viewModel
-            .dateSubject
+
+        //  Date Button | Text & State
+        viewModel.dateSubject
             .map({
                 guard let date = $0 else { return NSLocalizedString("Choose Date", comment: "Choose Date Button") }
                 return DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: date)
             })
             .bind(to: chooseDateButton.rx.title(for: .normal))
             .disposed(by: disposeBag)
-        
-        viewModel
-            .dateValidationState
-            .subscribe { [weak self] next in
-                guard let strong = self, let state = next.element else { return }
-                strong.chooseDateButton.setState(state)
+
+        viewModel.dateValidationStateObservable
+            .subscribe { [weak self] in
+                guard let next = $0.element else { return }
+                self?.chooseDateButton.setState(next)
             }
             .disposed(by: disposeBag)
         
-        //  switch list and clear button
-        Observable
-            .combineLatest(viewModel.dateValidationState, viewModel.productValidationState)
-            .debug()
-            .map({ $0.0 != .standard || $0.1 != .standard })
-            .subscribe { [weak self] next in
-                
+        //  Product Label | Text & State
+        viewModel.productObservable
+            .map({ $0?.name ?? $0?.gtin ?? "No Product" })
+            .map({ String(describing: $0) })
+            .bind(to: productLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.productValidationStateObservable
+            .subscribe { [weak self] in
+                guard let next = $0.element else { return }
+                self?.productLabel.setState(next)
+            }
+            .disposed(by: disposeBag)
+
+        //  Show clear-/addToListButton deopendinfg on data state
+        viewModel.scanDataState
+            .subscribe { [weak self] in
+                guard let next = $0.element else { return }
                 DispatchQueue.main.async {
-                    guard let strong = self, let hasData = next.element else { return }
-                    strong.resultListButton.isHidden = hasData
-                    strong.clearDataButton.isHidden = !hasData
+                    self?.resultListButton.isHidden = next != .none
+                    self?.clearDataButton.isHidden = next == .none
+                    self?.addToListButton.isHidden = next != .all
                 }
             }
             .disposed(by: disposeBag)
+        
+        
+        //  Item count label
+        viewModel
+            .scannedItemsSubject
+            .map({ $0.count })
+            .map({ "\($0)" })
+            .bind(to: resultCountLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }
+

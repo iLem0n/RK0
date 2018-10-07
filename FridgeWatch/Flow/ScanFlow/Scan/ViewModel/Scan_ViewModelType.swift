@@ -12,20 +12,22 @@ import RxDataSources
 import AVFoundation
 import MicroBlink
 
-protocol Scan_ViewModelType: ViewModelType, DatePickerViewModelType, AVCaptureVideoDataOutputSampleBufferDelegate {
-    var scannerState: BehaviorSubject<ScannerState> { get }
-    var flashlightState: BehaviorSubject<FlashlightState> { get }
+protocol Scan_ViewModelType: ViewModelType, AVCaptureVideoDataOutputSampleBufferDelegate {
+    var scanDataState: Observable<ScanDataState> { get }
     
-    var resultShowProgress: Observable<Float> { get }
-    
+    var scannedItemsSubject: BehaviorSubject<[FoodItem]> { get }
+    var amountSubject: BehaviorSubject<Int> { get }
     var dateSubject: BehaviorSubject<Date?> { get }
-    var product: Observable<Product?> { get }
+    var productObservable: Observable<Product?> { get }
     
-    var scannedItems: BehaviorSubject<[FoodItem]> { get }
+    var flashlightStateObservable: Observable<FlashlightState> { get }
+    var scannerStateSubject: BehaviorSubject<ScannerState> { get }
     
-    var productValidationState: Observable<ValidationState> { get }
-    var dateValidationState: Observable<ValidationState> { get }
+    var productValidationStateObservable: Observable<ValidationState> { get }
+    var dateValidationStateObservable: Observable<ValidationState> { get }
     
     func toggleFlashlight()
-    func resetScanData()
+    
+    func addItemToList()
+    func resetScanData()    
 }

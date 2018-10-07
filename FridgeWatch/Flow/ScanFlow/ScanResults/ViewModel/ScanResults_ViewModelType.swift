@@ -11,13 +11,10 @@ import RxSwift
 import RxDataSources
 
 protocol ScanResults_ViewModelType: ViewModelType {
-    var sections: Observable<[ScanResults_SectionModel]> { get }
+    var results_sections: Observable<[ScanResults_SectionModel]> { get }
+    var results_tableDataSource: RxTableViewSectionedReloadDataSource<ScanResults_SectionModel>! { get set }
     
-    var tableDataSource: RxTableViewSectionedReloadDataSource<ScanResults_SectionModel>! { get set }
-    
-    func item(at indexPath: IndexPath) -> ScanResults_SectionModel.Item?
-    
-    init(results: [FoodItem])
-    
-    func save(_ completion: (Bool) -> Void)
+    func item(at indexPath: IndexPath) -> ScanResults_SectionModel.Item?    
+    func saveScanResults(_ completion: (Bool) -> Void)
+    func updateItem(old: FoodItem, new: FoodItem)
 }

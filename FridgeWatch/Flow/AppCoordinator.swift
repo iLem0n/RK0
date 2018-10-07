@@ -20,21 +20,33 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     var window: UIWindow?
     var router: RouterType!
     
-    private var flushProductDataToken: NotificationToken?
+    private var resetFoodItemsStateToken: NotificationToken?
     func applicationDidFinishLaunching(_ application: UIApplication) {
         prepareLogging()
         prepareMicroblink()
+    
+        // Data Mockup
+//        ["8718114715162", "3057640183843", "4009418112189"].forEach { (gtin) in
+//            ProductManager.shared.getProductData(gtin) { (_) in
+//                (0...arc4random_uniform(15))
+//                    .map({ _ in return Date().addingTimeInterval(60*60*24*Double(arc4random_uniform(30))) })
+//                    .map({ FoodItem(bestBeforeDate: $0, productGTIN: gtin, amount: Int(arc4random_uniform(10))) })
+//                    .forEach({ (item) in
+//                        log.debug(item)
+//                        try? FoodFactory.saveFoodItem(item)
+//                    })
+//            }
+//        }
+        
         
         //  FLUSH ALL PRODUCT DATA
         //  TODO: Remove on PROD
 //        let realm = Realms.shared
-//        flushProductDataToken = realm.objects(Product.self).observe { (change) in
+//        resetFoodItemsStateToken = realm.objects(FoodItem.self).observe { (change) in
 //            switch change {
 //            case .initial(let objects), .update(let objects, _,_,_):
 //                try! realm.write {
-//                    objects.forEach({ (prod) in
-//                        realm.delete(prod)
-//                    })
+//                    realm.delete(objects)
 //                }
 //            case .error(let error):
 //                log.error(error.localizedDescription)
@@ -58,7 +70,7 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     override func start() {
         // Initialize main navigationcontroller
         let nav = UINavigationController(rootViewController: UIViewController())
-        nav.isNavigationBarHidden = true
+        
         router = Router(rootController: nav)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()

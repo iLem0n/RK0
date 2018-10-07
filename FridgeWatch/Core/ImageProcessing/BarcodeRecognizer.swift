@@ -25,7 +25,7 @@ final class BarcodeRecognizer: NSObject, RecognizerType {
         self.recognizer = MBBarcodeRecognizer()
         self.recognizer.scanEAN13 = true
         self.recognizer.scanEAN8 = true
-        self.recognizer.scanInverse = true
+//        self.recognizer.scanInverse = true
 
         self.runner = MBRecognizerRunner(recognizerCollection: MBRecognizerCollection(recognizers: [self.recognizer]))
         

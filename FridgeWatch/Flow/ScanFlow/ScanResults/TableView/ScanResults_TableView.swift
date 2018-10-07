@@ -12,4 +12,5 @@ import RxCocoa
 
 protocol ScanResults_TableView: BaseViewType {
     var viewModel: ScanResults_ViewModelType? { get set }
+    var onItemSelected: ((IndexPath) -> Void)? { get set }
 }

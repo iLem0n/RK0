@@ -15,7 +15,7 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
     
     private let navigationController: UINavigationController!
     let router: RouterType!
-    private let factory: ScanModuleFactoryType
+    internal let factory: ScanModuleFactoryType
 
     //  INIT
     init(factory: ScanModuleFactoryType) {
@@ -36,39 +36,53 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         }
         
         module?.onResultsListButtonTouched = { [weak self] in
-            guard
-                let strong = self,
-                let results = try? viewModel.scannedItems.value()
-            else { return }
-            
-            strong.showScanresultsModules(results: results)
+            self?.showScanResultsModules(viewModel: viewModel)
         }
         
         module?.onBBDButtonTouched = { date in
-            let datePickerModul = self.factory
-                .makeDatePickerModul(
-                    viewModel: viewModel,
-                    onCompleted: {
-                        self.router.dismissTopModule()
-                    }
-                )            
+            let datePickerModul = self.factory.makeDatePickerModul(
+                viewModel: viewModel,
+                onCompleted: {
+                    self.router.dismissTopModule()
+                }
+            )
             self.router.present(datePickerModul)
         }
 
         
         module?.onCloseButtonTouched = { [weak self] in
-            self?.router.dismissModule(animated: true, completion: {
-                self?.onScanFinished?()
-            })
+            guard let strong = self else { return }
+            let haveScannedItems = (try! viewModel.scannedItemsSubject.value()).count > 0
+            if haveScannedItems {
+                let alert = strong.factory.makeConfirmMessage(
+                    title: "Confirm Close",
+                    message: "You have unsaved items in your scan history. Would you like dicard?", { (shouldClose) in
+                        guard shouldClose else { return }
+                        strong.router.dismissModule(animated: true, completion: {
+                            strong.onScanFinished?()
+                        })
+                    })
+                
+                strong.router.present(alert)
+                
+            } else {
+                strong.router.dismissModule(animated: true, completion: {
+                    strong.onScanFinished?()
+                })
+            }
         }
         
         router.setRootModule(module, hideBar: true, animated: false)        
     }
     
-    private func showScanresultsModules(results: [FoodItem]) {
-        let viewModel = ScanResults_ViewModel(results: results)
+    private func showScanResultsModules(viewModel: ScanResults_ViewModelType) {
         let module = factory.makeScanResultsModule(viewModel: viewModel) { (tableController) in
-            
+            tableController.onItemSelected = { [weak self] indexPath in
+                guard let item = viewModel.item(at: indexPath) else { return }
+                self?.showItemDetail(for: item, onItemUpdate: { (new) in
+                    viewModel.updateItem(old: item, new: new)
+                })
+            }
         }
         
         module?.onSaved = { [weak self] in 
@@ -78,5 +92,26 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         }
         
         router.push(module, animated: true, hideBar: false)
+    }
+    
+    private func showItemDetail(for item: FoodItem, onItemUpdate: @escaping (FoodItem) -> Void) {
+        let viewModel = TemporaryItemDetail_ViewModel(item: item)
+        viewModel.item
+            .subscribe {
+                guard let next = $0.element else { return }
+                onItemUpdate(next)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        let module = factory.makeItemDetailModule(viewModel: viewModel) { (tableController) in
+            
+            tableController.onDateCellTouched = { [weak self] in
+                self?.router.present(
+                    self?.factory.makeDatePickerModul(viewModel: viewModel, onCompleted: {})
+                )
+            }
+        }
+        
+        router.push(module)
     }
 }

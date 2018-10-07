@@ -13,6 +13,7 @@ import RxSwift
 
 final class DateRecognizer: NSObject, RecognizerType {
     typealias ResultType = Date
+    typealias DateValidatorType = (Date) -> Bool
     
     lazy var stateObservable: Observable<RecognizerState<ResultType>> = self.stateSubject.asObservable()
     private let stateSubject = BehaviorSubject<RecognizerState<ResultType>>(value: .ready)
@@ -21,10 +22,11 @@ final class DateRecognizer: NSObject, RecognizerType {
     private let recognizer: MBBlinkInputRecognizer
     private let parsers: [MBParser]
     private var isPaused: Bool = false
+    private var validator: DateValidatorType?
     
-    override init() {
-        //  self.parsers = [MBRawParser(), MBDateParser()]
-        self.parsers = [MBDateParser()]
+    init(validator: DateValidatorType? = nil) {
+        self.validator = validator
+        self.parsers = [MBRawParser()]
         self.recognizer = MBBlinkInputRecognizer(
             processors: [
                 MBParserGroupProcessor(parsers: self.parsers)
@@ -62,10 +64,10 @@ final class DateRecognizer: NSObject, RecognizerType {
     
     func recognizerRunner(_ recognizerRunner: MBRecognizerRunner, didFinishScanningWith state: MBRecognizerResultState) {
         guard state == .valid else { return }
-        testResult()
+        checkResult()
     }
     
-    private func testResult() {
+    private func checkResult() {
         switch state {
         case .ready:
             DispatchQueue.main.async { [weak self] in
@@ -82,9 +84,31 @@ final class DateRecognizer: NSObject, RecognizerType {
             case let p as MBDateParser:
                 stateSubject.onNext(.result(p.result.date.date))
             case let p as MBRawParser:
-                break
+                guard let date = self.extractDate(from: p.result.rawText) else { return }
+                stateSubject.onNext(.result(date))
             default: break
             }
         }
+    }
+    
+    private func extractDate(from source: String) -> Date? {
+        let seperators = [",", ".", " ", "\\/", "-"]
+        let expressions: [DateRegex] = [
+            DateRegex(pattern: "([0-9]{1,2} ?\\S ?)?[0-9]{1,2} ?\\S ?[0-9]{2,4}",
+                      templates: ["dd<s>MM<s>yyyy", "dd<s>MM<s>yy", "MM<s>yyyy", "MM<s>yy", "ddMMyy", "ddMMyyyy"],
+                      token: "<s>",
+                      seperators: seperators,
+                      masks: [" "])
+        ]
+        
+        for regex in expressions {
+            guard
+                let date = regex.evaluate(source),
+                self.validator?(date) ?? true
+            else { return nil }
+            
+            return date
+        }
+        return nil
     }
 }

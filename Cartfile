@@ -15,7 +15,7 @@ github "scinfu/SwiftSoup"
 # Visualisation
 github "SwiftKickMobile/SwiftMessages"
 github "mac-cain13/R.swift.Library"
-github "jerkoch/SwipeCellKit"
+github "SwipeCellKit/SwipeCellKit"
 #github "iLem0n/AMTooltip"
 
 # Logging

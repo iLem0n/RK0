@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import AVFoundation
+import RxGesture
 
 final class Scan_CameraController: UIViewController, Scan_CameraView {
     //----------------- PREPARE ------------------
@@ -24,39 +25,38 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel?.scannerState.onNext(.tearUp)
+        viewModel?.scannerStateSubject.onNext(.tearUp)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        viewModel?.scannerState.onNext(.tearDown)
+        viewModel?.scannerStateSubject.onNext(.tearDown)
     }
     
     //----------------- VIEW MODEL LINKING ------------------
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
-        viewModel.scannerState
+        viewModel.scannerStateSubject
             .distinctUntilChanged({ $0 == $1 })
             .subscribe { [weak self] next in
                 guard let strong = self, let state = next.element else { return }
                 switch state {
                 case .tearUp:
-                    log.debug("TearUp")
                     strong.startCapture()
                 case .tearDown:
                     strong.stopCapture()
                 case .ready:
                     break
-                case .processing:
+                case .pause:
                     break
                 case .error(let scannerError):
-                    viewModel.message.onNext(Message(type: .error, title: "Scanner Error", text: scannerError.localizedDescription))
+                    viewModel.message.onNext(Message(type: .error, title: "Scanner Error", message: scannerError.localizedDescription))
                 }
             }
             .disposed(by: disposeBag)
         
-        viewModel.flashlightState
+        viewModel.flashlightStateObservable
             .subscribe { [weak self] in
                 guard let strong = self, let next = $0.element else { return }
                 switch next {
@@ -67,6 +67,23 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
                 case .off:
                     strong.turnFlashlightOn(false)
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        self.view.rx
+            .anyGesture(.tap())
+            .when(.ended)
+            .subscribe { [weak self] in
+                guard let strong = self, let next = $0.element else { return }
+                
+                let touchPoint = next.location(in: strong.view)
+                strong.view.makePop(at: touchPoint)
+
+                guard let devicePoint = strong.previewLayer?.captureDevicePointConverted(fromLayerPoint: touchPoint),
+                    strong.captureDevice != nil
+                else { return }
+                
+                strong.focusOn(devicePoint)
             }
             .disposed(by: disposeBag)
     }
@@ -88,8 +105,8 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
             let captureSession = captureSession,
             let input = try? AVCaptureDeviceInput(device: captureDevice)
         else {
-            viewModel.scannerState.onNext(.error(.notSupportedByDevice))
-            viewModel.message.onNext(Message(type: .error, title: "Camera Error", text: "Unable to initialize camera session."))
+            viewModel.scannerStateSubject.onNext(.error(.notSupportedByDevice))
+            viewModel.message.onNext(Message(type: .error, title: "Camera Error", message: "Unable to initialize camera session."))
             return
         }
         
@@ -120,10 +137,33 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
         }
     }
     
+    private func focusOn(_ point: CGPoint) {
+        do {
+            try captureDevice?.lockForConfiguration()
+            
+            captureDevice?.focusPointOfInterest = point
+            captureDevice?.focusMode = .autoFocus
+            
+            captureDevice?.exposurePointOfInterest = point
+            captureDevice?.exposureMode = .continuousAutoExposure
+            
+            captureDevice?.unlockForConfiguration()
+                        
+//            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in
+//                try? self.captureDevice?.lockForConfiguration()
+//                self.captureDevice?.focusMode = .continuousAutoFocus
+//                self.captureDevice?.exposureMode = .continuousAutoExposure
+//                self.captureDevice?.unlockForConfiguration()
+//            })
+            
+        } catch {
+            log.error("Unable to lock camera device. (focusPoint)")
+        }
+    }
+    
     private func makePreviewLayer(session: AVCaptureSession) {
         previewLayer?.removeFromSuperlayer()
         previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        
         
         previewLayer?.frame.size = self.view.frame.size
         previewLayer?.videoGravity = .resizeAspectFill
