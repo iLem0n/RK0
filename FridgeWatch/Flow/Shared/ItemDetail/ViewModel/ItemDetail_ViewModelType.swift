@@ -14,4 +14,7 @@ protocol ItemDetail_ViewModelType: ViewModelType {
     var disposeBag: DisposeBag { get }
     var item: Observable<FoodItem> { get }
     init(item: FoodItem)
+    
+    func updateAmount(_ amount: Int)
+    func updateDate(_ date: Date)
 }

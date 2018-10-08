@@ -40,22 +40,26 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 10 images.
   struct image {
     /// Image `check`.
     static let check = Rswift.ImageResource(bundle: R.hostingBundle, name: "check")
     /// Image `closeButton`.
     static let closeButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "closeButton")
+    /// Image `consumeSmall`.
+    static let consumeSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "consumeSmall")
+    /// Image `consume`.
+    static let consume = Rswift.ImageResource(bundle: R.hostingBundle, name: "consume")
     /// Image `flashButton`.
     static let flashButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "flashButton")
     /// Image `listButton`.
     static let listButton = Rswift.ImageResource(bundle: R.hostingBundle, name: "listButton")
-    /// Image `pacman`.
-    static let pacman = Rswift.ImageResource(bundle: R.hostingBundle, name: "pacman")
     /// Image `placeholer`.
     static let placeholer = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholer")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `trashSmall`.
+    static let trashSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "trashSmall")
     /// Image `trash`.
     static let trash = Rswift.ImageResource(bundle: R.hostingBundle, name: "trash")
     
@@ -69,6 +73,16 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.closeButton, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "consume", bundle: ..., traitCollection: ...)`
+    static func consume(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.consume, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "consumeSmall", bundle: ..., traitCollection: ...)`
+    static func consumeSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.consumeSmall, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "flashButton", bundle: ..., traitCollection: ...)`
     static func flashButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.flashButton, compatibleWith: traitCollection)
@@ -77,11 +91,6 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "listButton", bundle: ..., traitCollection: ...)`
     static func listButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.listButton, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "pacman", bundle: ..., traitCollection: ...)`
-    static func pacman(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.pacman, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "placeholer", bundle: ..., traitCollection: ...)`
@@ -97,6 +106,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "trash", bundle: ..., traitCollection: ...)`
     static func trash(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.trash, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "trashSmall", bundle: ..., traitCollection: ...)`
+    static func trashSmall(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.trashSmall, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -390,6 +404,10 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "trash") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'trash' is used in storyboard 'Storage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "check") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'check' is used in storyboard 'Storage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "closeButton") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'closeButton' is used in storyboard 'Storage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "consume") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'consume' is used in storyboard 'Storage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "plus") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'plus' is used in storyboard 'Storage', but couldn't be loaded.") }
         if _R.storyboard.storage().storageContentView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContentView' could not be loaded from storyboard 'Storage' as 'StorageContent_Controller'.") }
         if _R.storyboard.storage().storageContent_CollectionView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'storageContent_CollectionView' could not be loaded from storyboard 'Storage' as 'StorageContent_CollectionController'.") }

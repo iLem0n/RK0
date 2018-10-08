@@ -43,8 +43,11 @@ final class Scan_Controller: UIViewController, Scan_View {
         
         chooseDateButton.setState(.standard)
         productLabel.setState(.standard)
+        
+        amountLabel.layer.cornerRadius = amountLabel.frame.height / 3
+        resultCountLabel.layer.cornerRadius = resultCountLabel.frame.height / 3
     }
-    
+
     var onCameraViewSegue: ((Scan_CameraView) -> Void)?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,6 +111,7 @@ final class Scan_Controller: UIViewController, Scan_View {
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
      
+        
         //  Messages
         viewModel.message
             .subscribe{
@@ -187,4 +191,6 @@ final class Scan_Controller: UIViewController, Scan_View {
             .disposed(by: disposeBag)
     }
 }
+
+
 

@@ -18,47 +18,119 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybJ-O4-gRM">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UDV-Xr-f6e">
                                 <rect key="frame" x="0.0" y="44" width="375" height="768"/>
-                                <connections>
-                                    <segue destination="17J-DZ-DkU" kind="embed" identifier="showCollectionView" id="eFU-Ah-r9h"/>
-                                </connections>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-To-oOB">
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zk3-1h-T1G">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="ZZL-Ko-CiG"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybJ-O4-gRM">
+                                        <rect key="frame" x="0.0" y="56" width="375" height="712"/>
+                                        <connections>
+                                            <segue destination="17J-DZ-DkU" kind="embed" identifier="showCollectionView" id="eFU-Ah-r9h"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qZM-v6-5XW">
                                 <rect key="frame" x="305" y="708" width="55" height="55"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-To-oOB" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="0Sl-FO-X3F"/>
+                                            <constraint firstAttribute="width" secondItem="Ovz-To-oOB" secondAttribute="height" multiplier="1:1" id="PR5-hC-bSh"/>
+                                        </constraints>
+                                        <state key="normal" image="plus"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUV-19-F8q" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="KUV-19-F8q" secondAttribute="height" multiplier="1:1" id="M82-xC-k0P"/>
+                                            <constraint firstAttribute="height" constant="55" id="pXB-ex-WHf"/>
+                                        </constraints>
+                                        <state key="normal" image="closeButton"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLx-0n-Tij" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="Xnw-Lc-Lrf"/>
+                                            <constraint firstAttribute="width" secondItem="eLx-0n-Tij" secondAttribute="height" multiplier="1:1" id="vQg-9T-mX0"/>
+                                        </constraints>
+                                        <state key="normal" image="check"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OWW-fx-egO">
+                                <rect key="frame" x="15" y="708" width="120" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lcm-Ye-JDy" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="3aP-x3-tEh"/>
+                                            <constraint firstAttribute="width" secondItem="lcm-Ye-JDy" secondAttribute="height" multiplier="1:1" id="uk8-cU-io2"/>
+                                        </constraints>
+                                        <state key="normal" image="consume"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olY-rc-FLm" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                        <rect key="frame" x="65" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="PLP-rm-FE5"/>
+                                            <constraint firstAttribute="width" secondItem="olY-rc-FLm" secondAttribute="height" multiplier="1:1" id="dKL-Hz-wMq"/>
+                                        </constraints>
+                                        <state key="normal" image="trash"/>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="0Sl-FO-X3F"/>
-                                    <constraint firstAttribute="width" secondItem="Ovz-To-oOB" secondAttribute="height" multiplier="1:1" id="PR5-hC-bSh"/>
+                                    <constraint firstItem="olY-rc-FLm" firstAttribute="width" secondItem="olY-rc-FLm" secondAttribute="height" multiplier="1:1" id="6Bc-CZ-t2F"/>
+                                    <constraint firstItem="lcm-Ye-JDy" firstAttribute="width" secondItem="lcm-Ye-JDy" secondAttribute="height" multiplier="1:1" id="aSW-2p-nQW"/>
+                                    <constraint firstItem="lcm-Ye-JDy" firstAttribute="width" secondItem="lcm-Ye-JDy" secondAttribute="height" multiplier="1:1" id="ooh-KG-zFt"/>
                                 </constraints>
-                                <state key="normal" image="plus"/>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ybJ-O4-gRM" firstAttribute="leading" secondItem="MtR-Xy-iOQ" secondAttribute="leading" id="EDu-Zd-BPW"/>
-                            <constraint firstItem="ybJ-O4-gRM" firstAttribute="trailing" secondItem="MtR-Xy-iOQ" secondAttribute="trailing" id="J7H-G5-dR7"/>
-                            <constraint firstItem="MtR-Xy-iOQ" firstAttribute="trailing" secondItem="Ovz-To-oOB" secondAttribute="trailing" constant="15" id="JOQ-ur-fkw"/>
-                            <constraint firstItem="MtR-Xy-iOQ" firstAttribute="bottom" secondItem="Ovz-To-oOB" secondAttribute="bottom" constant="15" id="MmD-0E-uAw"/>
-                            <constraint firstAttribute="bottom" secondItem="ybJ-O4-gRM" secondAttribute="bottom" id="dUu-J2-em4"/>
-                            <constraint firstItem="ybJ-O4-gRM" firstAttribute="top" secondItem="MtR-Xy-iOQ" secondAttribute="top" id="w9A-FI-ngt"/>
+                            <constraint firstItem="UDV-Xr-f6e" firstAttribute="top" secondItem="MtR-Xy-iOQ" secondAttribute="top" id="5Ji-WL-Wfe"/>
+                            <constraint firstAttribute="bottom" secondItem="UDV-Xr-f6e" secondAttribute="bottom" id="IaG-iO-OIi"/>
+                            <constraint firstItem="MtR-Xy-iOQ" firstAttribute="bottom" secondItem="OWW-fx-egO" secondAttribute="bottom" constant="15" id="W2H-uM-LBm"/>
+                            <constraint firstItem="MtR-Xy-iOQ" firstAttribute="bottom" secondItem="qZM-v6-5XW" secondAttribute="bottom" constant="15" id="X3D-j9-XOD"/>
+                            <constraint firstItem="UDV-Xr-f6e" firstAttribute="leading" secondItem="MtR-Xy-iOQ" secondAttribute="leading" id="YdP-Kv-pbr"/>
+                            <constraint firstItem="OWW-fx-egO" firstAttribute="leading" secondItem="MtR-Xy-iOQ" secondAttribute="leading" constant="15" id="hbx-cY-bsO"/>
+                            <constraint firstAttribute="trailing" secondItem="qZM-v6-5XW" secondAttribute="trailing" constant="15" id="o2m-ig-xep"/>
+                            <constraint firstItem="UDV-Xr-f6e" firstAttribute="trailing" secondItem="MtR-Xy-iOQ" secondAttribute="trailing" id="sJt-Y6-Hyx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MtR-Xy-iOQ"/>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="IaG-iO-OIi" id="GBK-3p-uiO"/>
+                        <outlet property="bottomLeftButtonsConstraint" destination="W2H-uM-LBm" id="uFZ-xq-iNe"/>
+                        <outlet property="bottomRightButtonsConstraint" destination="X3D-j9-XOD" id="Mc3-iB-9cv"/>
+                        <outlet property="bulkConsumeButton" destination="lcm-Ye-JDy" id="N3f-cE-qu5"/>
+                        <outlet property="bulkThrowAwayButton" destination="olY-rc-FLm" id="MEw-9X-vor"/>
+                        <outlet property="commitBulkEditingButton" destination="eLx-0n-Tij" id="WUn-Ux-rMG"/>
+                        <outlet property="discardBulkEditingButton" destination="KUV-19-F8q" id="Uvy-Yf-eyo"/>
                         <outlet property="startScanButton" destination="Ovz-To-oOB" id="Tzg-zr-FRe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xtg-Al-LqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-496" y="39"/>
+            <point key="canvasLocation" x="-496.80000000000001" y="38.423645320197046"/>
         </scene>
         <!--Storage Content Collection Controller-->
         <scene sceneID="8X9-BO-JaX">
             <objects>
                 <collectionViewController storyboardIdentifier="StorageContent_CollectionView" id="17J-DZ-DkU" customClass="StorageContent_CollectionController" customModule="FridgeWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cqk-0b-ASZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NnM-7D-kS8">
@@ -106,6 +178,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="check" width="200" height="200"/>
+        <image name="closeButton" width="200" height="200"/>
+        <image name="consume" width="200" height="200"/>
         <image name="plus" width="200" height="200"/>
+        <image name="trash" width="200" height="200"/>
     </resources>
 </document>

@@ -12,7 +12,8 @@ import RxCocoa
 import SwipeCellKit
 import RxDataSources
 
-final class StorageContent_CollectionController: UICollectionViewController, StorageContent_CollectionView {
+final class StorageContent_CollectionController: UICollectionViewController, StorageContent_CollectionView, UICollectionViewDelegateFlowLayout {
+    
     
     //-------------------- PREPARATION -------------------------
     var viewModel: StorageContent_ViewModelType?
@@ -65,7 +66,6 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
         
     }
     
-    
     //-------------------- COLLECTION VIEW -------------------------
     private func prepareLayout() {
         if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -107,6 +107,19 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
             actions.append(throwAwayAction)
         }
         return actions
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        guard let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout,
+            let viewModel = self.viewModel
+        else { return .zero }
+        
+        if section == viewModel.numberOfSections - 1 {
+            var extended = flowLayout.sectionInset
+            extended.bottom += 80
+            return extended
+        }
+        return flowLayout.sectionInset
     }
     
     func collectionView(_ collectionView: UICollectionView, editActionsOptionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {

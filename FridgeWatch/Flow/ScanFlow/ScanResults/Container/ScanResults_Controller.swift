@@ -20,11 +20,14 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
     //----------------- COORDINATOR LINKS ------------------
     var onSaved: (() -> Void)?
     
+    //----------------- COORDINATOR LINKS ------------------
+    private let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+    
     //----------------- LIFYCYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItem = saveButton
         linkViewModel()
     }
     
@@ -60,7 +63,7 @@ final class ScanResults_Controller: UIViewController, ScanResults_View {
             }
             .disposed(by: disposeBag)
         
-        self.navigationItem.rightBarButtonItem!.rx.tap
+        saveButton.rx.tap
             .subscribe { [weak self] _ in
                 viewModel.saveScanResults { success in
                     guard success else { return }

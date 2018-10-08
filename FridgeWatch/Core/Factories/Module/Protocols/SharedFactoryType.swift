@@ -14,17 +14,36 @@ protocol SharedFactoryType {
         _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void)
     -> ItemDetail_View?
     
-    func makeConfirmMessage(title: String, message: String, _ completion: @escaping (Bool) -> Void) -> UIAlertController
-    
-    func makeDatePickerModul(
-        viewModel: DatePickerViewModelType,
-        onCompleted: @escaping () -> Void)
+    func makeConfirmMessage(
+        title: String,
+        message: String,
+        _ completion: @escaping (Bool) -> Void)
     -> UIAlertController
     
-    func makeGetAmountModul(
+    func makeConfirmDiscardScanResults(
+        onReview: @escaping () -> Void,
+        onDiscard: @escaping () -> Void,
+        onCancel: @escaping () -> Void)
+    -> UIAlertController
+
+    func makeDatePickerModul(
+        initialDate: Date?,
+        onApply: @escaping (Date) -> Void,
+        onClear: (() -> Void)?,
+        onCancel: @escaping () -> Void)
+    -> UIAlertController
+    
+    func makeGetAmountSliderModul(
         title: String,
-        message: String,        
-        maxItemsCount: Int,
-        onCompleted: @escaping (Int) -> Void)
+        message: String,
+        maxAmount: Int,
+        onConfirm: @escaping (Int) -> Void)
+        -> UIAlertController        
+
+    func makeGetAmountTextFieldModul(
+        title: String,
+        message: String,
+        initialValue: Int?,
+        onConfirm: @escaping (Int) -> Void)
     -> UIAlertController
 }

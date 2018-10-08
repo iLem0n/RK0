@@ -13,7 +13,7 @@ import SwiftMessages
 import RealmSwift
 
 final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
-     
+         
     //-------------------- PREPARATION -------------------------
     let message = PublishSubject<Message>()
     
@@ -21,6 +21,8 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     private let sectionsSubject = BehaviorSubject<[StorageContent_SectionModel]>(value: [])
  
     var collectionDataSource: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>!
+    
+    let bulkEditingMode = BehaviorSubject<BulkEditingMode>(value: .none)
     
     private var updateFoodItemsToken: NotificationToken?
     
@@ -50,6 +52,11 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     }
     
     //-------------------- ACCESSORS -------------------------
+    var numberOfSections: Int {
+        guard let sections = try? self.sectionsSubject.value() else { return 0 }
+        return sections.count
+    }
+    
     func item(at indexPath: IndexPath) -> StorageContent_SectionModel.Item? {
         guard let sections = try? self.sectionsSubject.value(),
             indexPath.section < sections.count,
@@ -96,6 +103,9 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         let innerSort: (FoodItem, FoodItem) -> Bool = { $0.bestBeforeDate < $1.bestBeforeDate }
         
         var dict: [MonthKey: [FoodItem]] = [:]
+        let overdueItems = items
+            .filter({ $0.bestBeforeDate < Date() })
+        
         let redItems = items
             .filter({ $0.bestBeforeDate.isWithin(days: 3) })
         
@@ -104,7 +114,7 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             .filter({ $0.bestBeforeDate.isWithin(days: 7) })
         
         for item in items {
-            guard !redItems.contains(item), !yellowItems.contains(item) else { continue }
+            guard !overdueItems.contains(item), !redItems.contains(item), !yellowItems.contains(item) else { continue }
             
             let monthKey = MonthKey(date: item.bestBeforeDate)
             if dict.keys.contains(monthKey) {
@@ -115,6 +125,10 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         }
         
         var result: [StorageContent_SectionModel] = []
+        if overdueItems.count > 0 {
+            result.append(StorageContent_SectionModel(header: "Overdue", items: overdueItems.sorted(by: innerSort), footer: ""))
+        }
+        
         if redItems.count > 0 {
             result.append(StorageContent_SectionModel(header: "Next \(3) Days", items: redItems.sorted(by: innerSort), footer: ""))
         }
@@ -140,5 +154,4 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
         return result
     }
-
 }

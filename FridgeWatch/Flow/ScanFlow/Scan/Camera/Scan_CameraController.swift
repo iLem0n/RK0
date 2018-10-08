@@ -26,6 +26,12 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel?.scannerStateSubject.onNext(.tearUp)
+        
+        if !self.navigationController!.isNavigationBarHidden {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
+            previewLayer?.frame.size = UIScreen.main.bounds.size
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -148,13 +154,6 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
             captureDevice?.exposureMode = .continuousAutoExposure
             
             captureDevice?.unlockForConfiguration()
-                        
-//            Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false, block: { _ in
-//                try? self.captureDevice?.lockForConfiguration()
-//                self.captureDevice?.focusMode = .continuousAutoFocus
-//                self.captureDevice?.exposureMode = .continuousAutoExposure
-//                self.captureDevice?.unlockForConfiguration()
-//            })
             
         } catch {
             log.error("Unable to lock camera device. (focusPoint)")
@@ -168,7 +167,7 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
         previewLayer?.frame.size = self.view.frame.size
         previewLayer?.videoGravity = .resizeAspectFill
         previewLayer?.connection?.videoOrientation = currentOrientation
-        
+                
         self.view.layer.addSublayer(previewLayer!)
     }
     

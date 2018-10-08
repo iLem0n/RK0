@@ -219,9 +219,9 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
     }
     
     func resetScanData() {
-
         dateSubject.onNext(nil)
         productSubject.onNext(nil)
+        amountSubject.onNext(1)
         dateRecognizer.reset()
         gtinRecognizer.reset()
         
@@ -233,7 +233,7 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
         guard let sections = try? self.results_sectionsSubject.value(),
             indexPath.section < sections.count,
             indexPath.row < sections[indexPath.section].items.count
-            else { return nil }
+        else { return nil }
         
         return sections[indexPath.section].items[indexPath.row]
     }

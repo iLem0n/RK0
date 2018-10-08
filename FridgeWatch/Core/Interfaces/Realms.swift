@@ -15,7 +15,7 @@ final class Realms: NSObject, RealmsType {
     }
     
     static var local: Realm {
-        let config = Realm.Configuration.init(inMemoryIdentifier: "de.ilem0n.FridgeWatch.localRealm", deleteRealmIfMigrationNeeded: true, objectTypes: [Product.self, FoodItem.self])
+        let config = Realm.Configuration.init(deleteRealmIfMigrationNeeded: true, objectTypes: [Product.self, FoodItem.self])
         
         do {
             return try Realm(configuration: config)

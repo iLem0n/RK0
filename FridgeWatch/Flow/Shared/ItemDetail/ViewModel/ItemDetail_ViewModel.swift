@@ -8,10 +8,11 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 import RxDataSources
 
-class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType, DatePickerViewModelType {
-    
+class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType {
+
     let message = PublishSubject<Message>()
     let disposeBag = DisposeBag()
 
@@ -20,21 +21,34 @@ class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType, DatePickerViewMo
 
     required init(item: FoodItem) {
         itemSubject = BehaviorSubject<FoodItem>(value: item)
+        super.init()
+        
+        linkObjectChanges()
     }
     
-    var pickerInitialDate: Date? {
-        guard let itemValue = try? itemSubject.value() else { return Date() }
-        return itemValue.bestBeforeDate
+    private var updateToken: NotificationToken?
+    func linkObjectChanges() {
+        guard let itemValue = try? itemSubject.value() else { return }
+        updateToken = Realms.local
+            .object(ofType: FoodItem.self, forPrimaryKey: itemValue.id)?
+            .observe({ [weak self] (changes) in
+                self?.itemSubject.onNext(itemValue)
+            })
     }
     
-    var onDatePicked: ((Date?) -> Void)? {
-        return { [weak self] newDate in
-            guard let strong = self, let date = newDate, let itemValue = try? strong.itemSubject.value() else { return }
-            
-            let realm = Realms.local
-            try? realm.write {
-                itemValue.bestBeforeDate = date
-            }
+    func updateAmount(_ amount: Int) {
+        guard let itemValue = try? itemSubject.value() else { return }
+        let realm = Realms.local
+        try? realm.write {
+            itemValue.amount = amount + itemValue.consumed  + itemValue.thrownAway
+        }
+    }
+    
+    func updateDate(_ date: Date) {
+        guard let itemValue = try? itemSubject.value() else { return }
+        let realm = Realms.local
+        try? realm.write {
+            itemValue.bestBeforeDate = date
         }
     }
 }

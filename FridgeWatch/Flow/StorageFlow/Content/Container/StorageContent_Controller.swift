@@ -23,23 +23,26 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     
     //-------------------- UI ELEMENTS -------------------------
     @IBOutlet var startScanButton: UIButton!
-    
+    @IBOutlet var bulkConsumeButton: UIButton!
+    @IBOutlet var bulkThrowAwayButton: UIButton!
+    @IBOutlet var commitBulkEditingButton: UIButton!
+    @IBOutlet var discardBulkEditingButton: UIButton!
+
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomLeftButtonsConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomRightButtonsConstraint: NSLayoutConstraint!
+        
     //-------------------- INITIALISATION -------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareStartScanButton()
         linkViewModel()
     }
     
-    private func prepareStartScanButton() {
-        startScanButton.layer.cornerRadius = startScanButton.frame.size.width / 2
-        startScanButton.backgroundColor = UIColor.white.withAlphaComponent(1)
-        startScanButton.layer.borderColor = UIColor.black.cgColor
-        startScanButton.layer.borderWidth = 0.25
-        startScanButton.layer.shadowColor = UIColor.black.cgColor
-        startScanButton.layer.shadowOpacity = 1
-        startScanButton.layer.shadowOffset = CGSize.zero
-        startScanButton.layer.shadowRadius = 5
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !self.navigationController!.isNavigationBarHidden {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -71,11 +74,76 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
                 }
             }
             .disposed(by: disposeBag)
-                
+        
+        //  KEYBOARD MOVEMENT
+        KeyboardManager.shared.state
+            .subscribe {
+                guard let element = $0.element, let state = element else { return }
+                switch state {
+                case .hidden(_):
+                    self.bottomConstraint.constant = 0
+                    self.bottomLeftButtonsConstraint.constant = 0
+                    self.bottomRightButtonsConstraint.constant = 0
+                case .shown(let transition):
+                    let offset = transition.endFrame.size.height - (self.tabBarController?.tabBar.frame.height ?? 0)
+                    self.bottomConstraint.constant = offset
+                    self.bottomLeftButtonsConstraint.constant = offset
+                    self.bottomRightButtonsConstraint.constant = offset
+                }
+            }
+            .disposed(by: disposeBag)
+        
         startScanButton.rx.tap
             .subscribe { [weak self] _ in
                 self?.onStartScanButtonTouched?()
             }
             .disposed(by: disposeBag)
+        
+        bulkConsumeButton.rx.tap
+            .subscribe { _ in
+                viewModel.bulkEditingMode.onNext(.consume)
+            }
+            .disposed(by: disposeBag)
+        
+        bulkThrowAwayButton.rx.tap
+            .subscribe { _ in
+                viewModel.bulkEditingMode.onNext(.throwAway)
+            }
+            .disposed(by: disposeBag)
+        
+        commitBulkEditingButton.rx.tap
+            .subscribe { _ in
+                //  TODO: COMMIT
+                viewModel.bulkEditingMode.onNext(.none)
+            }
+            .disposed(by: disposeBag)
+        
+        discardBulkEditingButton.rx.tap
+            .subscribe { _ in
+                //  TODO: COMMIT
+                viewModel.bulkEditingMode.onNext(.none)
+            }
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.bulkEditingMode
+            .subscribe { [weak self] in
+                guard let strong = self, let next = $0.element else { return }
+                
+                DispatchQueue.main.async {
+                    strong.bulkConsumeButton.isHidden = next != .none && next != .consume
+                    strong.bulkConsumeButton.isEnabled = next == .none
+                    
+                    strong.bulkThrowAwayButton.isHidden = next != .none && next != .throwAway
+                    strong.bulkThrowAwayButton.isEnabled = next == .none
+                    
+                    strong.startScanButton.isHidden = next != .none
+                    
+                    strong.discardBulkEditingButton.isHidden = next == .none
+                    strong.commitBulkEditingButton.isHidden = next == .none
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }
+

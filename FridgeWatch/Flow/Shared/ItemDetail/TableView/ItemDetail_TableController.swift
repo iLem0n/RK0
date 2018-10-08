@@ -40,12 +40,14 @@ final class ItemDetail_TableController: UITableViewController, ItemDetail_TableV
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
+        log.debug(#function)
+        
         viewModel.item
             .subscribe { [weak self] in
                 guard let strong = self, let next = $0.element else { return }
                 
                 strong.productNameLabel.text = next.product.name
-                strong.productImageView.image = next.product.image
+                strong.productImageView.image = next.product.image ?? #imageLiteral(resourceName: "placeholer")
                 strong.amountLabel.text = "\(next.availableAmount)"
                 strong.updateBestBeforeDate(next.bestBeforeDate)
             }
@@ -54,6 +56,7 @@ final class ItemDetail_TableController: UITableViewController, ItemDetail_TableV
         tableView.rx.itemSelected
             .subscribe { [weak self] in
                 guard let strong = self, let next = $0.element else { return }
+                strong.tableView.deselectRow(at: next, animated: true)
                 switch strong.tableView.cellForRow(at: next) {
                     case let cell where cell == strong.amountCell:
                         strong.onAmountCellTouched?()

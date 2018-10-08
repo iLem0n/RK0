@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item Detail Controller-->
+        <!--Item Details-->
         <scene sceneID="U4U-Hi-ySi">
             <objects>
-                <viewController storyboardIdentifier="ItemDetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dIh-m0-mFW" customClass="ItemDetail_Controller" customModule="FridgeWatch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemDetailView" title="Item Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dIh-m0-mFW" customClass="ItemDetail_Controller" customModule="FridgeWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yEB-1E-LOd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

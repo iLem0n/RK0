@@ -24,9 +24,9 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         prepareLogging()
         prepareMicroblink()
-    
+        
         // Data Mockup
-//        ["8718114715162", "3057640183843", "4009418112189"].forEach { (gtin) in
+//        Realms.shared.objects(Product.self).map({ $0.gtin }).forEach { (gtin) in
 //            ProductManager.shared.getProductData(gtin) { (_) in
 //                (0...arc4random_uniform(15))
 //                    .map({ _ in return Date().addingTimeInterval(60*60*24*Double(arc4random_uniform(30))) })

@@ -37,12 +37,8 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
                     guard let strong = self, let item = viewModel.item(at: indexPath) else { return }
                    
                     strong.router.present(
-                        strong.factory.makeGetAmountModul(
-                            title: "Consume",
-                            message: "How much do you want to consume?",
-                            maxItemsCount: item.availableAmount,
-                            onCompleted: { (consumeAmount) in
-                                viewModel.consume(at: indexPath, amount: consumeAmount)
+                        strong.factory.makeGetAmountSliderModul(title: "Consume", message: "How much do you want to consume?", maxAmount: item.availableAmount, onConfirm: { (consumeAmount) in
+                            viewModel.consume(at: indexPath, amount: consumeAmount)
                         })
                     )
                 }
@@ -50,13 +46,9 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
                 tableController.onThrowAwayItemButtonTouched = { [weak self] indexPath in
                     guard let strong = self, let item = viewModel.item(at: indexPath) else { return }
                     strong.router.present(
-                        strong.factory.makeGetAmountModul(
-                            title: "Throw away",
-                            message: "How much do you want to throw away?",
-                            maxItemsCount: item.availableAmount,
-                            onCompleted: { (throwAwayAmount) in
-                                viewModel.throwAway(at: indexPath, amount: throwAwayAmount)
-                            })
+                        strong.factory.makeGetAmountSliderModul(title: "Throw away", message: "How much do you want to throw away?", maxAmount: item.availableAmount, onConfirm: { (throwAwayAmount) in
+                            viewModel.throwAway(at: indexPath, amount: throwAwayAmount)
+                        })
                     )
                 }
                 
@@ -67,7 +59,7 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
             }
         
         module?.onStartScanButtonTouched = { [weak self] in
-            self?.onScanFlowRequest?()
+            self?.onScanFlowRequest?()            
         }
         
         router.setRootModule(module, hideBar: true)
@@ -75,16 +67,40 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
     
     private func showItemDetail(for item: FoodItem) {
         let viewModel = ItemDetail_ViewModel(item: item)
-        let module = factory.makeItemDetailModule(viewModel: viewModel) { (tableController) in
-            tableController.onDateCellTouched = { [weak self] in
-                self?.router.present(
-                    self?.factory.makeDatePickerModul(viewModel: viewModel, onCompleted: {})
-                )
+        let module = factory.makeItemDetailModule(viewModel: viewModel) { [weak self] (tableController) in
+            guard let strong = self else { return }
+            
+            tableController.onDateCellTouched = {
+                let datePickerModule = strong.factory
+                    .makeDatePickerModul(
+                        initialDate: item.bestBeforeDate,
+                        onApply: { (newDate) in
+                            viewModel.updateDate(newDate)
+                        },
+                        onClear: nil,
+                        onCancel: {
+                        
+                        }
+                    )
+                
+                strong.router.present(datePickerModule)
+            }
+            
+            tableController.onAmountCellTouched = {
+                let getAmountModul = self?.factory
+                    .makeGetAmountTextFieldModul(
+                        title: "Change Amount",
+                        message: "Input the new amount.",
+                        initialValue: item.availableAmount,
+                        onConfirm: { (newAmount) in
+                            viewModel.updateAmount(newAmount)
+                        }
+                    )
+                
+                self?.router.present(getAmountModul)
             }
         }
         
         router.push(module)
     }
-    
-    
 }

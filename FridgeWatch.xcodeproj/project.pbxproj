@@ -20,6 +20,8 @@
 		C417E5D0215BDB690007A5E5 /* ParsedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5CF215BDB690007A5E5 /* ParsedResponse.swift */; };
 		C417E5D2215BDC040007A5E5 /* ProductDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5D1215BDC040007A5E5 /* ProductDataResponse.swift */; };
 		C417E5D4215BDC2C0007A5E5 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5D3215BDC2C0007A5E5 /* ImageResponse.swift */; };
+		C41CDE9F216BD2B800C4FABA /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDE9E216BD2B800C4FABA /* KeyboardManager.swift */; };
+		C41CDEA1216BD45F00C4FABA /* BulkEditingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */; };
 		C41CE3EC2159820B0063DE0E /* ResponseParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE3EB2159820B0063DE0E /* ResponseParserType.swift */; };
 		C41CE3EE215982270063DE0E /* GoogleResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE3ED215982270063DE0E /* GoogleResponseParser.swift */; };
 		C439EC44214B9B3C00FECAED /* StorageContent_Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EC3D214B9B3C00FECAED /* StorageContent_Controller.swift */; };
@@ -97,8 +99,6 @@
 		C48787A82156CB75000DE66A /* ProductDataResponseParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787A22156CB75000DE66A /* ProductDataResponseParserType.swift */; };
 		C48787A92156CB75000DE66A /* ProductDataResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787A32156CB75000DE66A /* ProductDataResponseType.swift */; };
 		C48787AB2156EDBA000DE66A /* ImageSearchExampleResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = C48787AA2156EDBA000DE66A /* ImageSearchExampleResponse.json */; };
-		C48787B72157A070000DE66A /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787B32157A070000DE66A /* DatePickerViewModel.swift */; };
-		C48787B82157A070000DE66A /* DatePickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787B42157A070000DE66A /* DatePickerViewModelType.swift */; };
 		C48787BA2157A1B3000DE66A /* ValidateableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787B92157A1B3000DE66A /* ValidateableView.swift */; };
 		C48787BC2157A322000DE66A /* SharedFactoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787BB2157A322000DE66A /* SharedFactoryType.swift */; };
 		C48787BE2157A32D000DE66A /* SharedFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48787BD2157A32D000DE66A /* SharedFactory.swift */; };
@@ -150,8 +150,8 @@
 		C4F5CC50216A0AE700EDB98B /* Scan_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC4F216A0AE700EDB98B /* Scan_ViewModel.swift */; };
 		C4F5CC54216A128D00EDB98B /* Scan_ViewModel+CaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC53216A128D00EDB98B /* Scan_ViewModel+CaptureDelegate.swift */; };
 		C4F5CC56216A222E00EDB98B /* ScanDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC55216A222E00EDB98B /* ScanDataState.swift */; };
-		C4F5CC58216A287500EDB98B /* Scan_ViewModel+DatePickerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC57216A287500EDB98B /* Scan_ViewModel+DatePickerViewModelType.swift */; };
 		C4F5CC5A216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC59216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift */; };
+		C4F5CC5C216A550500EDB98B /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC5B216A550500EDB98B /* BadgeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +188,8 @@
 		C417E5D1215BDC040007A5E5 /* ProductDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataResponse.swift; sourceTree = "<group>"; };
 		C417E5D3215BDC2C0007A5E5 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		C417E5D5215BDE390007A5E5 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
+		C41CDE9E216BD2B800C4FABA /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
+		C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkEditingMode.swift; sourceTree = "<group>"; };
 		C41CE3EB2159820B0063DE0E /* ResponseParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseParserType.swift; sourceTree = "<group>"; };
 		C41CE3ED215982270063DE0E /* GoogleResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponseParser.swift; sourceTree = "<group>"; };
 		C439EC3D214B9B3C00FECAED /* StorageContent_Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContent_Controller.swift; sourceTree = "<group>"; };
@@ -260,8 +262,6 @@
 		C48787A22156CB75000DE66A /* ProductDataResponseParserType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDataResponseParserType.swift; sourceTree = "<group>"; };
 		C48787A32156CB75000DE66A /* ProductDataResponseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDataResponseType.swift; sourceTree = "<group>"; };
 		C48787AA2156EDBA000DE66A /* ImageSearchExampleResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ImageSearchExampleResponse.json; sourceTree = "<group>"; };
-		C48787B32157A070000DE66A /* DatePickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
-		C48787B42157A070000DE66A /* DatePickerViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewModelType.swift; sourceTree = "<group>"; };
 		C48787B92157A1B3000DE66A /* ValidateableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidateableView.swift; sourceTree = "<group>"; };
 		C48787BB2157A322000DE66A /* SharedFactoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFactoryType.swift; sourceTree = "<group>"; };
 		C48787BD2157A32D000DE66A /* SharedFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedFactory.swift; sourceTree = "<group>"; };
@@ -326,8 +326,8 @@
 		C4F5CC4F216A0AE700EDB98B /* Scan_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan_ViewModel.swift; sourceTree = "<group>"; };
 		C4F5CC53216A128D00EDB98B /* Scan_ViewModel+CaptureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scan_ViewModel+CaptureDelegate.swift"; sourceTree = "<group>"; };
 		C4F5CC55216A222E00EDB98B /* ScanDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataState.swift; sourceTree = "<group>"; };
-		C4F5CC57216A287500EDB98B /* Scan_ViewModel+DatePickerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scan_ViewModel+DatePickerViewModelType.swift"; sourceTree = "<group>"; };
 		C4F5CC59216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryItemDetail_ViewModel.swift; sourceTree = "<group>"; };
+		C4F5CC5B216A550500EDB98B /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -425,6 +425,7 @@
 		C439EC4F214BA44E00FECAED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */,
 				C439EC3E214B9B3C00FECAED /* StorageContent_SectionModel.swift */,
 				C439EC43214B9B3C00FECAED /* StorageContent_ViewModelType.swift */,
 				C439EC42214B9B3C00FECAED /* StorageContent_ViewModel.swift */,
@@ -611,7 +612,6 @@
 				C4B566EC214AE9B50029F25B /* CoordinatorFactory.swift */,
 				C453E1E9214AE1D80091E2B2 /* ModuleFactory.swift */,
 				C48787BD2157A32D000DE66A /* SharedFactory.swift */,
-				C48787B02157A070000DE66A /* DatePicker */,
 				C439EC57214BAD6900FECAED /* ScanModuleFactory.swift */,
 				C453E1ED214AE2450091E2B2 /* StorageModuleFactory.swift */,
 			);
@@ -663,16 +663,6 @@
 			path = ResponseParserOld;
 			sourceTree = "<group>";
 		};
-		C48787B02157A070000DE66A /* DatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				C48787C12157A398000DE66A /* SyncButton.swift */,
-				C48787B42157A070000DE66A /* DatePickerViewModelType.swift */,
-				C48787B32157A070000DE66A /* DatePickerViewModel.swift */,
-			);
-			path = DatePicker;
-			sourceTree = "<group>";
-		};
 		C4A23E9A214D243C00FBB0C6 /* Scan */ = {
 			isa = PBXGroup;
 			children = (
@@ -691,7 +681,6 @@
 				C40AE976215E786D005E4CF4 /* FlashlightState.swift */,
 				C4A23EA1214D245500FBB0C6 /* Scan_ViewModelType.swift */,
 				C4A23EA0214D245500FBB0C6 /* Scan_ViewModel.swift */,
-				C4F5CC57216A287500EDB98B /* Scan_ViewModel+DatePickerViewModelType.swift */,
 				C4F5CC53216A128D00EDB98B /* Scan_ViewModel+CaptureDelegate.swift */,
 			);
 			path = ViewModel;
@@ -713,18 +702,6 @@
 				C4A23E9D214D245500FBB0C6 /* Scan_CameraController.swift */,
 			);
 			path = Camera;
-			sourceTree = "<group>";
-		};
-		C4A23EAC21514E3700FBB0C6 /* Common Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				C472BF6E21654F550074A62D /* Date+Time */,
-				C40C595F2157BA56000E3E8D /* UI Extensions */,
-				C472BF6A2165472C0074A62D /* String+regex.swift */,
-				C4A23EAD21514E5300FBB0C6 /* BehaviorSubject<Bool>+toggle().swift */,
-				C472BF7D21681BC00074A62D /* Platform.isSimulator.swift */,
-			);
-			path = "Common Extensions";
 			sourceTree = "<group>";
 		};
 		C4A23EAF215153EE00FBB0C6 /* ScanResults */ = {
@@ -749,8 +726,8 @@
 		C4A23EBF2151542F00FBB0C6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C4A23EB12151541B00FBB0C6 /* ScanResults_SectionModel.swift */,
 				C4A23EB62151541B00FBB0C6 /* ScanResults_ViewModelType.swift */,
+				C4A23EB12151541B00FBB0C6 /* ScanResults_SectionModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -812,6 +789,7 @@
 		C4B566FC214AEE620029F25B /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
+				C48787C12157A398000DE66A /* SyncButton.swift */,
 				C472BF7A2167D56D0074A62D /* VerticalSteppedSlider */,
 			);
 			path = "Shared Views";
@@ -867,7 +845,13 @@
 		C4C5FC80214BD3BB008ED57C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				C4A23EAC21514E3700FBB0C6 /* Common Extensions */,
+				C472BF6E21654F550074A62D /* Date+Time */,
+				C40C595F2157BA56000E3E8D /* UI Extensions */,
+				C472BF6A2165472C0074A62D /* String+regex.swift */,
+				C4A23EAD21514E5300FBB0C6 /* BehaviorSubject<Bool>+toggle().swift */,
+				C472BF7D21681BC00074A62D /* Platform.isSimulator.swift */,
+				C4F5CC5B216A550500EDB98B /* BadgeButton.swift */,
+				C41CDE9E216BD2B800C4FABA /* KeyboardManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -1220,8 +1204,8 @@
 				C4F5CC3E2168DAF500EDB98B /* ItemDetail_View.swift in Sources */,
 				C4F59D532160B70400FE535D /* DataSearchOperation.swift in Sources */,
 				C472BF7E21681BC00074A62D /* Platform.isSimulator.swift in Sources */,
+				C41CDEA1216BD45F00C4FABA /* BulkEditingMode.swift in Sources */,
 				C48787902156C270000DE66A /* EndpointTarget.swift in Sources */,
-				C4F5CC58216A287500EDB98B /* Scan_ViewModel+DatePickerViewModelType.swift in Sources */,
 				C453E1EA214AE1D80091E2B2 /* ModuleFactory.swift in Sources */,
 				C417E5CE215BDB290007A5E5 /* GTINSucheResponse.swift in Sources */,
 				C439EC45214B9B3C00FECAED /* StorageContent_SectionModel.swift in Sources */,
@@ -1238,7 +1222,7 @@
 				C4878784215651A6000DE66A /* Product.swift in Sources */,
 				C4B566E7214AE7300029F25B /* StorageCoordinator.swift in Sources */,
 				C48787942156C270000DE66A /* SuggestionAPI.swift in Sources */,
-				C48787B72157A070000DE66A /* DatePickerViewModel.swift in Sources */,
+				C41CDE9F216BD2B800C4FABA /* KeyboardManager.swift in Sources */,
 				C472BF6D2165476B0074A62D /* DateRegex.swift in Sources */,
 				C4F5CC54216A128D00EDB98B /* Scan_ViewModel+CaptureDelegate.swift in Sources */,
 				C472BF752167B7F50074A62D /* Date+deltaInDays().swift in Sources */,
@@ -1252,7 +1236,6 @@
 				C439EC56214BAD4900FECAED /* ScanModuleFactoryType.swift in Sources */,
 				C4A23EAE21514E5300FBB0C6 /* BehaviorSubject<Bool>+toggle().swift in Sources */,
 				C4F59D552160B9D500FE535D /* ImageSearchOperation.swift in Sources */,
-				C48787B82157A070000DE66A /* DatePickerViewModelType.swift in Sources */,
 				C439EC46214B9B3C00FECAED /* StorageContent_CollectionController.swift in Sources */,
 				C487877B215580A8000DE66A /* BarcodeRecognizer.swift in Sources */,
 				C470121D215AD24600756231 /* GoogleErrorResponse.swift in Sources */,
@@ -1283,6 +1266,7 @@
 				C48787A42156CB75000DE66A /* CodecheckResponseParserOld.swift in Sources */,
 				C40AE97C215F90F6005E4CF4 /* CodecheckResponseParser.swift in Sources */,
 				C4132F1021628C42000FBE07 /* Date+QuickValues.swift in Sources */,
+				C4F5CC5C216A550500EDB98B /* BadgeButton.swift in Sources */,
 				C48787C02157A380000DE66A /* UIDatePicker+init(pickerMode).swift in Sources */,
 				C40AE973215E75D5005E4CF4 /* ScannerState.swift in Sources */,
 				C4C0B578214B8FCA007748FD /* FoodItem.swift in Sources */,

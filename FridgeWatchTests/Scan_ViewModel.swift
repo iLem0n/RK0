@@ -10,13 +10,14 @@ import XCTest
 
 @testable import FridgeWatch
 @testable import RxSwift
+@testable import RxTest
 
 class Scan_ViewModelTest: XCTestCase {
 
-    var viewModel: NewScan_ViewModel?
+    var viewModel: Scan_ViewModel?
     
     override func setUp() {
-        viewModel = NewScan_ViewModel()
+        viewModel = Scan_ViewModel()
     }
 
     override func tearDown() {
@@ -26,8 +27,5 @@ class Scan_ViewModelTest: XCTestCase {
     func testAmountChanges() {
         guard let viewModel = viewModel else { XCTFail(); return }
         guard let subjectValue = try? viewModel.amountSubject.value() else { XCTFail(); return }
-//
-//
-//
     }
 }

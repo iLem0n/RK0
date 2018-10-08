@@ -15,8 +15,12 @@ protocol StorageContent_ViewModelType: ViewModelType {
     
     var collectionDataSource: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>! { get set }
     
+    var bulkEditingMode: BehaviorSubject<BulkEditingMode> { get }
+    
     func item(at indexPath: IndexPath) -> StorageContent_SectionModel.Item?
     func consume(at indexPath: IndexPath, amount: Int)
     func throwAway(at indexPath: IndexPath, amount: Int)
     func sectionHeader(for section: Int) -> String?
+    
+    var numberOfSections: Int { get }
 }
