@@ -40,10 +40,13 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
         
         viewModel.collectionDataSource = RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>(configureCell: { (source, collectionView, indexPath, item) in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: R.reuseIdentifier.foodItemCollectionCell, for: indexPath)!
+            let cellViewModel = FoodItemColl_CellViewModel(item: item, editingModeObservable: viewModel.bulkEditingMode, onAmountEditing: {
+                viewModel.handleBulkChangeAmountEditing(for: item, amount: $0)
+            })
             
-            cell.itemID = item.id
+            cell.viewModel = cellViewModel
             cell.delegate = self
- 
+            
             return cell
         })
     
@@ -57,13 +60,14 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
             .bind(to: collectionView.rx.items(dataSource: viewModel.collectionDataSource))
             .disposed(by: disposeBag)
         
+        
         collectionView.rx.itemSelected
             .subscribe { [weak self] in
-                guard let next = $0.element else { return }
+                guard let next = $0.element, try! viewModel.bulkEditingMode.value() == .none else { return }
+                
                 self?.onItemSelected?(next)
             }
             .disposed(by: disposeBag)
-        
     }
     
     //-------------------- COLLECTION VIEW -------------------------
@@ -78,6 +82,7 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
     }
         
     func collectionView(_ collectionView: UICollectionView, editActionsForItemAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard try! viewModel!.bulkEditingMode.value() == .none else { return nil }
         var actions: [SwipeAction] = []
         switch orientation {
         case .left:
@@ -91,7 +96,7 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
                 }
             })
             consumeAction.backgroundColor = UIColor.blue
-            consumeAction.image = #imageLiteral(resourceName: "pacman")
+            consumeAction.image = #imageLiteral(resourceName: "consumeSmall")
             actions.append(consumeAction)
         case .right:
             let throwAwayAction = SwipeAction(style: .destructive, title: "Thrown Away", handler: { [weak self] (action, indexPath) in
@@ -103,7 +108,7 @@ final class StorageContent_CollectionController: UICollectionViewController, Sto
                     strong.onThrowAwayItemButtonTouched?(indexPath)
                 }
             })
-            throwAwayAction.image = #imageLiteral(resourceName: "trash")
+            throwAwayAction.image = #imageLiteral(resourceName: "trashSmall")
             actions.append(throwAwayAction)
         }
         return actions

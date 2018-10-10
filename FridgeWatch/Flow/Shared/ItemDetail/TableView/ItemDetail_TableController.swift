@@ -16,14 +16,16 @@ final class ItemDetail_TableController: UITableViewController, ItemDetail_TableV
     let disposeBag = DisposeBag()
 
     var onAmountCellTouched: (() -> Void)?
-    var onImageViewTouched: (() -> Void)?
     var onDateCellTouched: (() -> Void)?
-    
+    var onChangeImageButtonTouched: (() -> Void)?
+
     @IBOutlet var productNameLabel: UILabel!
     @IBOutlet var amountLabel: UILabel!
     @IBOutlet var bestBeforeDateLabel: UILabel!
     @IBOutlet var remainingDaysLabel: UILabel!
     @IBOutlet var productImageView: UIImageView!
+    
+    @IBOutlet var changeImageButton: UIButton!
     
     @IBOutlet var dateCell: UITableViewCell!
     @IBOutlet var remainingDaysCell: UITableViewCell!
@@ -40,16 +42,50 @@ final class ItemDetail_TableController: UITableViewController, ItemDetail_TableV
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
         
-        log.debug(#function)
+        viewModel.productName
+            .bind(to: productNameLabel.rx.text)
+            .disposed(by: disposeBag)
         
-        viewModel.item
-            .subscribe { [weak self] in
-                guard let strong = self, let next = $0.element else { return }
+        viewModel.productImage
+            .map({ $0 ?? #imageLiteral(resourceName: "placeholer") })
+            .bind(to: productImageView.rx.image)
+            .disposed(by: disposeBag)
+        
+        viewModel.productImage
+            .map({ $0 == nil ? "Publish Image" : "Change Image" as String })
+            .bind(to: changeImageButton.rx.title(for: .normal))
+            .disposed(by: disposeBag)
+        
+        viewModel.availableAmount
+            .map({ "\($0)" })
+            .bind(to: amountLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.bestBeforeDate
+            .map({
+                DateFormatter(timeStyle: .none, dateStyle: .medium).string(from: $0)
+            })
+            .bind(to: bestBeforeDateLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.remainingDays
+            .map({
+                let text = NSMutableAttributedString(string: "\($0)", attributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.heavy),
+                    NSAttributedString.Key.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
+                    NSAttributedString.Key.strokeWidth : 3.0,
+                    ])
+                text.append(NSAttributedString(string: " days left"))
                 
-                strong.productNameLabel.text = next.product.name
-                strong.productImageView.image = next.product.image ?? #imageLiteral(resourceName: "placeholer")
-                strong.amountLabel.text = "\(next.availableAmount)"
-                strong.updateBestBeforeDate(next.bestBeforeDate)
+                log.debug(text)
+                return text.string
+            })
+            .bind(to: remainingDaysLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        changeImageButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.onChangeImageButtonTouched?()
             }
             .disposed(by: disposeBag)
         

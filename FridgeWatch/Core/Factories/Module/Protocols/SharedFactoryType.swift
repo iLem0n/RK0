@@ -46,4 +46,9 @@ protocol SharedFactoryType {
         initialValue: Int?,
         onConfirm: @escaping (Int) -> Void)
     -> UIAlertController
+    
+    func makeImagePicker(
+        sourceType: UIImagePickerController.SourceType,
+        inlineDelegate: InlineImagePickerDelegate)
+    -> UIImagePickerController
 }

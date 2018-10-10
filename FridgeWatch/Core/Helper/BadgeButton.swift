@@ -16,9 +16,9 @@ final class BadgeButton: UIButton {
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = 0.25
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 1
+        layer.shadowOpacity = 0.5
         layer.shadowOffset = CGSize.zero
-        layer.shadowRadius = 5
+        layer.shadowRadius = 3
         return layer
     }
 }

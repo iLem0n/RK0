@@ -22,6 +22,7 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     var onStartScanButtonTouched: (() -> Void)?
     
     //-------------------- UI ELEMENTS -------------------------
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var startScanButton: UIButton!
     @IBOutlet var bulkConsumeButton: UIButton!
     @IBOutlet var bulkThrowAwayButton: UIButton!
@@ -39,10 +40,10 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         if !self.navigationController!.isNavigationBarHidden {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
         }
+        super.viewDidAppear(animated)        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,8 +88,8 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
                 case .shown(let transition):
                     let offset = transition.endFrame.size.height - (self.tabBarController?.tabBar.frame.height ?? 0)
                     self.bottomConstraint.constant = offset
-                    self.bottomLeftButtonsConstraint.constant = offset
-                    self.bottomRightButtonsConstraint.constant = offset
+                    self.bottomLeftButtonsConstraint.constant = offset + 15
+                    self.bottomRightButtonsConstraint.constant = offset + 15
                 }
             }
             .disposed(by: disposeBag)
@@ -113,18 +114,27 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
         
         commitBulkEditingButton.rx.tap
             .subscribe { _ in
-                //  TODO: COMMIT
-                viewModel.bulkEditingMode.onNext(.none)
+                viewModel.commitBulkChange()
             }
             .disposed(by: disposeBag)
         
         discardBulkEditingButton.rx.tap
             .subscribe { _ in
-                //  TODO: COMMIT
-                viewModel.bulkEditingMode.onNext(.none)
+                viewModel.discardBulkChange()
             }
             .disposed(by: disposeBag)
         
+        searchBar.rx.text
+            .filter({ $0 != nil }).map({ $0! })
+            .bind(to: viewModel.searchText)
+            .disposed(by: disposeBag)
+        
+        searchBar.rx
+            .searchButtonClicked
+            .subscribe { [weak self] _ in
+                self?.searchBar.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
         
         viewModel.bulkEditingMode
             .subscribe { [weak self] in

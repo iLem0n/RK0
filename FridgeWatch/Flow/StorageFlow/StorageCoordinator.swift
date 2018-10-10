@@ -99,8 +99,49 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
                 
                 self?.router.present(getAmountModul)
             }
+            
+            tableController.onChangeImageButtonTouched = {
+                self?.showImagePicker({
+                    guard let image = $0 else { return }
+                    viewModel.updateProductImage(image)
+                })
+            }
         }
         
         router.push(module)
     }
+    
+    private var photoSelectionDelegate: InlineImagePickerDelegate?
+    private func showImagePicker(_ completion: @escaping (UIImage?) -> Void) {
+        let alert = UIAlertController(title: "Image Source", message: nil, preferredStyle: .actionSheet)
+        photoSelectionDelegate = InlineImagePickerDelegate(onApply: { (image) in
+            completion(image)
+            self.photoSelectionDelegate = nil
+            self.router.dismissModule()
+        }, onCancel: {
+            completion(nil)
+            self.photoSelectionDelegate = nil
+            self.router.dismissModule()
+        })
+        
+        alert.addAction(UIAlertAction(title: "Capture Photo", style: .default, handler: { [weak self] (_) in
+            guard let strong = self else { return }
+            
+            let module = strong.factory.makeImagePicker(sourceType: .camera, inlineDelegate: strong.photoSelectionDelegate!)
+            strong.router.present(module)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { [weak self] (_) in
+            guard let strong = self else { return }
+            let module = strong.factory.makeImagePicker(sourceType: .photoLibrary, inlineDelegate: strong.photoSelectionDelegate!)
+            strong.router.present(module)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak self] (_) in
+            guard let strong = self else { return }
+            strong.router.dismissModule()
+        }))
+        self.router.present(alert)
+    }
 }
+

@@ -118,6 +118,7 @@
                         <outlet property="bulkThrowAwayButton" destination="olY-rc-FLm" id="MEw-9X-vor"/>
                         <outlet property="commitBulkEditingButton" destination="eLx-0n-Tij" id="WUn-Ux-rMG"/>
                         <outlet property="discardBulkEditingButton" destination="KUV-19-F8q" id="Uvy-Yf-eyo"/>
+                        <outlet property="searchBar" destination="Zk3-1h-T1G" id="gB4-Ok-2em"/>
                         <outlet property="startScanButton" destination="Ovz-To-oOB" id="Tzg-zr-FRe"/>
                     </connections>
                 </viewController>

@@ -47,7 +47,7 @@ final class Scan_Controller: UIViewController, Scan_View {
         amountLabel.layer.cornerRadius = amountLabel.frame.height / 3
         resultCountLabel.layer.cornerRadius = resultCountLabel.frame.height / 3
     }
-
+    
     var onCameraViewSegue: ((Scan_CameraView) -> Void)?
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

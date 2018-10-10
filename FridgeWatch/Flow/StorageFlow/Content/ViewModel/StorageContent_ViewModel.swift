@@ -16,27 +16,40 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
          
     //-------------------- PREPARATION -------------------------
     let message = PublishSubject<Message>()
+    private let disposeBag = DisposeBag()
     
     lazy var sections: Observable<[StorageContent_SectionModel]> = self.sectionsSubject.asObservable()
     private let sectionsSubject = BehaviorSubject<[StorageContent_SectionModel]>(value: [])
  
     var collectionDataSource: RxCollectionViewSectionedReloadDataSource<StorageContent_SectionModel>!
     
+    let searchText = BehaviorSubject<String>(value: "")
     let bulkEditingMode = BehaviorSubject<BulkEditingMode>(value: .none)
+    private let bulkChangeItems = BehaviorSubject<[BulkChangeItem]>(value: [])
     
     private var updateFoodItemsToken: NotificationToken?
     
     //-------------------- LIFECIRCLE -------------------------
     override init() {
         super.init()
-        self.loadData()
+        linkViewModel()
+        loadData()
+    }
+    
+    private func linkViewModel() {
+        searchText
+            .subscribe { [weak self] _ in
+                guard let strong = self else { return }
+                strong.loadData()
+            }
+            .disposed(by: disposeBag)
     }
     
     //-------------------- LOAD DATA -------------------------
     private func loadData() {
-        
         self.updateFoodItemsToken = Realms.local
             .objects(FoodItem.self)
+            .filter(self.filter)
             .observe { [weak self] (changes) in
                 guard let strong = self else { return }
                 switch changes {
@@ -50,6 +63,79 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
                 }
         }
     }
+    
+    private var filter: NSPredicate {
+        guard let searchText = try? searchText.value(), !searchText.isEmpty else { return NSPredicate(value: true) }
+        return NSPredicate(format: "product.name CONTAINS[cd] %@", searchText)
+    }
+
+    //----------- BULKK CHANGE ---------
+    //  Cell Hook
+    func handleBulkChangeAmountEditing(for item: FoodItem, amount: Int) {
+        guard var changeItems = try? bulkChangeItems.value(), let changeMode = try? bulkEditingMode.value(), changeMode != .none else { return }
+        if let existingChange = changeItems.enumerated().filter({ $0.element.itemID == item.id }).first {
+            
+            let newChange: BulkChangeItem
+            switch changeMode {
+            case .consume:
+                newChange = BulkChangeItem(itemID: item.id, action: .consume(amount))
+            case .throwAway:
+                newChange = BulkChangeItem(itemID: item.id, action: .throwAway(amount))
+            default: return
+            }
+            
+            changeItems[existingChange.offset] = newChange
+            bulkChangeItems.onNext(changeItems)
+        } else {
+            let newChange: BulkChangeItem
+            switch changeMode {
+            case .consume:
+                newChange = BulkChangeItem(itemID: item.id, action: .consume(amount))
+            case .throwAway:
+                newChange = BulkChangeItem(itemID: item.id, action: .throwAway(amount))
+            default: return
+            }
+            
+            changeItems.append(newChange)
+            bulkChangeItems.onNext(changeItems)
+        }
+        
+    }
+    
+    //  Perfomr
+    func performChange(_ change: BulkChangeItem) {
+        DispatchQueue.global(qos: .background).async {
+            let realm = Realms.local
+            guard let item = realm.object(ofType: FoodItem.self, forPrimaryKey: change.itemID) else { return }
+            switch change.action {
+            case .consume(let amount):
+                try? realm.write {
+                    item.consumed += amount
+                }
+            case .throwAway(let amount):
+                try? realm.write {
+                    item.thrownAway += amount
+                }
+            }
+        }        
+    }
+    
+    //  Commit
+    func commitBulkChange() {
+        guard let changes = try? self.bulkChangeItems.value() else { return }
+        changes.forEach {
+            performChange($0)
+        }
+        discardBulkChange()
+        bulkEditingMode.onNext(.none)
+    }
+    
+    //  Discard
+    func discardBulkChange() {
+        bulkChangeItems.onNext([])
+        bulkEditingMode.onNext(.none)
+    }
+    
     
     //-------------------- ACCESSORS -------------------------
     var numberOfSections: Int {
@@ -104,7 +190,7 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
         var dict: [MonthKey: [FoodItem]] = [:]
         let overdueItems = items
-            .filter({ $0.bestBeforeDate < Date() })
+            .filter({ !$0.bestBeforeDate.isSameDay(Date()) && $0.bestBeforeDate < Date() })
         
         let redItems = items
             .filter({ $0.bestBeforeDate.isWithin(days: 3) })

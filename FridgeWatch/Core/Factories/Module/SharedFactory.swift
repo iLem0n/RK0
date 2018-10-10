@@ -222,5 +222,51 @@ extension ModuleFactory: SharedFactoryType {
         }))
         return alert
     }
+        
+    func makeImagePicker(
+        sourceType: UIImagePickerController.SourceType,
+        inlineDelegate: InlineImagePickerDelegate) -> UIImagePickerController
+    {
+        let controller = UIImagePickerController()
+        controller.sourceType = sourceType        
+        controller.delegate = inlineDelegate
+        return controller
+    }
 }
 
+final class InlineImagePickerDelegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private var onApply: (UIImage) -> Void
+    private var onCancel: () -> Void
+        
+    init(onApply: @escaping (UIImage) -> Void, onCancel: @escaping () -> Void) {
+        self.onApply = onApply
+        self.onCancel = onCancel
+        super.init()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image: UIImage = info[.originalImage] as! UIImage
+        onApply(image.reducedNormalized)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.onCancel()
+    }
+}
+
+extension UIImage {
+    var reducedNormalized: UIImage {
+        
+        if (self.imageOrientation == UIImage.Orientation.up) {
+            return self;
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 0.5);
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+        self.draw(in: rect)
+        
+        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext();
+        return normalizedImage;
+    }
+}

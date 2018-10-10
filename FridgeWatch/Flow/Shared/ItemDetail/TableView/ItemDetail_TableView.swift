@@ -15,5 +15,5 @@ protocol ItemDetail_TableView: BaseViewType {
     
     var onAmountCellTouched: (() -> Void)? { get set }
     var onDateCellTouched: (() -> Void)? { get set }
-    var onImageViewTouched: (() -> Void)? { get set }
+    var onChangeImageButtonTouched: (() -> Void)? { get set }
 }

@@ -7,11 +7,18 @@
 //
 
 import Foundation
+import RxSwift
+
+protocol TemporaryItemDetail_ViewModelType: ItemDetail_ViewModelType {
+    var item: Observable<FoodItem> { get }
+}
 
 final class TemporaryItemDetail_ViewModel: ItemDetail_ViewModel {
     
     //  prevent subscribing to object changes because we have no realm managed object
     override func linkObjectChanges() {}
+    
+    lazy var item: Observable<FoodItem> = self.itemSubject.asObservable()
     
     override func updateDate(_ date: Date) {
         guard let itemValue = try? self.itemSubject.value() else { return }
