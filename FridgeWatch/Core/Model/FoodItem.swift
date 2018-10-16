@@ -28,13 +28,15 @@ final class FoodItem: Object {
         self.bestBeforeDate = bestBeforeDate
         self.amount = amount
         
-        ProductManager.shared.getProductData(productGTIN, { (result) in
-            switch result {
+        Stores.products.product(withID: productGTIN) { [weak self] in
+            guard let strong = self else { return }
+            
+            switch $0 {
             case .success(let product):
-                self.productSubject.onNext(product)
+                strong.productSubject.onNext(product)
             default: break
             }
-        })
+        }
     }
     
     override static func primaryKey() -> String {

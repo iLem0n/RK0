@@ -133,7 +133,6 @@ class FoodItemCollectionCell: SwipeCollectionViewCell {
                     strong.editingView.isHidden = false
                 case .throwAway:
                     strong.editingView.isHidden = false
-                default: break
                 }
             }
             .disposed(by: disposeBag)
