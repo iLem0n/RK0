@@ -22,5 +22,9 @@ extension Date {
         guard let daysBetween = Calendar.current.dateComponents([.day], from: Date(), to: self).day else { return false }
         return daysBetween >= 0 && daysBetween <= days
     }
+    
+    func isSameDay(_ otherDate: Date) -> Bool {
+        return self.day == otherDate.day && self.month == otherDate.month && self.year == otherDate.year
+    }
 }
 

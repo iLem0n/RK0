@@ -13,6 +13,7 @@ import RxSwift
 
 class FoodItemCell: SwipeTableViewCell {
     
+    private let disposeBag = DisposeBag()
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var productImageView: UIImageView!
     @IBOutlet var amountLabel: UILabel!
@@ -31,12 +32,19 @@ class FoodItemCell: SwipeTableViewCell {
                 return
             }
        
-            self.updateTitleLabel(item.product.name ?? "<\(String(describing: item.product.gtin))>")
             self.updateBestBeforeDate(item.bestBeforeDate)
             self.updateAmount(item.availableAmount)
-            self.updateImageView(item.product.image)
+            
+            item.productObservable
+                .subscribe {
+                    guard let next = $0.element else { return }
+                    self.updateImageView(next.image)
+                    self.updateTitleLabel(next.name ?? "<\(String(describing: next.gtin))>")
+                }
+                .disposed(by: disposeBag)
         }
     }
+    
     
     private func updateTitleLabel(_ title: String?) {
         titleLabel.text = title

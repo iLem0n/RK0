@@ -130,15 +130,15 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
         
         //  Pseudo data in simulator
         if Platform.isSimulator {
-            ProductManager.shared.getProductData("8718114715162", { [weak self] (productResult) in
+            Stores.products.product(withID: "8718114715162") { [weak self] in
                 guard let strong = self else { return }
-                switch productResult {
+                switch $0 {
                 case .success(let product):
                     strong.productSubject.onNext(product)
                 case .failure(let error):
                     strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
                 }
-            })
+            }                        
         }
     }
     
@@ -149,24 +149,23 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
             .disposed(by: disposeBag)
     }
     
+    private var productUpdateToken: NotificationToken?
     private func handleGTINResult(_ result: String) {
         guard let isFetching = try? isFetchingProductDataSubject.value() else { return }
         
         if !isFetching {
             isFetchingProductDataSubject.onNext(true)
-            
-            ProductManager.shared.getProductData(result, { [weak self] (productResult) in
+            Stores.products.product(withID: result) { [weak self] in
                 defer { self?.isFetchingProductDataSubject.onNext(false) }
                 
                 guard let strong = self else { return }
-                
-                switch productResult {
+                switch $0 {
                 case .success(let product):
                     strong.productSubject.onNext(product)
                 case .failure(let error):
                     strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
                 }
-            })
+            }
         }
     }
     
@@ -241,19 +240,18 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
 
     func saveScanResults(_ completion: (Bool) -> Void) {
         guard let sectionsValue = try? self.results_sectionsSubject.value() else { return }
-        do {
-            for item in sectionsValue
-                .map({ $0.items })
-                .flatMap({ $0 })
-            {
-                try FoodFactory.saveFoodItem(item)
+        
+        sectionsValue.map({ $0.items }).flatMap({ $0 }).forEach {
+            Stores.items.save($0) {
+                switch $0 {
+                case .failure(let error):
+                    self.message.onNext(Message(type: .error, title: "Save Error", message: error.localizedDescription))
+                default: break
+                }
             }
-            
-            completion(true)
-        } catch {
-            self.message.onNext(Message(type: .error, title: "Save Error", message: error.localizedDescription))
-            completion(false)
         }
+        
+        completion(true)
     }
     
     func updateItem(old: FoodItem, new: FoodItem) {

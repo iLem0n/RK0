@@ -16,10 +16,12 @@ final class FoodItemColl_CellViewModel: NSObject, FoodItemColl_CellViewModelType
     let editingModeObservable: Observable<BulkEditingMode>
     
     private let itemSubject: BehaviorSubject<FoodItem>
+    private let productObservable: Observable<Product>
+    
     
     lazy var amount: Observable<Int> = self.itemSubject.map({ $0.availableAmount }).asObservable()
-    lazy var productName: Observable<String> = self.itemSubject.map({ $0.product.name ?? $0.product.gtin }).asObservable()
-    lazy var productImage: Observable<UIImage> = self.itemSubject.map({ $0.product.image ?? #imageLiteral(resourceName: "placeholer") }).asObservable()
+    lazy var productName: Observable<String> = self.productObservable.map({ $0.name ?? $0.gtin }).asObservable()
+    lazy var productImage: Observable<UIImage> = self.productObservable.map({ $0.image ?? #imageLiteral(resourceName: "placeholer") }).asObservable()
     lazy var bestBeforeDate: Observable<Date> = self.itemSubject.map({ $0.bestBeforeDate }).asObservable()
 
     let editedAmount = BehaviorSubject<Int>(value: 0)
@@ -28,6 +30,7 @@ final class FoodItemColl_CellViewModel: NSObject, FoodItemColl_CellViewModelType
         
         self.editingModeObservable = editingModeObservable
         self.itemSubject = BehaviorSubject<FoodItem>(value: item)
+        self.productObservable = item.productObservable
         
         super.init()
         

@@ -24,36 +24,29 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     func applicationDidFinishLaunching(_ application: UIApplication) {
         prepareLogging()
         prepareMicroblink()
-        
-        // Data Mockup
-//        Realms.shared.objects(Product.self).map({ $0.gtin }).forEach { (gtin) in
-//            ProductManager.shared.getProductData(gtin) { (_) in
-//                (0...arc4random_uniform(15))
-//                    .map({ _ in return Date().addingTimeInterval(60*60*24*Double(arc4random_uniform(30))) })
-//                    .map({ FoodItem(bestBeforeDate: $0, productGTIN: gtin, amount: Int(arc4random_uniform(10))) })
-//                    .forEach({ (item) in
-//                        log.debug(item)
-//                        try? FoodFactory.saveFoodItem(item)
-//                    })
-//            }
-//        }
-        
-        
-        //  FLUSH ALL PRODUCT DATA
-        //  TODO: Remove on PROD
-//        let realm = Realms.shared
-//        resetFoodItemsStateToken = realm.objects(FoodItem.self).observe { (change) in
-//            switch change {
-//            case .initial(let objects), .update(let objects, _,_,_):
-//                try! realm.write {
-//                    realm.delete(objects)
-//                }
-//            case .error(let error):
-//                log.error(error.localizedDescription)
-//            }
-//        }
-        
         start()
+        
+        
+        ["3057640186158", "4066600614319"].forEach { (gtin) in
+            Stores.products.product(withID: gtin, {                
+                switch $0 {
+                case .success(let product):
+                    log.debug(product)
+                case .failure(let error):
+                    switch error {
+                    case .realmError(let realmError):
+                        log.debug(realmError.localizedDescription)
+                    case .objectNotFound:
+                        log.debug("Product \(gtin) not found.")
+                    }
+                }
+            })
+//                    
+//            let itemsRealm = NewDataManager.shared.foodItemStore
+//            try? itemsRealm?.write {
+//                itemsRealm?.add(FoodItem(bestBeforeDate: Date(), productGTIN: gtin))
+//            }
+        }
     }
     
     //-------------------- PREPARATION -------------------------
@@ -63,7 +56,7 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     
     private func prepareMicroblink() {
         MBMicroblinkSDK.init()
-            .setLicenseKey("sRwAAAEVZGUuaWxlbTBuLmZyaWRnZXdhdGNowaMxfPvmxnXelUmmoaypIreyh4spTleVfYD1yjbuTwItHnICkkZXgxEi9EXWptEOmmNNWchPGvBy4qSD27NJYfbCfHcX3FSzAX29GjdpUxDQG7n9anFydgpFfYJuMvnm11PgRoaL+LLSYNlbNqO13HbnjP2WVhMqZ//4VPmoozcI6n691B1Cxqhpn0ZI")
+            .setLicenseKey("sRwAAAEVZGUuaWxlbTBuLmZyaWRnZXdhdGNowaMxfPvmxnXelUmmoYytIrMVHWZREw+Pb7UqUWIdnhMA43bKt2RfRapfqbsIWjCNn8o4oFlZl1waQ+UcgqsinVNDPTb1vgMVwsqAxTRnqzOzXGPNDEllPoJnXYXgOimAc0GsoozmA+fYAW6qdeFODlPu9QL4PY/1FjBQnvdokj1ydWwv/cFVtTa6BmAW")
     }
     
     //-------------------- FLOW START -------------------------

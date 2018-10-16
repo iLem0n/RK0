@@ -47,21 +47,28 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     
     //-------------------- LOAD DATA -------------------------
     private func loadData() {
-        self.updateFoodItemsToken = Realms.local
-            .objects(FoodItem.self)
-            .filter(self.filter)
-            .observe { [weak self] (changes) in
-                guard let strong = self else { return }
-                switch changes {
-                case .update(let objects, _, _, _),
-                     .initial(let objects):
-                    
-                    strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 }).filter({ $0.available }) ))
-                    
-                case .error(let error):
-                    strong.message.onNext(Message(type: .error, title: "Database Error", message: "Unable to fetch objects: \(error)"))
+        Stores.items.all({ [weak self] in
+            guard let strong = self else { return }
+            switch $0 {
+            case .success(let items):
+                strong.updateFoodItemsToken = items.filter(strong.filter)
+                    .observe { [weak self] (changes) in
+                        guard let strong = self else { return }
+                        switch changes {
+                        case .update(let objects, _, _, _),
+                             .initial(let objects):
+                            
+                            strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 }).filter({ $0.available }) ))
+                            
+                        case .error(let error):
+                            strong.message.onNext(Message(type: .error, title: "Database Error", message: "Unable to fetch objects: \(error)"))
+                        }
                 }
-        }
+            case .failure(let error):
+                strong.message.onNext(Message(type: .error, title: "", message: error.localizedDescription))
+            }
+        })
+        
     }
     
     private var filter: NSPredicate {
@@ -102,21 +109,20 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
     }
     
-    //  Perfomr
+    //  Perform
     func performChange(_ change: BulkChangeItem) {
         DispatchQueue.global(qos: .background).async {
-            let realm = Realms.local
-            guard let item = realm.object(ofType: FoodItem.self, forPrimaryKey: change.itemID) else { return }
-            switch change.action {
-            case .consume(let amount):
-                try? realm.write {
+            Stores.items.update(id: change.itemID, { (item) in
+                switch change.action {
+                case .consume(let amount):
                     item.consumed += amount
-                }
-            case .throwAway(let amount):
-                try? realm.write {
+                case .throwAway(let amount):
                     item.thrownAway += amount
                 }
-            }
+            }, errorHandler: { [weak self] (error) in
+                guard let strong = self else { return }
+                strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
+            })
         }        
     }
     
@@ -154,25 +160,23 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
     
     func consume(at indexPath: IndexPath, amount: Int) {
         guard let item = item(at: indexPath) else { return }
-        do {
-            let realm = Realms.local
-            try realm.write {
-                item.consumed += amount
-            }
-        } catch {
-            message.onNext(Message(type: .error, title: "Consume failed.", message: error.localizedDescription))
+        Stores.items.update(id: item.id, { (item) in
+            item.consumed += amount
+        }) { [weak self] (error) in
+            guard let strong = self else { return }
+            strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
+            
         }
     }
     
     func throwAway(at indexPath: IndexPath, amount: Int) {
         guard let item = item(at: indexPath) else { return }
-        do {
-            let realm = Realms.local
-            try realm.write {
-                item.thrownAway += amount
-            }
-        } catch {
-            message.onNext(Message(type: .error, title: "ThrowAway failed.", message: error.localizedDescription))
+        Stores.items.update(id: item.id, { (item) in
+            item.thrownAway += amount
+        }) { [weak self] (error) in
+            guard let strong = self else { return }
+            strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
+            
         }
     }
     
@@ -190,7 +194,7 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         
         var dict: [MonthKey: [FoodItem]] = [:]
         let overdueItems = items
-            .filter({ !$0.bestBeforeDate.isSameDay(Date()) && $0.bestBeforeDate < Date() })
+            .filter({ !$0.bestBeforeDate!.isSameDay(Date()) && $0.bestBeforeDate < Date() })
         
         let redItems = items
             .filter({ $0.bestBeforeDate.isWithin(days: 3) })

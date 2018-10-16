@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1139B52F16F28DD4DD1BC635 /* Pods_FridgeWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01AF13352D27820D9748CE7B /* Pods_FridgeWatch.framework */; };
+		C40667AC2176460800E3F118 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AB2176460800E3F118 /* Stores.swift */; };
+		C40667AE2176461100E3F118 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AD2176461100E3F118 /* ItemStore.swift */; };
+		C40667B02176461900E3F118 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AF2176461900E3F118 /* ProductStore.swift */; };
 		C40AE973215E75D5005E4CF4 /* ScannerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AE972215E75D5005E4CF4 /* ScannerState.swift */; };
 		C40AE977215E786D005E4CF4 /* FlashlightState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AE976215E786D005E4CF4 /* FlashlightState.swift */; };
 		C40AE97C215F90F6005E4CF4 /* CodecheckResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AE97B215F90F6005E4CF4 /* CodecheckResponseParser.swift */; };
 		C40AE97E215F9103005E4CF4 /* CodecheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40AE97D215F9103005E4CF4 /* CodecheckResponse.swift */; };
 		C40C59612157BC2E000E3E8D /* FoodItemCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40C59602157BC2E000E3E8D /* FoodItemCollCell.swift */; };
-		C4132F0C21628BDE000FBE07 /* Date+isToday+isWithin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */; };
+		C4132F0C21628BDE000FBE07 /* Date+relativCompare.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0B21628BDE000FBE07 /* Date+relativCompare.swift */; };
 		C4132F0E21628BE6000FBE07 /* MonthKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0D21628BE6000FBE07 /* MonthKey.swift */; };
 		C4132F1021628C42000FBE07 /* Date+QuickValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */; };
 		C417E5CE215BDB290007A5E5 /* GTINSucheResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5CD215BDB290007A5E5 /* GTINSucheResponse.swift */; };
@@ -178,12 +181,15 @@
 		01AF13352D27820D9748CE7B /* Pods_FridgeWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBC045D1F24F5F802B7F96C /* Pods-FridgeWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		B363F7510F0D46E97B4318D7 /* Pods-FridgeWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.release.xcconfig"; sourceTree = "<group>"; };
+		C40667AB2176460800E3F118 /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
+		C40667AD2176461100E3F118 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
+		C40667AF2176461900E3F118 /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
 		C40AE972215E75D5005E4CF4 /* ScannerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerState.swift; sourceTree = "<group>"; };
 		C40AE976215E786D005E4CF4 /* FlashlightState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashlightState.swift; sourceTree = "<group>"; };
 		C40AE97B215F90F6005E4CF4 /* CodecheckResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodecheckResponseParser.swift; sourceTree = "<group>"; };
 		C40AE97D215F9103005E4CF4 /* CodecheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodecheckResponse.swift; sourceTree = "<group>"; };
 		C40C59602157BC2E000E3E8D /* FoodItemCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemCollCell.swift; sourceTree = "<group>"; };
-		C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+isToday+isWithin.swift"; sourceTree = "<group>"; };
+		C4132F0B21628BDE000FBE07 /* Date+relativCompare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+relativCompare.swift"; sourceTree = "<group>"; };
 		C4132F0D21628BE6000FBE07 /* MonthKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthKey.swift; sourceTree = "<group>"; };
 		C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+QuickValues.swift"; sourceTree = "<group>"; };
 		C417E5CD215BDB290007A5E5 /* GTINSucheResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTINSucheResponse.swift; sourceTree = "<group>"; };
@@ -605,7 +611,7 @@
 				C4F5416D2157B6330073448A /* Interval.swift */,
 				C472BF6C2165476A0074A62D /* DateRegex.swift */,
 				C4F5416B2157B6030073448A /* DateRange.swift */,
-				C4132F0B21628BDE000FBE07 /* Date+isToday+isWithin.swift */,
+				C4132F0B21628BDE000FBE07 /* Date+relativCompare.swift */,
 				C4132F0F21628C42000FBE07 /* Date+QuickValues.swift */,
 				C472BF742167B7F50074A62D /* Date+deltaInDays().swift */,
 			);
@@ -838,6 +844,9 @@
 				C4C0B574214B8F27007748FD /* RealmsType.swift */,
 				C4C0B572214B8EF2007748FD /* Realms.swift */,
 				C487878A2156C270000DE66A /* APIs */,
+				C40667AB2176460800E3F118 /* Stores.swift */,
+				C40667AD2176461100E3F118 /* ItemStore.swift */,
+				C40667AF2176461900E3F118 /* ProductStore.swift */,
 			);
 			path = Interfaces;
 			sourceTree = "<group>";
@@ -1231,6 +1240,7 @@
 				C439EC48214B9B3C00FECAED /* StorageContent_View.swift in Sources */,
 				C4B566E1214AE6390029F25B /* BaseCoordinator.swift in Sources */,
 				C4878784215651A6000DE66A /* Product.swift in Sources */,
+				C40667AC2176460800E3F118 /* Stores.swift in Sources */,
 				C4B566E7214AE7300029F25B /* StorageCoordinator.swift in Sources */,
 				C48787942156C270000DE66A /* SuggestionAPI.swift in Sources */,
 				C41CDE9F216BD2B800C4FABA /* KeyboardManager.swift in Sources */,
@@ -1263,6 +1273,7 @@
 				C439EC4C214B9C6E00FECAED /* FoodItemCell.swift in Sources */,
 				C439EC47214B9B3C00FECAED /* StorageContent_CollectionView.swift in Sources */,
 				C453E1E7214AE0290091E2B2 /* ModuleFactoryType.swift in Sources */,
+				C40667B02176461900E3F118 /* ProductStore.swift in Sources */,
 				C48787C42157A53B000DE66A /* UIButton+init(title_initialState).swift in Sources */,
 				C48787912156C270000DE66A /* Endpoint.swift in Sources */,
 				C4E1CA8F215ABD34001A02FD /* GoogleImageResponse.swift in Sources */,
@@ -1303,6 +1314,7 @@
 				C41CE3EE215982270063DE0E /* GoogleResponseParser.swift in Sources */,
 				C4F5CC56216A222E00EDB98B /* ScanDataState.swift in Sources */,
 				C4B5671E214AF6DE0029F25B /* Message.swift in Sources */,
+				C40667AE2176461100E3F118 /* ItemStore.swift in Sources */,
 				C439EC55214BAD4900FECAED /* ScanCoordinator.swift in Sources */,
 				C48787A52156CB75000DE66A /* DataKickResponseParser.swift in Sources */,
 				C453E1EE214AE2460091E2B2 /* StorageModuleFactory.swift in Sources */,
@@ -1315,7 +1327,7 @@
 				C48787BC2157A322000DE66A /* SharedFactoryType.swift in Sources */,
 				C439EC49214B9B3C00FECAED /* StorageContent_ViewModel.swift in Sources */,
 				C4A23EBB2151541B00FBB0C6 /* ScanResults_View.swift in Sources */,
-				C4132F0C21628BDE000FBE07 /* Date+isToday+isWithin.swift in Sources */,
+				C4132F0C21628BDE000FBE07 /* Date+relativCompare.swift in Sources */,
 				C4B566ED214AE9B50029F25B /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

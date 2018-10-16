@@ -22,13 +22,13 @@ final class TemporaryItemDetail_ViewModel: ItemDetail_ViewModel {
     
     override func updateDate(_ date: Date) {
         guard let itemValue = try? self.itemSubject.value() else { return }
-        let changedItem = FoodItem(bestBeforeDate: date, productGTIN: itemValue.product.gtin, amount: itemValue.amount)
+        let changedItem = FoodItem(bestBeforeDate: date, productGTIN: itemValue.productGTIN, amount: itemValue.amount)
         self.itemSubject.onNext(changedItem)
     }
     
     override func updateAmount(_ amount: Int) {
         guard let itemValue = try? self.itemSubject.value() else { return }
-        let changedItem = FoodItem(bestBeforeDate: itemValue.bestBeforeDate, productGTIN: itemValue.product.gtin, amount: amount + itemValue.consumed + itemValue.thrownAway)
+        let changedItem = FoodItem(bestBeforeDate: itemValue.bestBeforeDate, productGTIN: itemValue.productGTIN, amount: amount + itemValue.consumed + itemValue.thrownAway)
         self.itemSubject.onNext(changedItem)
     }
 }

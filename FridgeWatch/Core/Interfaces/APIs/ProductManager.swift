@@ -16,53 +16,60 @@ enum ProductManagerError: Error {
     case realmError(Error)
 }
 
+@available(*, deprecated)
 final class ProductManager: NSObject {
     public static let shared: ProductManager = ProductManager()
     
     public func getProductData(_ gtin: String, _ productHandler: @escaping (Result<Product, ProductManagerError>) -> Void) {
-        if let product = Realms.shared.object(ofType: Product.self, forPrimaryKey: gtin) {
-            productHandler(.success(product))
-        } else {
-            createNewProduct(gtin, productHandler)
-        }
+//        if let product = Realms.shared.products!.object(ofType: Product.self, forPrimaryKey: gtin) {
+//            productHandler(.success(product))
+//        } else {
+//            createNewProduct(gtin) {
+//                let product = Realms.shared.products!.object(ofType: Product.self, forPrimaryKey: gtin)!
+//                productHandler(.success(product))
+//            }
+//        }
     }
     
-    private func createNewProduct(_ gtin: String, _ completion: @escaping (Result<Product, ProductManagerError>) -> Void) {
-        let new = Product(gtin: gtin)
+    private func createNewProduct(_ gtin: String, _ completion: @escaping () -> Void) {
         // update data before adding
-        fetchProductData(new) {
-            do {
-                //  Add product to realm
-                let realm = Realms.shared
-                try realm.write {
-                    realm.add(new)
-                }
-                
-                completion(.success(new))
-            } catch (let error) {
-                log.error(error.localizedDescription)
-                completion(.failure(.realmError(error)))
-            }
-        }
+//        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { [weak self] in
+//            guard let strong = self else { return }
+            let imageSearchOperation = ImageSearchOperation(gtin: gtin)
+            let dataSearchOperation = DataSearchOperation(gtin: gtin)
+            
+            dataFetchQueue = OperationQueue()
+            dataFetchQueue?.addOperation(imageSearchOperation)
+            dataFetchQueue?.addOperation(dataSearchOperation)
+            
+            dataFetchQueue?.waitUntilAllOperationsAreFinished()
+        
+//        
+//            do {
+//                guard let realm = Realms.shared.products else { fatalError() }
+//
+//                try realm.write {
+//                    
+//                    var product = realm.object(ofType: Product.self, forPrimaryKey: gtin)
+//                    if product == nil {
+//                        product = Product(gtin: gtin)
+//                        realm.add(product!)
+//                    }
+//                    
+//                    product!.name = dataSearchOperation.resultName
+//                    product!.image = imageSearchOperation.resultImage
+//                }
+//                completion()
+//            } catch (let error) {
+//                log.error(error.localizedDescription)
+//                completion()
+//            }
+//        }
     }
     
     private var dataFetchQueue: OperationQueue?
-    private func fetchProductData(_ product: Product, _ completion: @escaping () -> Void) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.background).async { [weak self] in
-            guard let strong = self else { return }
-            let imageSearchOperation = ImageSearchOperation(gtin: product.gtin)
-            let dataSearchOperation = DataSearchOperation(gtin: product.gtin)
-            
-            strong.dataFetchQueue = OperationQueue()
-            strong.dataFetchQueue?.addOperation(imageSearchOperation)
-            strong.dataFetchQueue?.addOperation(dataSearchOperation)
-            
-            strong.dataFetchQueue?.waitUntilAllOperationsAreFinished()
-            
-            product.name = dataSearchOperation.resultName
-            product.image = imageSearchOperation.resultImage
-                        
-            completion()
-        }
+    private func fetchProductData(_ productGTIN: String, _ completion: @escaping () -> Void) {
+        
     }
 }
+

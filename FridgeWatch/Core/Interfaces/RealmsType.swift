@@ -8,8 +8,9 @@
 
 import Foundation
 import RealmSwift
+import RxSwift
 
 protocol RealmsType: class {
-    static var local: Realm { get }
-    static var shared: Realm { get }
+    var items: Realm! { get }
+    var products: Realm? { get }
 }

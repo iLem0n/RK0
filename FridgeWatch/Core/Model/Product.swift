@@ -33,7 +33,6 @@ final class Product: Object {
             }
             
             self.imageData = image.pngData()
-//            UIImage(data:imageData,scale:1.0)
         }
     }
     

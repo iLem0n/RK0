@@ -114,6 +114,7 @@ final class Scan_Controller: UIViewController, Scan_View {
         
         //  Messages
         viewModel.message
+            .debug()
             .subscribe{
                 guard let next = $0.element else { return }
                 DispatchQueue.main.async {
