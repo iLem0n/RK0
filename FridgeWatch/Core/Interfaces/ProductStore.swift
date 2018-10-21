@@ -42,14 +42,16 @@ class ProductStore: NSObject {
                     log.error("Realm Error: \(error)")
                 }
                 
+                
                 let config = Realm.Configuration(
                     syncConfiguration: syncConfig,
-                    schemaVersion: 0,
+                    schemaVersion: 1,
                     migrationBlock: { migration, oldSchemaVersion in
-                        log.debug("MigrationBlock called.")
-                },
+                        migration.renameProperty(onType: "Product", from: "gtin", to: "id")
+                    },
                     deleteRealmIfMigrationNeeded: true,
                     objectTypes: [Product.self])
+                
                 
                 
                 SyncManager.shared.logLevel = .error
@@ -58,17 +60,17 @@ class ProductStore: NSObject {
                 }
                 
                 guard let realm = try? Realm(configuration: config)
-                    else {
-                        log.error("Unable to create configured Product Realm.")
-                        let error = NSError(
-                            domain: "de.ilem0n.fridgewatch.realm",
-                            code: 1,
-                            userInfo: [
-                                NSLocalizedDescriptionKey: NSLocalizedString("Unable to create configured Product Realm.", comment: "Unable to create configured Product Realm.")
-                            ]
-                        )
-                        completion(.failure(.realmError(error)))
-                        return
+                else {
+                    log.error("Unable to create configured Product Realm.")
+                    let error = NSError(
+                        domain: "de.ilem0n.fridgewatch.realm",
+                        code: 1,
+                        userInfo: [
+                            NSLocalizedDescriptionKey: NSLocalizedString("Unable to create configured Product Realm.", comment: "Unable to create configured Product Realm.")
+                        ]
+                    )
+                    completion(.failure(.realmError(error)))
+                    return
                 }
                 
                 completion(.success(realm))

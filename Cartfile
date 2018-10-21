@@ -16,7 +16,7 @@ github "scinfu/SwiftSoup"
 github "SwiftKickMobile/SwiftMessages"
 github "mac-cain13/R.swift.Library"
 github "SwipeCellKit/SwipeCellKit"
-#github "iLem0n/AMTooltip"
+github "amirdew/AMTooltip"
 
 # Logging
 github "SwiftyBeaver/SwiftyBeaver"

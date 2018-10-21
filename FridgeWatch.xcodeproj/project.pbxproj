@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1139B52F16F28DD4DD1BC635 /* Pods_FridgeWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01AF13352D27820D9748CE7B /* Pods_FridgeWatch.framework */; };
 		C40667AC2176460800E3F118 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AB2176460800E3F118 /* Stores.swift */; };
 		C40667AE2176461100E3F118 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AD2176461100E3F118 /* ItemStore.swift */; };
 		C40667B02176461900E3F118 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AF2176461900E3F118 /* ProductStore.swift */; };
@@ -231,8 +230,6 @@
 		C4F5CC56216A222E00EDB98B /* ScanDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC55216A222E00EDB98B /* ScanDataState.swift */; };
 		C4F5CC5A216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC59216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift */; };
 		C4F5CC5C216A550500EDB98B /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F5CC5B216A550500EDB98B /* BadgeButton.swift */; };
-		DBE1A87EB8680AADCD929424 /* Pods_FridgeWatchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB88BDE8F88AA3846700105F /* Pods_FridgeWatchUITests.framework */; };
-		F270D50E0BD703E4BBCACF2B /* Pods_FridgeWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 677DF498839A9CA890CB5BBF /* Pods_FridgeWatchTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -253,14 +250,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01AF13352D27820D9748CE7B /* Pods_FridgeWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3DBC045D1F24F5F802B7F96C /* Pods-FridgeWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.debug.xcconfig"; sourceTree = "<group>"; };
-		4E771B5B2EB83CB6A22E2F8D /* Pods-FridgeWatchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5D755DD1CF1B60A7BDFD36A5 /* Pods-FridgeWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
-		677DF498839A9CA890CB5BBF /* Pods_FridgeWatchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6F30A299E2AAC9B6ECB0B5F2 /* Pods-FridgeWatchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests.release.xcconfig"; sourceTree = "<group>"; };
-		B1781770CAD5A8064EBE6DDE /* Pods-FridgeWatchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests.release.xcconfig"; sourceTree = "<group>"; };
-		B363F7510F0D46E97B4318D7 /* Pods-FridgeWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.release.xcconfig"; sourceTree = "<group>"; };
 		C40667AB2176460800E3F118 /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
 		C40667AD2176461100E3F118 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		C40667AF2176461900E3F118 /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
@@ -474,7 +463,6 @@
 		C4F5CC55216A222E00EDB98B /* ScanDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataState.swift; sourceTree = "<group>"; };
 		C4F5CC59216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryItemDetail_ViewModel.swift; sourceTree = "<group>"; };
 		C4F5CC5B216A550500EDB98B /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
-		EB88BDE8F88AA3846700105F /* Pods_FridgeWatchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,7 +487,6 @@
 				C44481E9214B07B100817416 /* RealmSwift.framework in Frameworks */,
 				C44481E8214B06BC00817416 /* Realm.framework in Frameworks */,
 				C44481E7214B066B00817416 /* Differentiator.framework in Frameworks */,
-				1139B52F16F28DD4DD1BC635 /* Pods_FridgeWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +515,6 @@
 				C4BE47632179023C006B3E28 /* SwiftMessages.framework in Frameworks */,
 				C4BE47642179023C006B3E28 /* SwiftSoup.framework in Frameworks */,
 				C4BE47652179023C006B3E28 /* SwiftyBeaver.framework in Frameworks */,
-				F270D50E0BD703E4BBCACF2B /* Pods_FridgeWatchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,7 +522,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE1A87EB8680AADCD929424 /* Pods_FridgeWatchUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,7 +608,6 @@
 				C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */,
 				C453E1A4214ADBED0091E2B2 /* Products */,
 				C4B566FE214AF6610029F25B /* Frameworks */,
-				CB017691D22F26E646985E76 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1154,9 +1138,6 @@
 				C4B56702214AF6620029F25B /* SwiftMessages.framework */,
 				C4B56708214AF6630029F25B /* SwiftyBeaver.framework */,
 				C4B56709214AF6630029F25B /* SwipeCellKit.framework */,
-				01AF13352D27820D9748CE7B /* Pods_FridgeWatch.framework */,
-				677DF498839A9CA890CB5BBF /* Pods_FridgeWatchTests.framework */,
-				EB88BDE8F88AA3846700105F /* Pods_FridgeWatchUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1278,19 +1259,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		CB017691D22F26E646985E76 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3DBC045D1F24F5F802B7F96C /* Pods-FridgeWatch.debug.xcconfig */,
-				B363F7510F0D46E97B4318D7 /* Pods-FridgeWatch.release.xcconfig */,
-				5D755DD1CF1B60A7BDFD36A5 /* Pods-FridgeWatchTests.debug.xcconfig */,
-				6F30A299E2AAC9B6ECB0B5F2 /* Pods-FridgeWatchTests.release.xcconfig */,
-				4E771B5B2EB83CB6A22E2F8D /* Pods-FridgeWatchUITests.debug.xcconfig */,
-				B1781770CAD5A8064EBE6DDE /* Pods-FridgeWatchUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1298,14 +1266,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C453E1CB214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatch" */;
 			buildPhases = (
-				AC9478186F2CA08642C92FC5 /* [CP] Check Pods Manifest.lock */,
 				C4B566EF214AEB780029F25B /* Carthage */,
 				C4B566F0214AEB8E0029F25B /* R.Swift */,
 				C453E19F214ADBED0091E2B2 /* Sources */,
 				C453E1A0214ADBED0091E2B2 /* Frameworks */,
 				C453E1A1214ADBED0091E2B2 /* Resources */,
-				D5860770012FF831AD37DA4E /* [CP] Embed Pods Frameworks */,
-				20037469DDEDFDE8E6EE7DAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1320,12 +1285,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C453E1CE214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */;
 			buildPhases = (
-				5A4EA26BA3BE0FBDA8C89F99 /* [CP] Check Pods Manifest.lock */,
 				C453E1B3214ADBEE0091E2B2 /* Sources */,
 				C453E1B4214ADBEE0091E2B2 /* Frameworks */,
 				C453E1B5214ADBEE0091E2B2 /* Resources */,
-				6C3BC799DAD9886B4DEE8D26 /* [CP] Embed Pods Frameworks */,
-				DC3E63F1CFC367D2A619E461 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1341,12 +1303,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C453E1D1214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchUITests" */;
 			buildPhases = (
-				3355E733AC793104C8AC224A /* [CP] Check Pods Manifest.lock */,
 				C453E1BE214ADBEE0091E2B2 /* Sources */,
 				C453E1BF214ADBEE0091E2B2 /* Frameworks */,
 				C453E1C0214ADBEE0091E2B2 /* Resources */,
-				3EA42059BBF28FC4D9C24E70 /* [CP] Embed Pods Frameworks */,
-				6330BD770C91DB97B1C67AAD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1447,152 +1406,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		20037469DDEDFDE8E6EE7DAE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-resources.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3355E733AC793104C8AC224A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FridgeWatchUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3EA42059BBF28FC4D9C24E70 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-frameworks.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A4EA26BA3BE0FBDA8C89F99 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FridgeWatchTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6330BD770C91DB97B1C67AAD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-resources.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C3BC799DAD9886B4DEE8D26 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-frameworks.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC9478186F2CA08642C92FC5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FridgeWatch-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C4B566EF214AEB780029F25B /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1618,6 +1431,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RxMoya.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftSoup.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AMTooltip.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -1639,46 +1453,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/rswift generate \"$SRCROOT\"\n";
-		};
-		D5860770012FF831AD37DA4E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-frameworks.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC3E63F1CFC367D2A619E461 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-resources.sh",
-				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2022,7 +1796,6 @@
 		};
 		C453E1CC214ADBEE0091E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DBC045D1F24F5F802B7F96C /* Pods-FridgeWatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -2045,7 +1818,6 @@
 		};
 		C453E1CD214ADBEE0091E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B363F7510F0D46E97B4318D7 /* Pods-FridgeWatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -2068,7 +1840,6 @@
 		};
 		C453E1CF214ADBEE0091E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D755DD1CF1B60A7BDFD36A5 /* Pods-FridgeWatchTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2094,7 +1865,6 @@
 		};
 		C453E1D0214ADBEE0091E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F30A299E2AAC9B6ECB0B5F2 /* Pods-FridgeWatchTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2120,7 +1890,6 @@
 		};
 		C453E1D2214ADBEE0091E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E771B5B2EB83CB6A22E2F8D /* Pods-FridgeWatchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2141,7 +1910,6 @@
 		};
 		C453E1D3214ADBEE0091E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1781770CAD5A8064EBE6DDE /* Pods-FridgeWatchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

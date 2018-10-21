@@ -72,7 +72,6 @@ final class NotificationManager: NSObject {
                         
                         guard !date.isSameDay(item.bestBeforeDate)  else { return }
                         
-                        log.debug("Reschedule")
                         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [request.identifier])
                         strong.scheduleNotification(for: item.id)
                         
@@ -88,7 +87,7 @@ final class NotificationManager: NSObject {
         log.debug(#function)
         makeNotificationRequest(for: itemID, {
             guard let request = $0 else { return }
-            log.debug("Will add NotificationRequest: \(request)")
+
             UNUserNotificationCenter.current().add(request, withCompletionHandler: {
                 guard let error = $0 else { return }
                 log.error(error.localizedDescription)
