@@ -1,0 +1,82 @@
+{ "licences": [
+    {
+        "title": "SwiftSoup",
+        "link": "https://github.com/scinfu/SwiftSoup",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/scinfu/SwiftSoup/master/LICENSE"
+    },
+    {
+        "title": "Moya",
+        "link": "https://github.com/Moya/Moya",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/Moya/Moya/master/License.md"
+    },
+    {
+        "title": "Alamofire",
+        "link": "https://github.com/Alamofire/Alamofire",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/Alamofire/Alamofire/master/LICENSE"
+    },
+    {
+        "title": "Freddy",
+        "link": "https://github.com/bignerdranch/Freddy",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/bignerdranch/Freddy/master/LICENSE"
+    },
+    {
+        "title": "Result",
+        "link": "https://github.com/antitypical/Result",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/antitypical/Result/master/LICENSE"
+    },
+    {
+        "title": "SwipeCellKit",
+        "link": "https://github.com/SwipeCellKit/SwipeCellKit",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/SwipeCellKit/SwipeCellKit/master/LICENSE"
+    },
+    {
+        "title": "SwiftyBeaver",
+        "link": "https://github.com/SwiftyBeaver/SwiftyBeaver",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/SwiftyBeaver/SwiftyBeaver/master/LICENSE"
+    },
+    {
+        "title": "SwiftMessages",
+        "link": "https://github.com/SwiftKickMobile/SwiftMessages",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/SwiftKickMobile/SwiftMessages/master/LICENSE.md"
+    },
+    {
+        "title": "RxSwift",
+        "link": "https://github.com/ReactiveX/RxSwift",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/ReactiveX/RxSwift/master/LICENSE.md"
+    },
+    {
+        "title": "RxGesture",
+        "link": "https://github.com/RxSwiftCommunity/RxGesture",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/RxSwiftCommunity/RxGesture/master/LICENSE"
+    },
+    {
+        "title": "RxDataSources",
+        "link": "https://github.com/RxSwiftCommunity/RxDataSources",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/RxSwiftCommunity/RxDataSources/master/LICENSE.md"
+    },
+    {
+        "title": "Rswift",
+        "link": "https://github.com/mac-cain13/R.swift",
+        "type": "MIT",
+        "licenseLink": "https://raw.githubusercontent.com/mac-cain13/R.swift/master/License"
+    },
+    {
+        "title": "realm-cocoa",
+        "link": "https://github.com/realm/realm-cocoa",
+        "type": "Apache 2.0",
+        "licenseLink": "https://raw.githubusercontent.com/realm/realm-cocoa/master/LICENSE"
+    },
+]}
+
+
