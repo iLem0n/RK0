@@ -14,7 +14,7 @@ extension ModuleFactory: ScanModuleFactoryType {
         return R.storyboard.scan.scanNavigation()!
     }
     
-    func makeScanModule(viewModel: Scan_ViewModelType, _ cameraControllerHandler: @escaping (Scan_CameraView) -> Void) -> Scan_View? {
+    func makeScanModule(viewModel: Scan_ViewModelType, _ cameraControllerHandler: @escaping (Scan_CameraView) -> Void) -> Scan_View {
         let controller = R.storyboard.scan.scanView()!
         controller.viewModel = viewModel
         controller.onCameraViewSegue = { cameraController in
@@ -24,7 +24,7 @@ extension ModuleFactory: ScanModuleFactoryType {
         return controller
     }
     
-    func makeScanResultsModule(viewModel: ScanResults_ViewModelType, _ tableControllerHandler: @escaping (ScanResults_TableView) -> Void) -> ScanResults_View? {
+    func makeScanResultsModule(viewModel: ScanResults_ViewModelType, _ tableControllerHandler: @escaping (ScanResults_TableView) -> Void) -> ScanResults_View {
         let controller = R.storyboard.scan.scanResultsView()!
         controller.viewModel = viewModel
         controller.onTableViewSegue = { tableController in

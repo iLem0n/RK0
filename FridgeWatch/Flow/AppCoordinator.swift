@@ -22,31 +22,11 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
     
     private var resetFoodItemsStateToken: NotificationToken?
     func applicationDidFinishLaunching(_ application: UIApplication) {
+        let _ = NotificationManager.shared
+        
         prepareLogging()
         prepareMicroblink()
         start()
-        
-        
-        ["3057640186158", "4066600614319"].forEach { (gtin) in
-            Stores.products.product(withID: gtin, {                
-                switch $0 {
-                case .success(let product):
-                    log.debug(product)
-                case .failure(let error):
-                    switch error {
-                    case .realmError(let realmError):
-                        log.debug(realmError.localizedDescription)
-                    case .objectNotFound:
-                        log.debug("Product \(gtin) not found.")
-                    }
-                }
-            })
-//                    
-//            let itemsRealm = NewDataManager.shared.foodItemStore
-//            try? itemsRealm?.write {
-//                itemsRealm?.add(FoodItem(bestBeforeDate: Date(), productGTIN: gtin))
-//            }
-        }
     }
     
     //-------------------- PREPARATION -------------------------
@@ -80,6 +60,11 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
             self.removeDependency(coordinator)
         }
         
+        coordinator.onSettingsRequest = {
+            self.runSettingsFlow()
+            self.removeDependency(coordinator)
+        }
+        
         addDependency(coordinator)
         coordinator.start()
     }
@@ -94,6 +79,12 @@ final class AppCoordinator: BaseCoordinator, UIApplicationDelegate {
         addDependency(coordinator)
         
         self.router.present(router)        
+        coordinator.start()
+    }
+    
+    private func runSettingsFlow() {
+        let coordinator = CoordinatorFactory.makeSettingsCoordinator(router: self.router)        
+        addDependency(coordinator)
         coordinator.start()
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 extension ModuleFactory: StorageModuleFactoryType {
-    func makeContentModule(viewModel: StorageContent_ViewModelType, _ tableControllerHandler: @escaping (StorageContent_CollectionView) -> Void) -> StorageContent_View? {
+    func makeContentModule(viewModel: StorageContent_ViewModelType, _ tableControllerHandler: @escaping (StorageContent_CollectionView) -> Void) -> StorageContent_View {
         let controller = R.storyboard.storage.storageContentView()!
         controller.viewModel = viewModel
         controller.onCollectionViewSegue = { tableController in

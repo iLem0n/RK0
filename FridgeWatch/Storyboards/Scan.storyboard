@@ -73,10 +73,10 @@
                                 <state key="normal" title="Button" image="flashButton"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0fr-Gl-mdE">
-                                <rect key="frame" x="374.33333333333331" y="298" width="31.666666666666686" height="300"/>
+                                <rect key="frame" x="356" y="298" width="50" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yra-Sj-Avu" customClass="VSSlider" customModule="FridgeWatch" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="31.666666666666668" height="266.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="266.33333333333331"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
@@ -101,7 +101,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pID-pn-Pg2">
-                                        <rect key="frame" x="0.0" y="271.33333333333337" width="31.666666666666668" height="28.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="271.33333333333337" width="50" height="28.666666666666686"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <nil key="textColor"/>
@@ -356,9 +356,18 @@
                     <view key="view" contentMode="scaleToFill" id="hE8-fk-ubv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCM-Kk-U9h" customClass="FocusView" customModule="FridgeWatch" customModuleProvider="target">
+                                <rect key="frame" x="87" y="325" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="aU2-ER-vij"/>
                     </view>
+                    <connections>
+                        <outlet property="roiView" destination="JCM-Kk-U9h" id="iTj-Oo-MBI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iCV-AX-Ptd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

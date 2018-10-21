@@ -21,14 +21,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `ImageSearchExampleResponse.json`.
     static let imageSearchExampleResponseJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ImageSearchExampleResponse", pathExtension: "json")
+    /// Resource file `Licenses.json`.
+    static let licensesJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Licenses", pathExtension: "json")
     
     /// `bundle.url(forResource: "ImageSearchExampleResponse", withExtension: "json")`
     static func imageSearchExampleResponseJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.imageSearchExampleResponseJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    /// `bundle.url(forResource: "Licenses", withExtension: "json")`
+    static func licensesJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.licensesJson
       return fileResource.bundle.url(forResource: fileResource)
     }
     
@@ -40,7 +48,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 10 images.
+  /// This `R.image` struct is generated, and contains static references to 11 images.
   struct image {
     /// Image `check`.
     static let check = Rswift.ImageResource(bundle: R.hostingBundle, name: "check")
@@ -58,6 +66,8 @@ struct R: Rswift.Validatable {
     static let placeholer = Rswift.ImageResource(bundle: R.hostingBundle, name: "placeholer")
     /// Image `plus`.
     static let plus = Rswift.ImageResource(bundle: R.hostingBundle, name: "plus")
+    /// Image `settings`.
+    static let settings = Rswift.ImageResource(bundle: R.hostingBundle, name: "settings")
     /// Image `trashSmall`.
     static let trashSmall = Rswift.ImageResource(bundle: R.hostingBundle, name: "trashSmall")
     /// Image `trash`.
@@ -103,6 +113,11 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.plus, compatibleWith: traitCollection)
     }
     
+    /// `UIImage(named: "settings", bundle: ..., traitCollection: ...)`
+    static func settings(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.settings, compatibleWith: traitCollection)
+    }
+    
     /// `UIImage(named: "trash", bundle: ..., traitCollection: ...)`
     static func trash(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.trash, compatibleWith: traitCollection)
@@ -116,32 +131,108 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 9 nibs.
   struct nib {
+    /// Nib `BooleanCell`.
+    static let booleanCell = _R.nib._BooleanCell()
+    /// Nib `DatePickerCell`.
+    static let datePickerCell = _R.nib._DatePickerCell()
+    /// Nib `DefaultCell`.
+    static let defaultCell = _R.nib._DefaultCell()
+    /// Nib `DetailedCell`.
+    static let detailedCell = _R.nib._DetailedCell()
     /// Nib `FoodItem_CollCell`.
     static let foodItem_CollCell = _R.nib._FoodItem_CollCell()
+    /// Nib `SuggestionTextCell`.
+    static let suggestionTextCell = _R.nib._SuggestionTextCell()
+    /// Nib `TextStepperCell`.
+    static let textStepperCell = _R.nib._TextStepperCell()
+    /// Nib `ValueStepperCell`.
+    static let valueStepperCell = _R.nib._ValueStepperCell()
+    /// Nib `textCell`.
+    static let textCell = _R.nib._textCell()
+    
+    /// `UINib(name: "BooleanCell", in: bundle)`
+    static func booleanCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.booleanCell)
+    }
+    
+    /// `UINib(name: "DatePickerCell", in: bundle)`
+    static func datePickerCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.datePickerCell)
+    }
+    
+    /// `UINib(name: "DefaultCell", in: bundle)`
+    static func defaultCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.defaultCell)
+    }
+    
+    /// `UINib(name: "DetailedCell", in: bundle)`
+    static func detailedCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.detailedCell)
+    }
     
     /// `UINib(name: "FoodItem_CollCell", in: bundle)`
     static func foodItem_CollCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.foodItem_CollCell)
     }
     
+    /// `UINib(name: "SuggestionTextCell", in: bundle)`
+    static func suggestionTextCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.suggestionTextCell)
+    }
+    
+    /// `UINib(name: "TextStepperCell", in: bundle)`
+    static func textStepperCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.textStepperCell)
+    }
+    
+    /// `UINib(name: "ValueStepperCell", in: bundle)`
+    static func valueStepperCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.valueStepperCell)
+    }
+    
+    /// `UINib(name: "textCell", in: bundle)`
+    static func textCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.textCell)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 13 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `BooleanCell`.
+    static let booleanCell: Rswift.ReuseIdentifier<BooleanCellController> = Rswift.ReuseIdentifier(identifier: "BooleanCell")
+    /// Reuse identifier `DatePickerCell`.
+    static let datePickerCell: Rswift.ReuseIdentifier<DatePickerCellController> = Rswift.ReuseIdentifier(identifier: "DatePickerCell")
+    /// Reuse identifier `DefaultCell`.
+    static let defaultCell: Rswift.ReuseIdentifier<DefaultCellController> = Rswift.ReuseIdentifier(identifier: "DefaultCell")
+    /// Reuse identifier `DetailedCell`.
+    static let detailedCell: Rswift.ReuseIdentifier<DetailedCellController> = Rswift.ReuseIdentifier(identifier: "DetailedCell")
     /// Reuse identifier `FoodItemCell`.
     static let foodItemCell: Rswift.ReuseIdentifier<FoodItemCell> = Rswift.ReuseIdentifier(identifier: "FoodItemCell")
     /// Reuse identifier `FoodItemCollectionCell`.
     static let foodItemCollectionCell: Rswift.ReuseIdentifier<FoodItemCollectionCell> = Rswift.ReuseIdentifier(identifier: "FoodItemCollectionCell")
     /// Reuse identifier `FoodListHeader`.
     static let foodListHeader: Rswift.ReuseIdentifier<CollectionHeader> = Rswift.ReuseIdentifier(identifier: "FoodListHeader")
+    /// Reuse identifier `LicenceCell`.
+    static let licenceCell: Rswift.ReuseIdentifier<LicenseCell> = Rswift.ReuseIdentifier(identifier: "LicenceCell")
+    /// Reuse identifier `SettingsCell`.
+    static let settingsCell: Rswift.ReuseIdentifier<UIKit.UITableViewCell> = Rswift.ReuseIdentifier(identifier: "SettingsCell")
+    /// Reuse identifier `SuggestionTextCell`.
+    static let suggestionTextCell: Rswift.ReuseIdentifier<SuggestionTextCellController> = Rswift.ReuseIdentifier(identifier: "SuggestionTextCell")
+    /// Reuse identifier `TextCell`.
+    static let textCell: Rswift.ReuseIdentifier<TextCellController> = Rswift.ReuseIdentifier(identifier: "TextCell")
+    /// Reuse identifier `TextStepperCell`.
+    static let textStepperCell: Rswift.ReuseIdentifier<TextStepperCellController> = Rswift.ReuseIdentifier(identifier: "TextStepperCell")
+    /// Reuse identifier `ValueStepperCell`.
+    static let valueStepperCell: Rswift.ReuseIdentifier<ValueStepperCellController> = Rswift.ReuseIdentifier(identifier: "ValueStepperCell")
     
     fileprivate init() {}
   }
   
-  /// This `R.segue` struct is generated, and contains static references to 4 view controllers.
+  /// This `R.segue` struct is generated, and contains static references to 5 view controllers.
   struct segue {
     /// This struct is generated for `ItemDetail_Controller`, and contains static references to 1 segues.
     struct itemDetail_Controller {
@@ -188,6 +279,21 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    /// This struct is generated for `Settings_Controller`, and contains static references to 1 segues.
+    struct settings_Controller {
+      /// Segue identifier `showTableView`.
+      static let showTableView: Rswift.StoryboardSegueIdentifier<UIKit.UIStoryboardSegue, Settings_Controller, Settings_TableController> = Rswift.StoryboardSegueIdentifier(identifier: "showTableView")
+      
+      /// Optionally returns a typed version of segue `showTableView`.
+      /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
+      /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
+      static func showTableView(segue: UIKit.UIStoryboardSegue) -> Rswift.TypedStoryboardSegueInfo<UIKit.UIStoryboardSegue, Settings_Controller, Settings_TableController>? {
+        return Rswift.TypedStoryboardSegueInfo(segueIdentifier: R.segue.settings_Controller.showTableView, segue: segue)
+      }
+      
+      fileprivate init() {}
+    }
+    
     /// This struct is generated for `StorageContent_Controller`, and contains static references to 1 segues.
     struct storageContent_Controller {
       /// Segue identifier `showCollectionView`.
@@ -206,7 +312,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 5 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 6 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
@@ -214,6 +320,8 @@ struct R: Rswift.Validatable {
     static let main = _R.storyboard.main()
     /// Storyboard `Scan`.
     static let scan = _R.storyboard.scan()
+    /// Storyboard `Settings`.
+    static let settings = _R.storyboard.settings()
     /// Storyboard `Shared`.
     static let shared = _R.storyboard.shared()
     /// Storyboard `Storage`.
@@ -232,6 +340,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Scan", bundle: ...)`
     static func scan(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.scan)
+    }
+    
+    /// `UIStoryboard(name: "Settings", bundle: ...)`
+    static func settings(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.settings)
     }
     
     /// `UIStoryboard(name: "Shared", bundle: ...)`
@@ -276,6 +389,62 @@ struct _R: Rswift.Validatable {
       try _FoodItem_CollCell.validate()
     }
     
+    struct _BooleanCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = BooleanCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "BooleanCell"
+      let name = "BooleanCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> BooleanCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? BooleanCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _DatePickerCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DatePickerCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "DatePickerCell"
+      let name = "DatePickerCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> DatePickerCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DatePickerCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _DefaultCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DefaultCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "DefaultCell"
+      let name = "DefaultCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> DefaultCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DefaultCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _DetailedCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DetailedCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "DetailedCell"
+      let name = "DetailedCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> DetailedCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DetailedCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _FoodItem_CollCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = FoodItemCollectionCell
       
@@ -294,12 +463,69 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _SuggestionTextCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = SuggestionTextCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "SuggestionTextCell"
+      let name = "SuggestionTextCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> SuggestionTextCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SuggestionTextCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _TextStepperCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = TextStepperCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "TextStepperCell"
+      let name = "TextStepperCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TextStepperCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TextStepperCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _ValueStepperCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = ValueStepperCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "ValueStepperCell"
+      let name = "ValueStepperCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> ValueStepperCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ValueStepperCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _textCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = TextCellController
+      
+      let bundle = R.hostingBundle
+      let identifier = "TextCell"
+      let name = "textCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> TextCellController? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? TextCellController
+      }
+      
+      fileprivate init() {}
+    }
+    
     fileprivate init() {}
   }
   
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try storage.validate()
+      try settings.validate()
       try scan.validate()
       try shared.validate()
     }
@@ -366,6 +592,34 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct settings: Rswift.StoryboardResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let info_TableView = StoryboardViewControllerResource<Info_TableController>(identifier: "Info_TableView")
+      let name = "Settings"
+      let settings_TableView = StoryboardViewControllerResource<Settings_TableController>(identifier: "Settings_TableView")
+      let settings_View = StoryboardViewControllerResource<Settings_Controller>(identifier: "Settings_View")
+      
+      func info_TableView(_: Void = ()) -> Info_TableController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: info_TableView)
+      }
+      
+      func settings_TableView(_: Void = ()) -> Settings_TableController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: settings_TableView)
+      }
+      
+      func settings_View(_: Void = ()) -> Settings_Controller? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: settings_View)
+      }
+      
+      static func validate() throws {
+        if _R.storyboard.settings().info_TableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'info_TableView' could not be loaded from storyboard 'Settings' as 'Info_TableController'.") }
+        if _R.storyboard.settings().settings_View() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'settings_View' could not be loaded from storyboard 'Settings' as 'Settings_Controller'.") }
+        if _R.storyboard.settings().settings_TableView() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'settings_TableView' could not be loaded from storyboard 'Settings' as 'Settings_TableController'.") }
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct shared: Rswift.StoryboardResourceType, Rswift.Validatable {
       let bundle = R.hostingBundle
       let itemDetailTableView = StoryboardViewControllerResource<ItemDetail_TableController>(identifier: "ItemDetailTableView")
@@ -406,6 +660,7 @@ struct _R: Rswift.Validatable {
       static func validate() throws {
         if UIKit.UIImage(named: "trash") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'trash' is used in storyboard 'Storage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "check") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'check' is used in storyboard 'Storage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "settings") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'settings' is used in storyboard 'Storage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "closeButton") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'closeButton' is used in storyboard 'Storage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "consume") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'consume' is used in storyboard 'Storage', but couldn't be loaded.") }
         if UIKit.UIImage(named: "plus") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'plus' is used in storyboard 'Storage', but couldn't be loaded.") }

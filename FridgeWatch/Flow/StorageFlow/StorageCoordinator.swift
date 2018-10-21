@@ -14,7 +14,8 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
     private let factory: StorageModuleFactoryType
     
     var onScanFlowRequest: (() -> Void)?
-    
+    var onSettingsRequest: (() -> Void)?
+
     //  INIT
     init(router: RouterType, factory: StorageModuleFactoryType) {
         self.router = router
@@ -58,8 +59,12 @@ final class StorageCoordinator: BaseCoordinator, StorageCoordinatorType {
                 }
             }
         
-        module?.onStartScanButtonTouched = { [weak self] in
+        module.onStartScanButtonTouched = { [weak self] in
             self?.onScanFlowRequest?()            
+        }
+        
+        module.onSettingsButtonTouched = { [weak self] in
+            self?.onSettingsRequest?()
         }
         
         router.setRootModule(module, hideBar: true)

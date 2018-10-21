@@ -77,7 +77,6 @@ final class ItemDetail_TableController: UITableViewController, ItemDetail_TableV
                     ])
                 text.append(NSAttributedString(string: " days left"))
                 
-                log.debug(text)
                 return text.string
             })
             .bind(to: remainingDaysLabel.rx.text)

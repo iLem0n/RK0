@@ -10,4 +10,5 @@ import Foundation
 
 protocol StorageCoordinatorType: CoordinatorType {
     var onScanFlowRequest: (() -> Void)? { get set }
+    var onSettingsRequest: (() -> Void)? { get set }
 }

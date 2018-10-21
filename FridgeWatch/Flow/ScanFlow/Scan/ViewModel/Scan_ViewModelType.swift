@@ -18,6 +18,7 @@ protocol Scan_ViewModelType: ViewModelType, AVCaptureVideoDataOutputSampleBuffer
     var scannedItemsSubject: BehaviorSubject<[FoodItem]> { get }
     var amountSubject: BehaviorSubject<Int> { get }
     var dateSubject: BehaviorSubject<Date?> { get }
+    var roiSubject: BehaviorSubject<CGRect> { get }
     var productObservable: Observable<Product?> { get }
     
     var flashlightStateObservable: Observable<FlashlightState> { get }

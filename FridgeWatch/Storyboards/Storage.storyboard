@@ -21,7 +21,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="UDV-Xr-f6e">
                                 <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
-                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zk3-1h-T1G">
+                                    <searchBar hidden="YES" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Zk3-1h-T1G">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="ZZL-Ko-CiG"/>
@@ -29,7 +29,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </searchBar>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ybJ-O4-gRM">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="712"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
                                         <connections>
                                             <segue destination="17J-DZ-DkU" kind="embed" identifier="showCollectionView" id="eFU-Ah-r9h"/>
                                         </connections>
@@ -96,11 +96,22 @@
                                     <constraint firstItem="lcm-Ye-JDy" firstAttribute="width" secondItem="lcm-Ye-JDy" secondAttribute="height" multiplier="1:1" id="ooh-KG-zFt"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zft-8R-3mm" customClass="BadgeButton" customModule="FridgeWatch" customModuleProvider="target">
+                                <rect key="frame" x="315" y="59" width="45" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zft-8R-3mm" secondAttribute="height" multiplier="1:1" id="IBJ-Mw-UNN"/>
+                                    <constraint firstAttribute="height" constant="45" id="cCu-27-Ify"/>
+                                </constraints>
+                                <state key="normal" image="settings"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="MtR-Xy-iOQ" firstAttribute="trailing" secondItem="zft-8R-3mm" secondAttribute="trailing" constant="15" id="3aG-dV-Nqt"/>
                             <constraint firstItem="UDV-Xr-f6e" firstAttribute="top" secondItem="MtR-Xy-iOQ" secondAttribute="top" id="5Ji-WL-Wfe"/>
                             <constraint firstAttribute="bottom" secondItem="UDV-Xr-f6e" secondAttribute="bottom" id="IaG-iO-OIi"/>
+                            <constraint firstItem="zft-8R-3mm" firstAttribute="top" secondItem="ybJ-O4-gRM" secondAttribute="top" constant="15" id="Qar-6g-QgK"/>
                             <constraint firstItem="MtR-Xy-iOQ" firstAttribute="bottom" secondItem="OWW-fx-egO" secondAttribute="bottom" constant="15" id="W2H-uM-LBm"/>
                             <constraint firstItem="MtR-Xy-iOQ" firstAttribute="bottom" secondItem="qZM-v6-5XW" secondAttribute="bottom" constant="15" id="X3D-j9-XOD"/>
                             <constraint firstItem="UDV-Xr-f6e" firstAttribute="leading" secondItem="MtR-Xy-iOQ" secondAttribute="leading" id="YdP-Kv-pbr"/>
@@ -119,6 +130,7 @@
                         <outlet property="commitBulkEditingButton" destination="eLx-0n-Tij" id="WUn-Ux-rMG"/>
                         <outlet property="discardBulkEditingButton" destination="KUV-19-F8q" id="Uvy-Yf-eyo"/>
                         <outlet property="searchBar" destination="Zk3-1h-T1G" id="gB4-Ok-2em"/>
+                        <outlet property="settingsButton" destination="zft-8R-3mm" id="8xB-NY-SnB"/>
                         <outlet property="startScanButton" destination="Ovz-To-oOB" id="Tzg-zr-FRe"/>
                     </connections>
                 </viewController>
@@ -131,7 +143,7 @@
             <objects>
                 <collectionViewController storyboardIdentifier="StorageContent_CollectionView" id="17J-DZ-DkU" customClass="StorageContent_CollectionController" customModule="FridgeWatch" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cqk-0b-ASZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="712"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NnM-7D-kS8">
@@ -183,6 +195,7 @@
         <image name="closeButton" width="200" height="200"/>
         <image name="consume" width="200" height="200"/>
         <image name="plus" width="200" height="200"/>
+        <image name="settings" width="200" height="200"/>
         <image name="trash" width="200" height="200"/>
     </resources>
 </document>

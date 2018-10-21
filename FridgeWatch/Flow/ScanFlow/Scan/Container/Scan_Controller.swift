@@ -158,7 +158,7 @@ final class Scan_Controller: UIViewController, Scan_View {
         
         //  Product Label | Text & State
         viewModel.productObservable
-            .map({ $0?.name ?? $0?.gtin ?? "No Product" })
+            .map({ $0?.name ?? $0?.id ?? "No Product" })
             .map({ String(describing: $0) })
             .bind(to: productLabel.rx.text)
             .disposed(by: disposeBag)

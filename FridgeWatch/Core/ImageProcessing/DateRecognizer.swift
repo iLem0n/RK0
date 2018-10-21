@@ -45,9 +45,10 @@ final class DateRecognizer: NSObject, RecognizerType {
         return state
     }
     
-    func process(_ sampleBuffer: CMSampleBuffer) {
+    func process(_ sampleBuffer: CMSampleBuffer, roi: CGRect) {
         guard !self.isPaused else { return }
         let image = MBImage(cmSampleBuffer: sampleBuffer)
+        image.roi = CGRect(x: roi.minY, y: roi.minX, width: roi.height, height: roi.width)
         image.orientation = MBProcessingOrientation.left
         self.runner.processImage(image)
     }

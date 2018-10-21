@@ -13,16 +13,20 @@ import RxDataSources
 import UIKit
 
 class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType {
+    
     let message = PublishSubject<Message>()
     let disposeBag = DisposeBag()
     
-    lazy var productName = self.productNameSubject
+    lazy var productName = self.productSubject
+        .filter({ $0 != nil }).map({ $0! })
+        .map({ $0.name })
         .filter({ $0 != nil }).map({ $0! })
         .asObservable()
-    private let productNameSubject = BehaviorSubject<String?>(value: nil)
 
-    lazy var productImage = self.productImageSubject.asObservable()
-    private let productImageSubject = BehaviorSubject<UIImage?>(value: nil)
+    lazy var productImage = self.productSubject
+        .filter({ $0 != nil }).map({ $0! })
+        .map({ $0.image })
+        .asObservable()
     
     lazy var bestBeforeDate = self.itemSubject
         .map({ $0.bestBeforeDate })
@@ -39,14 +43,11 @@ class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType {
         .filter({ $0 != nil }).map({ $0! })
         .asObservable()
     
-    
-    private var itemID: String?
     internal let itemSubject: BehaviorSubject<FoodItem>
-    internal let productObservable: Observable<Product>
+    internal let productSubject = BehaviorSubject<Product?>(value: nil)
 
     required init(item: FoodItem) {
         itemSubject = BehaviorSubject<FoodItem>(value: item)
-        productObservable = item.productObservable
         super.init()
         
         linkObjectChanges()
@@ -56,88 +57,51 @@ class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType {
     private var productUpdateToken: NotificationToken?
     
     func linkObjectChanges() {
+        
         itemSubject
-            .map({ $0.id })
             .subscribe { [weak self] in
                 guard let strong = self, let next = $0.element else { return }
-                strong.itemID = next
+            
+                strong.linkChanges(of: next)
                 
-                
+                Stores.products.product(withID: next.productID) {
+                    
+                    switch $0 {
+                    case .success(let product):
+                        strong.productSubject.onNext(product)
+                        strong.linkChanges(of: product)
+                    case .failure(let error):
+                        log.error(error.localizedDescription)
+                    }
+                }
             }
-            .disposed(by: disposeBag)
-        
-
-        productObservable
-            .subscribe { [weak self] in
-                guard let strong = self, let next = $0.element else { return }
-                strong.productImageSubject.onNext(next.image)
-                strong.productNameSubject.onNext(next.name)
-            }
-            .disposed(by: disposeBag)
-        
-        
-//        guard let itemValue = try? itemSubject.value() else { return }
-//
-//        foodItemUpdateToken = Realms.shared.items
-//            .object(ofType: FoodItem.self, forPrimaryKey: itemValue.id)?
-//            .observe({ [weak self] (changes) in
-//                self?.itemSubject.onNext(itemValue)
-//            })
-//
-//        guard let item = NewDataManager.shared.foodItem(item.id)//,
-////            let product = Realms.shared.object(ofType: Product.self, forPrimaryKey: item.product.gtin)
-//        else { return }
-//
-//        foodItemUpdateToken = item.observe { (change) in
-//            log.debug("Item Data Change!")
-//            switch change {
-//            case .change(let changes):
-//                for change in changes {
-//                    switch change.name {
-//                    case "bestBeforeDate":
-//                        break
-//                    case "amount", "consumed", "thrownAway":
-//                        break
-//                    default: break
-//                    }
-//                }
-//            case .deleted: break
-//            case .error(let error):
-//                log.error(error.localizedDescription)
-//            }
-//        }
-//
-//        productUpdateToken = product.observe({ (change) in
-//            log.debug("Product Data Change!")
-//            switch change {
-//            case .change(let changes):
-//                for change in changes {
-//                    switch change.name {
-//                    case "name":
-//                        self.productNameSubject.onNext(product.name)
-//                    case "imageData":
-//                        self.productImageSubject.onNext(product.image)
-//                    default: break
-//                    }
-//                }
-//            case .deleted: break
-//            case .error(let error):
-//                log.error(error.localizedDescription)
-//            }
-//        })
-        
-        
-        
-        itemSubject.map({ $0.id })
-            .subscribe { [weak self] in
-                guard let next = $0.element else { return }
-                self?.itemID = next
-            }
-            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)        
     }
     
-    func linkObjectChanges(on product: Product) {
+    func linkChanges(of item: FoodItem) {
+        foodItemUpdateToken = item.observe({ [weak self] in
+            guard let strong = self else { return }
+
+            switch $0 {
+            case .change:   strong.itemSubject.onNext(item)
+            case .deleted:  break
+            case .error(let error):
+                strong.message.onNext(Message(type: .error, title: "Item Update Error", message: error.localizedDescription))
+            }
+        })
+    }
     
+    func linkChanges(of product: Product) {
+        productUpdateToken = product.observe({ [weak self] in
+            guard let strong = self else { return }
+            
+            switch $0 {
+            case .change:   strong.productSubject.onNext(product)
+            case .deleted:  break
+            case .error(let error):
+                strong.message.onNext(Message(type: .error, title: "Product Update Error", message: error.localizedDescription))
+            }
+        })
     }
     
     func updateAmount(_ amount: Int) {
@@ -169,7 +133,7 @@ class ItemDetail_ViewModel: NSObject, ItemDetail_ViewModelType {
             return
         }
         
-        Stores.products.update(id: item.productGTIN, { (product) in
+        Stores.products.update(id: item.productID, { (product) in
             product.image = image
         }) { [weak self] (error) in
             guard let strong = self else { return }

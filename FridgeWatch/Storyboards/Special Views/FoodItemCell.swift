@@ -39,7 +39,7 @@ class FoodItemCell: SwipeTableViewCell {
                 .subscribe {
                     guard let next = $0.element else { return }
                     self.updateImageView(next.image)
-                    self.updateTitleLabel(next.name ?? "<\(String(describing: next.gtin))>")
+                    self.updateTitleLabel(next.name ?? "<\(String(describing: next.id))>")
                 }
                 .disposed(by: disposeBag)
         }

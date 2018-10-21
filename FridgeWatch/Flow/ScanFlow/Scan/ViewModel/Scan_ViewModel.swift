@@ -50,12 +50,14 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
     let scannedItemsSubject = BehaviorSubject<[FoodItem]>(value: [])
     let dateSubject = BehaviorSubject<Date?>(value: nil)
     let amountSubject = BehaviorSubject<Int>(value: 1)
+    let roiSubject = BehaviorSubject<CGRect>(value: .one)
+    
     private let productSubject = BehaviorSubject<Product?>(value: nil)
-    private let productGTINSubject = BehaviorSubject<String?>(value: nil)
+    private let productIDSubject = BehaviorSubject<String?>(value: nil)
     
     //------------ DATA OBSERVABLES ------------
     lazy var productObservable: Observable<Product?> = self.productSubject.asObservable()
-
+    
     //------------ WORKER -------------------
     internal let gtinRecognizer = BarcodeRecognizer()
     internal lazy var dateRecognizer = DateRecognizer(validator: { self.validate(date: $0) == .success })
@@ -71,15 +73,15 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
         super.init()
         self.resetScanData()
         self.linkScanData()
-        self.linkResultsTableData()
+        self.linkResultsTableData()        
     }
     
     private func linkScanData() {
         
-        //  product <~> productGTIN: stay in sync with product objects <- for thread save realm operations
+        //  product <~> productID: stay in sync with product objects <- for thread save realm operations
         productSubject
-            .map({ $0?.gtin })
-            .bind(to: productGTINSubject)
+            .map({ $0?.id })
+            .bind(to: productIDSubject)
             .disposed(by: disposeBag)
         
         
@@ -172,21 +174,27 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
     func addItemToList() {
         //  Get values
         guard let dateValue = try? dateSubject.value(),
-            let productGTINValue = try? productGTINSubject.value(),
+            let productIDValue = try? productIDSubject.value(),
             let amount = try? amountSubject.value(),
             var scannedItems = try? scannedItemsSubject.value()
         else { return }
         
         //  Unwrap product and date
         guard let date = dateValue,
-            let productGTIN = productGTINValue
+            let productID = productIDValue
         else { return }
         
-        let item = FoodItem(bestBeforeDate: date, productGTIN: productGTIN, amount: amount)
+        let item = FoodItem(bestBeforeDate: date, productID: productID, amount: amount)
         scannedItems.append(item)
         
         scannedItemsSubject.onNext(scannedItems)
         resetScanData()
+    }
+    
+    func removeItem(at indexPath: IndexPath) {
+        guard var scannedItems = try? scannedItemsSubject.value() else { return }
+        scannedItems.remove(at: indexPath.row)
+        scannedItemsSubject.onNext(scannedItems)
     }
 
     //------------ VALIDATION ------------

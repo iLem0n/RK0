@@ -75,6 +75,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="32" id="NLb-7Y-ywp"/>
                                                                     </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                     <state key="normal" title="Change ..."/>
                                                                 </button>
                                                             </subviews>

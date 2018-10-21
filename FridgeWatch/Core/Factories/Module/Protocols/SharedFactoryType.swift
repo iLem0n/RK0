@@ -12,7 +12,7 @@ protocol SharedFactoryType {
     func makeItemDetailModule(
         viewModel: ItemDetail_ViewModelType,        
         _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void)
-    -> ItemDetail_View?
+    -> ItemDetail_View
     
     func makeConfirmMessage(
         title: String,

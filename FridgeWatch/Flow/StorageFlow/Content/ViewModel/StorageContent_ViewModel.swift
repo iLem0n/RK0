@@ -51,13 +51,13 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             guard let strong = self else { return }
             switch $0 {
             case .success(let items):
-                strong.updateFoodItemsToken = items.filter(strong.filter)
+                strong.updateFoodItemsToken = items
                     .observe { [weak self] (changes) in
                         guard let strong = self else { return }
                         switch changes {
                         case .update(let objects, _, _, _),
                              .initial(let objects):
-                            
+                                                        
                             strong.sectionsSubject.onNext(strong.sections(for: objects.map({ $0 }).filter({ $0.available }) ))
                             
                         case .error(let error):
@@ -69,11 +69,6 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             }
         })
         
-    }
-    
-    private var filter: NSPredicate {
-        guard let searchText = try? searchText.value(), !searchText.isEmpty else { return NSPredicate(value: true) }
-        return NSPredicate(format: "product.name CONTAINS[cd] %@", searchText)
     }
 
     //----------- BULKK CHANGE ---------

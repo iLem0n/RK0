@@ -15,4 +15,5 @@ protocol StorageContent_View: BaseViewType {
     var onCollectionViewSegue: ((StorageContent_CollectionView) -> Void)? { get set }
     
     var onStartScanButtonTouched: (() -> Void)? { get set }
+    var onSettingsButtonTouched: (() -> Void)? { get set }
 }

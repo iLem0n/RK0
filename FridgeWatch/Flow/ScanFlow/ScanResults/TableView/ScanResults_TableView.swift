@@ -9,8 +9,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SwipeCellKit
 
-protocol ScanResults_TableView: BaseViewType {
+protocol ScanResults_TableView: BaseViewType, SwipeTableViewCellDelegate {
     var viewModel: ScanResults_ViewModelType? { get set }
     var onItemSelected: ((IndexPath) -> Void)? { get set }
 }

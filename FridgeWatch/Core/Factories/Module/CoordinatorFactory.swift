@@ -14,6 +14,11 @@ final class CoordinatorFactory: CoordinatorFactoryType {
         return (coordinator, coordinator.router)
     }
     
+    static func makeSettingsCoordinator(router: RouterType) -> SettingsCoordinatorType {
+        let coordinator = SettingsCoordinator(router: router, factory: ModuleFactory())
+        return coordinator
+    }
+    
     static func makeStorageCoordinator(router: RouterType) -> StorageCoordinatorType {
         return StorageCoordinator(router: router, factory: ModuleFactory())
     }

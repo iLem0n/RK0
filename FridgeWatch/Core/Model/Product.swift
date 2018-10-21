@@ -11,13 +11,13 @@ import RealmSwift
 import UIKit
 
 final class Product: Object {
-    @objc dynamic var gtin: String!
+    @objc dynamic var id: String!
     @objc dynamic var name: String?
     @objc dynamic var imageData: Data?
     
-    convenience init(gtin: String) {
+    convenience init(id: String) {
         self.init()
-        self.gtin = gtin
+        self.id = id
     }
     
     var image: UIImage? {
@@ -37,7 +37,7 @@ final class Product: Object {
     }
     
     override static func primaryKey() -> String {
-        return "gtin"
+        return "id"
     }
 }
 

@@ -9,3 +9,6 @@ target 'FridgeWatchTests' do
     pod 'PPBlinkOCR', '~> 4.0.0'
 end
 
+target 'FridgeWatchUITests' do
+    pod 'PPBlinkOCR', '~> 4.0.0'
+end

@@ -14,10 +14,10 @@ protocol ScanModuleFactoryType: ModulFactoryType, SharedFactoryType {
     func makeScanModule(
         viewModel: Scan_ViewModelType,
         _ cameraControllerHandler: @escaping (Scan_CameraView) -> Void)
-    -> Scan_View?
+    -> Scan_View
     
     func makeScanResultsModule(
         viewModel: ScanResults_ViewModelType,
         _ tableControllerHandler: @escaping (ScanResults_TableView) -> Void)
-    -> ScanResults_View?
+    -> ScanResults_View
 }

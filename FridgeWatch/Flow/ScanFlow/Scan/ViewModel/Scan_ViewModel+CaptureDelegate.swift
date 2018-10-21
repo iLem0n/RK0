@@ -11,15 +11,23 @@ import AVFoundation
 
 extension Scan_ViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        
+        let roi: CGRect
+        if let roiValue = try? self.roiSubject.value() {
+            roi = roiValue
+        } else {
+            roi = .one
+        }
+        
         switch dateRecognizer.state {
         case .ready:
-            self.dateRecognizer.process(sampleBuffer)
+            self.dateRecognizer.process(sampleBuffer, roi: roi)
         default: break
         }
         
         switch gtinRecognizer.state {
         case .ready:
-            self.gtinRecognizer.process(sampleBuffer)
+            self.gtinRecognizer.process(sampleBuffer, roi: roi)
         default: break
         }
     }

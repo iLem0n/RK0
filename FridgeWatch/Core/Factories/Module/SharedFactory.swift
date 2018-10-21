@@ -13,7 +13,7 @@ extension ModuleFactory: SharedFactoryType {
     
     func makeItemDetailModule(
         viewModel: ItemDetail_ViewModelType,
-        _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void) -> ItemDetail_View?
+        _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void) -> ItemDetail_View
     {
         let controller = R.storyboard.shared.itemDetailView()!
         controller.viewModel = viewModel

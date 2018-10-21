@@ -14,7 +14,7 @@ import RxSwift
 final class FoodItem: Object {
     @objc dynamic var id: String = UUID().uuidString
     @objc dynamic var bestBeforeDate: Date!
-    @objc dynamic var productGTIN: String!
+    @objc dynamic var productID: String!
     @objc dynamic var amount: Int = 1
     @objc dynamic var consumed: Int = 0
     @objc dynamic var thrownAway: Int = 0
@@ -23,12 +23,13 @@ final class FoodItem: Object {
     lazy var productObservable: Observable<Product> = self.productSubject.filter({ $0 != nil }).map({ $0! }).asObservable()
     private let productSubject = BehaviorSubject<Product?>(value: nil)
     
-    convenience init(bestBeforeDate: Date, productGTIN: String, amount: Int = 1) {
+    convenience init(bestBeforeDate: Date, productID: String, amount: Int = 1) {
         self.init()
         self.bestBeforeDate = bestBeforeDate
         self.amount = amount
+        self.productID = productID
         
-        Stores.products.product(withID: productGTIN) { [weak self] in
+        Stores.products.product(withID: productID) { [weak self] in
             guard let strong = self else { return }
             
             switch $0 {

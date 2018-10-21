@@ -20,10 +20,12 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
     //-------------------- COORDINATOR LINKS -------------------------
     var onCollectionViewSegue: ((StorageContent_CollectionView) -> Void)?
     var onStartScanButtonTouched: (() -> Void)?
-    
+    var onSettingsButtonTouched: (() -> Void)?
+
     //-------------------- UI ELEMENTS -------------------------
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var startScanButton: UIButton!
+    @IBOutlet var settingsButton: UIButton!
     @IBOutlet var bulkConsumeButton: UIButton!
     @IBOutlet var bulkThrowAwayButton: UIButton!
     @IBOutlet var commitBulkEditingButton: UIButton!
@@ -97,6 +99,12 @@ final class StorageContent_Controller: UIViewController, StorageContent_View {
         startScanButton.rx.tap
             .subscribe { [weak self] _ in
                 self?.onStartScanButtonTouched?()
+            }
+            .disposed(by: disposeBag)
+        
+        settingsButton.rx.tap
+            .subscribe { [weak self] _ in
+                self?.onSettingsButtonTouched?()
             }
             .disposed(by: disposeBag)
         

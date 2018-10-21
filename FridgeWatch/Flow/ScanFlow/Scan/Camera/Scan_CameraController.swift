@@ -17,6 +17,8 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
     var viewModel: Scan_ViewModelType?
     let disposeBag = DisposeBag()
     
+    @IBOutlet var roiView: UIView!
+    
     //----------------- LIFECYCLE ------------------
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
             
             previewLayer?.frame.size = UIScreen.main.bounds.size
         }
+        self.calculateRoi()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -42,6 +45,13 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
     //----------------- VIEW MODEL LINKING ------------------
     private func linkViewModel() {
         guard let viewModel = viewModel else { fatalError("ViewModel not set.") }
+        
+        viewModel.roiSubject
+            .subscribe { [weak self] in
+                guard let strong = self, let next = $0.element else { return }
+                strong.resizeRoiRect(roi: next)
+            }
+            .disposed(by: disposeBag)
         
         viewModel.scannerStateSubject
             .distinctUntilChanged({ $0 == $1 })
@@ -94,6 +104,27 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
             .disposed(by: disposeBag)
     }
     
+    private func calculateRoi() {
+        let totalWidth: CGFloat = 300
+        let totalHeight: CGFloat = 150
+        
+        let width = totalWidth / self.view.frame.width
+        let height = totalHeight / self.view.frame.height
+                
+        let roi = CGRect(x: 0.5 - width / 2, y: 0.5 - height / 2, width: width, height: height)
+        
+        log.debug(roi)
+        viewModel?.roiSubject.onNext(roi)
+    }
+    
+    private func resizeRoiRect(roi: CGRect) {
+        roiView.frame = CGRect(
+            x: self.view.frame.width * roi.minX,
+            y: self.view.frame.height * roi.minY,
+            width: self.view.frame.width * roi.width,
+            height: self.view.frame.height * roi.height)
+    }
+
     //----------------- CAMERA ------------------
     @IBOutlet var previewLayer: AVCaptureVideoPreviewLayer?
     private var captureSession: AVCaptureSession?
@@ -169,6 +200,9 @@ final class Scan_CameraController: UIViewController, Scan_CameraView {
         previewLayer?.connection?.videoOrientation = currentOrientation
                 
         self.view.layer.addSublayer(previewLayer!)
+
+        
+        self.view.bringSubviewToFront(roiView)
     }
     
     private func stopCapture() {

@@ -12,7 +12,7 @@ import RxCocoa
 import SwipeCellKit
 import RxDataSources
 
-final class StorageContent_CollectionController: UICollectionViewController, StorageContent_CollectionView, UICollectionViewDelegateFlowLayout {
+final class StorageContent_CollectionController: UICollectionViewController, StorageContent_CollectionView {
     
     
     //-------------------- PREPARATION -------------------------

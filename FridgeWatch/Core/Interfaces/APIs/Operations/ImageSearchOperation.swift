@@ -87,7 +87,6 @@ final class ImageSearchOperation: Operation {
             
             switch result {
             case .success(let response):
-                log.debug(response)
                 guard let parsed: ImageResponse = target.responseParser.parse(response.data) as? ImageResponse else {
                     log.error("Response not parsed as Image Response")
                     self.state = .finished

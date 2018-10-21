@@ -23,7 +23,7 @@ protocol RecognizerType: MBScanningRecognizerRunnerDelegate {
     var stateObservable: Observable<RecognizerState<ResultType>>  { get }
     var state: RecognizerState<ResultType> { get }
     
-    func process(_ sampleBuffer: CMSampleBuffer)
+    func process(_ sampleBuffer: CMSampleBuffer, roi: CGRect)
     func reset()
     func pause()
 }

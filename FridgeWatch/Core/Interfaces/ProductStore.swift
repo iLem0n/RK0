@@ -22,11 +22,11 @@ class ProductStore: NSObject {
     
     private func getRealm(_ completion: @escaping (Result<Realm, StoreError>) -> Void) {
         do {
-            //  initialize new remote synced realm
-            let host = "10.0.0.10"
-            let credentials = SyncCredentials.usernamePassword(username: "fridgewatch@ilem0n.de", password: "fuftyw-Mofsyw-wefjy1", register: false)
-            let realmServerURL = URL(string: "http://\(host):9080")!
-            let realmSyncURL = URL(string: "realm://\(host):9080/~/FridgeWatch-Products")!
+            //  initialize remote synced realm
+            let host = "fridgewatch-products.de1a.cloud.realm.io"
+            let credentials = SyncCredentials.usernamePassword(username: "fridgewatchapp", password: "fuftyw-Mofsyw-wefjy1", register: false)
+            let realmServerURL = URL(string: "https://\(host)")!
+            let realmSyncURL = URL(string: "realms://\(host)/~/fridgewatch-products")!
             
             SyncUser.logIn(with: credentials, server: realmServerURL, timeout: 0.1) { (syncUser, error) in
                 if let error = error {
@@ -37,7 +37,7 @@ class ProductStore: NSObject {
                 
                 let syncConfig = SyncConfiguration(user: syncUser!, realmURL: realmSyncURL)
                 
-                SyncManager.shared.logLevel = .error
+                SyncManager.shared.logLevel = .all
                 SyncManager.shared.errorHandler = { (error, _) in
                     log.error("Realm Error: \(error)")
                 }
@@ -76,8 +76,7 @@ class ProductStore: NSObject {
         }
     }
     
-    func products(_ completion: @escaping (Result<Results<Product>, StoreError>) -> Void) {
-        log.debug(#function)
+    func all(_ completion: @escaping (Result<Results<Product>, StoreError>) -> Void) {
         getRealm {
             switch $0 {
             case .success(let realm):
@@ -90,7 +89,6 @@ class ProductStore: NSObject {
     
     
     func product(withID id: String, _ completion: @escaping (Result<Product, StoreError>) -> Void) {
-        log.debug(#function)
         getRealm { [weak self] in
             guard let strong = self else { return }
             
@@ -109,21 +107,24 @@ class ProductStore: NSObject {
     }
     
     private func createNewProduct(id: String, _ completion: @escaping (Result<Product, StoreError>) -> Void) {
-        log.debug(#function)
-        fetchPoductData(gtin: id, { [weak self] (productData) in
+        fetchPoductData(id: id, { [weak self] (productData) in
             guard let strong = self else { return }
             
             strong.getRealm {
                 switch $0 {
                 case .success(let realm):
                     do {
-                        try realm.write {
-                            let new = Product(gtin: id)
-                            new.name = productData[.name] as? String
-                            new.image = productData[.image] as? UIImage
-                            realm.add(new)
-                            
-                            completion(.success(new))
+                        if let existing = realm.object(ofType: Product.self, forPrimaryKey: id) {
+                            completion(.success(existing))
+                        } else {
+                            try realm.write {
+                                let new = Product(id: id)
+                                new.name = productData[.name] as? String
+                                new.image = productData[.image] as? UIImage
+                                realm.add(new)
+                                
+                                completion(.success(new))
+                            }
                         }
                     } catch (let error) {
                         completion(.failure(.realmError(error)))
@@ -136,7 +137,6 @@ class ProductStore: NSObject {
     }
     
     func update(id: String, _ updateHandler: @escaping (Product) -> Void, errorHandler: ((StoreError) -> Void)? = nil) {
-        log.debug(#function)
         self.product(withID: id, { [weak self] in
             guard let strong = self else { return }
             
@@ -162,12 +162,11 @@ class ProductStore: NSObject {
         })
     }
     
-    private func fetchPoductData(gtin: String, _ completion: @escaping ([ProductDataKey: Any]) -> Void) {
-        log.debug(#function)
+    private func fetchPoductData(id: String, _ completion: @escaping ([ProductDataKey: Any]) -> Void) {
         DispatchQueue.global(qos: DispatchQoS.QoSClass.utility).async { [weak self] in
             guard let strong = self else { return }
-            let imageSearchOperation = ImageSearchOperation(gtin: gtin)
-            let dataSearchOperation = DataSearchOperation(gtin: gtin)
+            let imageSearchOperation = ImageSearchOperation(gtin: id)
+            let dataSearchOperation = DataSearchOperation(gtin: id)
             
             strong.dataFetchQueue = OperationQueue()
             strong.dataFetchQueue?.addOperation(imageSearchOperation)

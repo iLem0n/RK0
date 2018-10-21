@@ -14,7 +14,8 @@ protocol ScanResults_ViewModelType: ViewModelType {
     var results_sections: Observable<[ScanResults_SectionModel]> { get }
     var results_tableDataSource: RxTableViewSectionedReloadDataSource<ScanResults_SectionModel>! { get set }
     
-    func item(at indexPath: IndexPath) -> ScanResults_SectionModel.Item?    
+    func item(at indexPath: IndexPath) -> ScanResults_SectionModel.Item?
+    func removeItem(at indexPath: IndexPath) 
     func saveScanResults(_ completion: (Bool) -> Void)
     func updateItem(old: FoodItem, new: FoodItem)
 }

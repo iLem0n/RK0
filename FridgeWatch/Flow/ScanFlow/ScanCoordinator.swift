@@ -41,11 +41,11 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
             
         }
         
-        module?.onResultsListButtonTouched = { [weak self] in
+        module.onResultsListButtonTouched = { [weak self] in
             self?.showScanResultsModules(viewModel: viewModel)
         }
         
-        module?.onBBDButtonTouched = { date in
+        module.onBBDButtonTouched = { date in
             let datePickerModul = self.factory
                 .makeDatePickerModul(
                     initialDate: date ?? Date(),
@@ -63,7 +63,7 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         }
 
         
-        module?.onCloseButtonTouched = { [weak self] in
+        module.onCloseButtonTouched = { [weak self] in
             guard let strong = self else { return }
             let haveScannedItems = (try! viewModel.scannedItemsSubject.value()).count > 0
             if haveScannedItems {
@@ -100,7 +100,7 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
             }
         }
         
-        module?.onSaved = { [weak self] in 
+        module.onSaved = { [weak self] in 
             self?.router.dismissModule(animated: true, completion: {
                 self?.onScanFinished?()
             })

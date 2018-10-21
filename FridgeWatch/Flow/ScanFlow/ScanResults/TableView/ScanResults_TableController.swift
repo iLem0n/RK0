@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
+import SwipeCellKit
 
 final class ScanResults_TableController: UITableViewController, ScanResults_TableView {
     
@@ -55,5 +56,33 @@ final class ScanResults_TableController: UITableViewController, ScanResults_Tabl
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 135
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        var actions: [SwipeAction] = []
+        switch orientation {
+        case .left: break
+        case .right:
+            let removeFromListAction = SwipeAction(style: .destructive, title: "Remove", handler: { [weak self] (action, indexPath) in
+                guard let strong = self else { return }
+                strong.viewModel?.removeItem(at: indexPath)
+            })
+            removeFromListAction.image = #imageLiteral(resourceName: "trashSmall")
+            actions.append(removeFromListAction)
+        }
+        
+        return actions
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        switch orientation {
+        case .left:
+            options.expansionStyle = .destructive(automaticallyDelete: false)
+        case .right:
+            options.expansionStyle = .destructive(automaticallyDelete: false)
+        }
+        return options
     }
 }

@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import SwipeCellKit
 
-protocol StorageContent_CollectionView: BaseViewType, SwipeCollectionViewCellDelegate {
+protocol StorageContent_CollectionView: BaseViewType, SwipeCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout {
     var viewModel: StorageContent_ViewModelType? { get set }
     
     var onConsumeItemButtonTouched: ((IndexPath) -> Void)? { get set }

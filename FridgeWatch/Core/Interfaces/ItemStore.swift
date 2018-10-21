@@ -12,14 +12,8 @@ import Result
 
 class ItemStore: NSObject {
     static let shared = ItemStore()
-    private var realm: Realm?
     
     private func getRealm(_ completion: (Result<Realm, StoreError>) -> Void) {
-        if let realm = realm {
-            completion(.success(realm))
-            return
-        }
-        
         do {
             let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true, objectTypes: [FoodItem.self])
             let realm = try Realm(configuration: config)
@@ -34,10 +28,23 @@ class ItemStore: NSObject {
             switch $0 {
             case .success(let realm):
                 do {
-                    try realm.write {
-                        realm.add(item)
+                    if let equalItem = realm
+                        .objects(FoodItem.self)
+                        .filter("productID == %@", item.productID)
+                        .filter({ $0.bestBeforeDate.isSameDay(item.bestBeforeDate) })
+                        .first
+                    {
+                        try realm.write {
+                            equalItem.amount += item.amount
+                        }
+                        completion?(.success(()))
+                    } else {
+                        try realm.write {
+                            realm.add(item)
+                        }
+                        completion?(.success(()))
                     }
-                    completion?(.success(()))
+                    
                 } catch (let error) {
                     completion?(.failure(.realmError(error)))
                 }
@@ -76,18 +83,24 @@ class ItemStore: NSObject {
     }
     
     func update(id: String, _ updateHandler: @escaping (FoodItem) -> Void, errorHandler: ((StoreError) -> Void)? = nil) {
-        self.one(withID: id, { [weak self] in
-            guard let strong = self else { return }
-            
+        self.one(withID: id, {
             switch $0 {
             case .success(let item):
-                do {
-                    try strong.realm!.write {  //  !  if we have a produiczt here, there must be a realm
-                        updateHandler(item)
+                getRealm({
+                    switch $0 {
+                    case .success(let realm):
+                        do {
+                            try realm.write {
+                                updateHandler(item)
+                            }
+                        } catch (let error) {
+                            errorHandler?(.realmError(error))
+                        }
+                    case .failure(let error):
+                        errorHandler?(.realmError(error))
                     }
-                } catch (let error) {
-                    errorHandler?(.realmError(error))
-                }
+                })
+                
             case .failure(let error):
                 errorHandler?(error)
             }
