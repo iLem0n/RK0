@@ -25,12 +25,12 @@ protocol SharedFactoryType {
         onDiscard: @escaping () -> Void,
         onCancel: @escaping () -> Void)
     -> UIAlertController
-
+    
     func makeDatePickerModul(
         initialDate: Date?,
         onApply: @escaping (Date) -> Void,
         onClear: (() -> Void)?,
-        onCancel: @escaping () -> Void)
+        onCancel: (() -> Void)?)
     -> UIAlertController
     
     func makeGetAmountSliderModul(

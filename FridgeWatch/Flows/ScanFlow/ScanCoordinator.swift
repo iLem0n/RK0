@@ -31,8 +31,7 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
     override func start() {        
         showScanModule()
     }
-    
-    
+        
     //-------------- MODULES ---------------
     //-------------- SCAN MODULE -----------
     private func showScanModule() {
@@ -46,18 +45,17 @@ final class ScanCoordinator: BaseCoordinator, ScanCoordinatorType {
         }
         
         module.onBBDButtonTouched = { date in
-            let datePickerModul = self.factory
-                .makeDatePickerModul(
-                    initialDate: date ?? Date(),
-                    onApply: { (newDate) in
-                        viewModel.dateSubject.onNext(newDate)
-                    },
-                    onClear: {
-                        viewModel.dateSubject.onNext(nil)
-                    },
-                    onCancel: {
-                        
-                    }
+            let datePickerModul = self.factory.makeDatePickerModul(
+                initialDate: date ?? Date(),
+                onApply: { (newDate) in
+                    viewModel.dateSubject.onNext(newDate)
+                },
+                onClear: {
+                    viewModel.dateSubject.onNext(nil)
+                },
+                onCancel: {
+                    
+                }
             )
             self.router.present(datePickerModul)
         }

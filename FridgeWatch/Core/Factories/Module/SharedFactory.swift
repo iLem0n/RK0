@@ -10,11 +10,9 @@ import UIKit
 import RxSwift
 
 extension ModuleFactory: SharedFactoryType {
-    
-    func makeItemDetailModule(
-        viewModel: ItemDetail_ViewModelType,
-        _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void) -> ItemDetail_View
-    {
+
+    func makeItemDetailModule(viewModel: ItemDetail_ViewModelType, _ tableControllerHandler: @escaping (ItemDetail_TableView) -> Void) -> ItemDetail_View {
+            
         let controller = R.storyboard.shared.itemDetailView()!
         controller.viewModel = viewModel
         controller.onTableViewSegue = { tableController in
@@ -28,8 +26,9 @@ extension ModuleFactory: SharedFactoryType {
         initialDate: Date?,
         onApply: @escaping (Date) -> Void,
         onClear: (() -> Void)?,
-        onCancel: @escaping () -> Void) -> UIAlertController
+        onCancel: (() -> Void)?) -> UIAlertController
     {
+        
         let datePicker = UIDatePicker(pickerMode: .date)
         datePicker.date = initialDate ?? Date()
         
@@ -62,15 +61,14 @@ extension ModuleFactory: SharedFactoryType {
             }))
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in  onCancel() }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+            onCancel?()            
+        }))
         return alert
     }
     
-    func makeConfirmDiscardScanResults(
-        onReview: @escaping () -> Void,
-        onDiscard: @escaping () -> Void,
-        onCancel: @escaping () -> Void) -> UIAlertController
-    {
+    func makeConfirmDiscardScanResults(onReview: @escaping () -> Void, onDiscard: @escaping () -> Void, onCancel: @escaping () -> Void) -> UIAlertController {
+        
         let alert = UIAlertController(title: "Unsaved Scan Results", message: "You have unsaved scan results. What would you like to do?", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Review", style: .default, handler: { (_) in
             onReview()

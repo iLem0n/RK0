@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4AF5ABADE677133FDF408B5C /* Pods_FridgeWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F5C94570C74F46B10E070 /* Pods_FridgeWatchTests.framework */; };
+		50FA1D1C37EBAA7A68DEA951 /* Pods_FridgeWatchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 936586EED44218AA92DA5EE2 /* Pods_FridgeWatchUITests.framework */; };
+		BBB6AC95E386417CF6633854 /* Pods_FridgeWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D215947DA8B2A8F90FAAFF /* Pods_FridgeWatch.framework */; };
 		C40667AC2176460800E3F118 /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AB2176460800E3F118 /* Stores.swift */; };
 		C40667AE2176461100E3F118 /* ItemStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AD2176461100E3F118 /* ItemStore.swift */; };
 		C40667B02176461900E3F118 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40667AF2176461900E3F118 /* ProductStore.swift */; };
@@ -23,10 +26,9 @@
 		C417E5D2215BDC040007A5E5 /* ProductDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5D1215BDC040007A5E5 /* ProductDataResponse.swift */; };
 		C417E5D4215BDC2C0007A5E5 /* ImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C417E5D3215BDC2C0007A5E5 /* ImageResponse.swift */; };
 		C41CDE9F216BD2B800C4FABA /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDE9E216BD2B800C4FABA /* KeyboardManager.swift */; };
-		C41CDEA1216BD45F00C4FABA /* BulkEditingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */; };
+		C41CDEA1216BD45F00C4FABA /* BulkChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA0216BD45F00C4FABA /* BulkChange.swift */; };
 		C41CDEA3216BF1B800C4FABA /* FoodItemColl_CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA2216BF1B800C4FABA /* FoodItemColl_CellViewModel.swift */; };
 		C41CDEA5216BF1FD00C4FABA /* FoodItemColl_CellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA4216BF1FD00C4FABA /* FoodItemColl_CellViewModelType.swift */; };
-		C41CDEA7216D051200C4FABA /* BulkChangeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CDEA6216D051200C4FABA /* BulkChangeItem.swift */; };
 		C41CE3EC2159820B0063DE0E /* ResponseParserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE3EB2159820B0063DE0E /* ResponseParserType.swift */; };
 		C41CE3EE215982270063DE0E /* GoogleResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE3ED215982270063DE0E /* GoogleResponseParser.swift */; };
 		C439EC44214B9B3C00FECAED /* StorageContent_Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C439EC3D214B9B3C00FECAED /* StorageContent_Controller.swift */; };
@@ -60,7 +62,6 @@
 		C453E1AC214ADBED0091E2B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AA214ADBED0091E2B2 /* Main.storyboard */; };
 		C453E1AE214ADBEE0091E2B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */; };
 		C453E1B1214ADBEE0091E2B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C453E1AF214ADBEE0091E2B2 /* LaunchScreen.storyboard */; };
-		C453E1BC214ADBEE0091E2B2 /* FridgeWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */; };
 		C453E1C7214ADBEE0091E2B2 /* FridgeWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */; };
 		C453E1D7214ADCFB0091E2B2 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1D6214ADCFB0091E2B2 /* AppCoordinator.swift */; };
 		C453E1DA214ADD1F0091E2B2 /* RouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C453E1D9214ADD1F0091E2B2 /* RouterType.swift */; };
@@ -179,6 +180,7 @@
 		C4A23EBB2151541B00FBB0C6 /* ScanResults_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A23EB42151541B00FBB0C6 /* ScanResults_View.swift */; };
 		C4A23EBD2151541B00FBB0C6 /* ScanResults_ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A23EB62151541B00FBB0C6 /* ScanResults_ViewModelType.swift */; };
 		C4A7CB47217CC6160047B020 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A7CB46217CC6160047B020 /* NotificationManager.swift */; };
+		C4A7CB76217F93370047B020 /* FridgeWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A7CB75217F93370047B020 /* FridgeWatchTests.swift */; };
 		C4B566E1214AE6390029F25B /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566E0214AE6390029F25B /* BaseCoordinator.swift */; };
 		C4B566E6214AE7300029F25B /* Storage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4B566E3214AE7300029F25B /* Storage.storyboard */; };
 		C4B566E7214AE7300029F25B /* StorageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B566E4214AE7300029F25B /* StorageCoordinator.swift */; };
@@ -187,29 +189,9 @@
 		C4B5671C214AF6BA0029F25B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671B214AF6BA0029F25B /* BaseView.swift */; };
 		C4B5671E214AF6DE0029F25B /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671D214AF6DE0029F25B /* Message.swift */; };
 		C4B56720214AF7330029F25B /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5671F214AF7330029F25B /* ViewModelType.swift */; };
-		C4BE47532179023C006B3E28 /* SwipeCellKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56709214AF6630029F25B /* SwipeCellKit.framework */; };
-		C4BE47542179023C006B3E28 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48787962156CB34000DE66A /* Alamofire.framework */; };
-		C4BE47552179023C006B3E28 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56705214AF6630029F25B /* Differentiator.framework */; };
-		C4BE47562179023C006B3E28 /* Freddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48787982156CB34000DE66A /* Freddy.framework */; };
-		C4BE47572179023C006B3E28 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48787972156CB34000DE66A /* Moya.framework */; };
-		C4BE47582179023C006B3E28 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56704214AF6630029F25B /* Realm.framework */; };
-		C4BE47592179023C006B3E28 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5670B214AF6630029F25B /* RealmSwift.framework */; };
-		C4BE475A2179023C006B3E28 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48787872156BB87000DE66A /* Result.framework */; };
-		C4BE475B2179023C006B3E28 /* Rswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56703214AF6620029F25B /* Rswift.framework */; };
-		C4BE475C2179023C006B3E28 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56706214AF6630029F25B /* RxBlocking.framework */; };
-		C4BE475D2179023C006B3E28 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B566FF214AF6620029F25B /* RxCocoa.framework */; };
-		C4BE475E2179023C006B3E28 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56700214AF6620029F25B /* RxDataSources.framework */; };
-		C4BE475F2179023C006B3E28 /* RxGesture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56707214AF6630029F25B /* RxGesture.framework */; };
-		C4BE47602179023C006B3E28 /* RxMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48787952156CB34000DE66A /* RxMoya.framework */; };
-		C4BE47612179023C006B3E28 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56701214AF6620029F25B /* RxSwift.framework */; };
-		C4BE47622179023C006B3E28 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B5670A214AF6630029F25B /* RxTest.framework */; };
-		C4BE47632179023C006B3E28 /* SwiftMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56702214AF6620029F25B /* SwiftMessages.framework */; };
-		C4BE47642179023C006B3E28 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BFEE91215BF99F00A01A50 /* SwiftSoup.framework */; };
-		C4BE47652179023C006B3E28 /* SwiftyBeaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B56708214AF6630029F25B /* SwiftyBeaver.framework */; };
-		C4BE47682179023D006B3E28 /* ReactiveMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE47662179023D006B3E28 /* ReactiveMoya.framework */; };
-		C4BE47692179023D006B3E28 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BE47672179023D006B3E28 /* ReactiveSwift.framework */; };
 		C4BFEE92215BF99F00A01A50 /* SwiftSoup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4BFEE91215BF99F00A01A50 /* SwiftSoup.framework */; };
 		C4C0B578214B8FCA007748FD /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C0B577214B8FCA007748FD /* FoodItem.swift */; };
+		C4D2BDE62180BD6A0018045B /* NewNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D2BDE52180BD6A0018045B /* NewNotificationManager.swift */; };
 		C4E1CA8F215ABD34001A02FD /* GoogleImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1CA8E215ABD34001A02FD /* GoogleImageResponse.swift */; };
 		C4EDAB25215ADBF3007375F7 /* DataSearchTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EDAB24215ADBF3007375F7 /* DataSearchTarget.swift */; };
 		C4EDAB28215ADEDE007375F7 /* GTINSucheResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EDAB27215ADEDE007375F7 /* GTINSucheResponseParser.swift */; };
@@ -233,14 +215,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C453E1B8214ADBEE0091E2B2 /* PBXContainerItemProxy */ = {
+		C453E1C3214ADBEE0091E2B2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C453E19B214ADBED0091E2B2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C453E1A2214ADBED0091E2B2;
 			remoteInfo = FridgeWatch;
 		};
-		C453E1C3214ADBEE0091E2B2 /* PBXContainerItemProxy */ = {
+		C4A7CB78217F93370047B020 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C453E19B214ADBED0091E2B2 /* Project object */;
 			proxyType = 1;
@@ -250,6 +232,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070A3122728496E2A49E1232 /* Pods-FridgeWatchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		08D215947DA8B2A8F90FAAFF /* Pods_FridgeWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1590F59470FEFB8427D5873B /* Pods-FridgeWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.release.xcconfig"; sourceTree = "<group>"; };
+		25F37E09CE7CE88E78DFCDC9 /* Pods-FridgeWatchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		480F5C94570C74F46B10E070 /* Pods_FridgeWatchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72A62C2CB30D554DAA0EB964 /* Pods-FridgeWatchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests.release.xcconfig"; sourceTree = "<group>"; };
+		936586EED44218AA92DA5EE2 /* Pods_FridgeWatchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FridgeWatchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA950584F96AED9918E3A151 /* Pods-FridgeWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatchTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C40667AB2176460800E3F118 /* Stores.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stores.swift; sourceTree = "<group>"; };
 		C40667AD2176461100E3F118 /* ItemStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStore.swift; sourceTree = "<group>"; };
 		C40667AF2176461900E3F118 /* ProductStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStore.swift; sourceTree = "<group>"; };
@@ -267,10 +257,9 @@
 		C417E5D3215BDC2C0007A5E5 /* ImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageResponse.swift; sourceTree = "<group>"; };
 		C417E5D5215BDE390007A5E5 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
 		C41CDE9E216BD2B800C4FABA /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
-		C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkEditingMode.swift; sourceTree = "<group>"; };
+		C41CDEA0216BD45F00C4FABA /* BulkChange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkChange.swift; sourceTree = "<group>"; };
 		C41CDEA2216BF1B800C4FABA /* FoodItemColl_CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemColl_CellViewModel.swift; sourceTree = "<group>"; };
 		C41CDEA4216BF1FD00C4FABA /* FoodItemColl_CellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItemColl_CellViewModelType.swift; sourceTree = "<group>"; };
-		C41CDEA6216D051200C4FABA /* BulkChangeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulkChangeItem.swift; sourceTree = "<group>"; };
 		C41CE3EB2159820B0063DE0E /* ResponseParserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseParserType.swift; sourceTree = "<group>"; };
 		C41CE3ED215982270063DE0E /* GoogleResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleResponseParser.swift; sourceTree = "<group>"; };
 		C439EC3D214B9B3C00FECAED /* StorageContent_Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageContent_Controller.swift; sourceTree = "<group>"; };
@@ -295,9 +284,6 @@
 		C453E1AD214ADBEE0091E2B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C453E1B0214ADBEE0091E2B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C453E1B2214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchTests.swift; sourceTree = "<group>"; };
-		C453E1BD214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C453E1C6214ADBEE0091E2B2 /* FridgeWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchUITests.swift; sourceTree = "<group>"; };
 		C453E1C8214ADBEE0091E2B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -418,6 +404,9 @@
 		C4A23EB42151541B00FBB0C6 /* ScanResults_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResults_View.swift; sourceTree = "<group>"; };
 		C4A23EB62151541B00FBB0C6 /* ScanResults_ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResults_ViewModelType.swift; sourceTree = "<group>"; };
 		C4A7CB46217CC6160047B020 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C4A7CB73217F93370047B020 /* FridgeWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FridgeWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4A7CB75217F93370047B020 /* FridgeWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeWatchTests.swift; sourceTree = "<group>"; };
+		C4A7CB77217F93370047B020 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C4B566E0214AE6390029F25B /* BaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C4B566E3214AE7300029F25B /* Storage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storage.storyboard; sourceTree = "<group>"; };
 		C4B566E4214AE7300029F25B /* StorageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageCoordinator.swift; sourceTree = "<group>"; };
@@ -443,6 +432,7 @@
 		C4BE47672179023D006B3E28 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		C4BFEE91215BF99F00A01A50 /* SwiftSoup.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftSoup.framework; path = Carthage/Build/iOS/SwiftSoup.framework; sourceTree = "<group>"; };
 		C4C0B577214B8FCA007748FD /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		C4D2BDE52180BD6A0018045B /* NewNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNotificationManager.swift; sourceTree = "<group>"; };
 		C4E1CA8E215ABD34001A02FD /* GoogleImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleImageResponse.swift; sourceTree = "<group>"; };
 		C4EDAB24215ADBF3007375F7 /* DataSearchTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSearchTarget.swift; sourceTree = "<group>"; };
 		C4EDAB27215ADEDE007375F7 /* GTINSucheResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTINSucheResponseParser.swift; sourceTree = "<group>"; };
@@ -463,6 +453,7 @@
 		C4F5CC55216A222E00EDB98B /* ScanDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataState.swift; sourceTree = "<group>"; };
 		C4F5CC59216A386F00EDB98B /* TemporaryItemDetail_ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryItemDetail_ViewModel.swift; sourceTree = "<group>"; };
 		C4F5CC5B216A550500EDB98B /* BadgeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
+		EC20AD26A0911898C3B47AC0 /* Pods-FridgeWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FridgeWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,34 +478,7 @@
 				C44481E9214B07B100817416 /* RealmSwift.framework in Frameworks */,
 				C44481E8214B06BC00817416 /* Realm.framework in Frameworks */,
 				C44481E7214B066B00817416 /* Differentiator.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C453E1B4214ADBEE0091E2B2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C4BE47682179023D006B3E28 /* ReactiveMoya.framework in Frameworks */,
-				C4BE47692179023D006B3E28 /* ReactiveSwift.framework in Frameworks */,
-				C4BE47532179023C006B3E28 /* SwipeCellKit.framework in Frameworks */,
-				C4BE47542179023C006B3E28 /* Alamofire.framework in Frameworks */,
-				C4BE47552179023C006B3E28 /* Differentiator.framework in Frameworks */,
-				C4BE47562179023C006B3E28 /* Freddy.framework in Frameworks */,
-				C4BE47572179023C006B3E28 /* Moya.framework in Frameworks */,
-				C4BE47582179023C006B3E28 /* Realm.framework in Frameworks */,
-				C4BE47592179023C006B3E28 /* RealmSwift.framework in Frameworks */,
-				C4BE475A2179023C006B3E28 /* Result.framework in Frameworks */,
-				C4BE475B2179023C006B3E28 /* Rswift.framework in Frameworks */,
-				C4BE475C2179023C006B3E28 /* RxBlocking.framework in Frameworks */,
-				C4BE475D2179023C006B3E28 /* RxCocoa.framework in Frameworks */,
-				C4BE475E2179023C006B3E28 /* RxDataSources.framework in Frameworks */,
-				C4BE475F2179023C006B3E28 /* RxGesture.framework in Frameworks */,
-				C4BE47602179023C006B3E28 /* RxMoya.framework in Frameworks */,
-				C4BE47612179023C006B3E28 /* RxSwift.framework in Frameworks */,
-				C4BE47622179023C006B3E28 /* RxTest.framework in Frameworks */,
-				C4BE47632179023C006B3E28 /* SwiftMessages.framework in Frameworks */,
-				C4BE47642179023C006B3E28 /* SwiftSoup.framework in Frameworks */,
-				C4BE47652179023C006B3E28 /* SwiftyBeaver.framework in Frameworks */,
+				BBB6AC95E386417CF6633854 /* Pods_FridgeWatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +486,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50FA1D1C37EBAA7A68DEA951 /* Pods_FridgeWatchUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C4A7CB70217F93370047B020 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AF5ABADE677133FDF408B5C /* Pods_FridgeWatchTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,8 +553,7 @@
 		C439EC4F214BA44E00FECAED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C41CDEA0216BD45F00C4FABA /* BulkEditingMode.swift */,
-				C41CDEA6216D051200C4FABA /* BulkChangeItem.swift */,
+				C41CDEA0216BD45F00C4FABA /* BulkChange.swift */,
 				C439EC3E214B9B3C00FECAED /* StorageContent_SectionModel.swift */,
 				C439EC43214B9B3C00FECAED /* StorageContent_ViewModelType.swift */,
 				C439EC42214B9B3C00FECAED /* StorageContent_ViewModel.swift */,
@@ -604,10 +576,11 @@
 			isa = PBXGroup;
 			children = (
 				C453E1A5214ADBED0091E2B2 /* FridgeWatch */,
-				C453E1BA214ADBEE0091E2B2 /* FridgeWatchTests */,
+				C4A7CB74217F93370047B020 /* FridgeWatchTests */,
 				C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */,
 				C453E1A4214ADBED0091E2B2 /* Products */,
 				C4B566FE214AF6610029F25B /* Frameworks */,
+				D4A41DD5DF2632D7D3647CDC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -615,8 +588,8 @@
 			isa = PBXGroup;
 			children = (
 				C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */,
-				C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */,
 				C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */,
+				C4A7CB73217F93370047B020 /* FridgeWatchTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -626,19 +599,10 @@
 			children = (
 				C453E1D4214ADC9C0091E2B2 /* Core */,
 				C4B566E9214AE7640029F25B /* Storyboards */,
-				C453E1D8214ADD020091E2B2 /* Flow */,
+				C453E1D8214ADD020091E2B2 /* Flows */,
 				C4B566DF214AE5C10029F25B /* Ressources */,
 			);
 			path = FridgeWatch;
-			sourceTree = "<group>";
-		};
-		C453E1BA214ADBEE0091E2B2 /* FridgeWatchTests */ = {
-			isa = PBXGroup;
-			children = (
-				C453E1BB214ADBEE0091E2B2 /* FridgeWatchTests.swift */,
-				C453E1BD214ADBEE0091E2B2 /* Info.plist */,
-			);
-			path = FridgeWatchTests;
 			sourceTree = "<group>";
 		};
 		C453E1C5214ADBEE0091E2B2 /* FridgeWatchUITests */ = {
@@ -664,7 +628,7 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		C453E1D8214ADD020091E2B2 /* Flow */ = {
+		C453E1D8214ADD020091E2B2 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
 				C453E1D6214ADCFB0091E2B2 /* AppCoordinator.swift */,
@@ -673,7 +637,7 @@
 				C439EC50214BAD2200FECAED /* ScanFlow */,
 				C49CBF3E2179299400C5ABBC /* Settings */,
 			);
-			path = Flow;
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		C453E1DF214ADECF0091E2B2 /* Protocols */ = {
@@ -1049,8 +1013,18 @@
 			isa = PBXGroup;
 			children = (
 				C4A7CB46217CC6160047B020 /* NotificationManager.swift */,
+				C4D2BDE52180BD6A0018045B /* NewNotificationManager.swift */,
 			);
 			path = NotificationManager;
+			sourceTree = "<group>";
+		};
+		C4A7CB74217F93370047B020 /* FridgeWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				C4A7CB75217F93370047B020 /* FridgeWatchTests.swift */,
+				C4A7CB77217F93370047B020 /* Info.plist */,
+			);
+			path = FridgeWatchTests;
 			sourceTree = "<group>";
 		};
 		C4B566DF214AE5C10029F25B /* Ressources */ = {
@@ -1138,6 +1112,9 @@
 				C4B56702214AF6620029F25B /* SwiftMessages.framework */,
 				C4B56708214AF6630029F25B /* SwiftyBeaver.framework */,
 				C4B56709214AF6630029F25B /* SwipeCellKit.framework */,
+				08D215947DA8B2A8F90FAAFF /* Pods_FridgeWatch.framework */,
+				480F5C94570C74F46B10E070 /* Pods_FridgeWatchTests.framework */,
+				936586EED44218AA92DA5EE2 /* Pods_FridgeWatchUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1259,6 +1236,19 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		D4A41DD5DF2632D7D3647CDC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EC20AD26A0911898C3B47AC0 /* Pods-FridgeWatch.debug.xcconfig */,
+				1590F59470FEFB8427D5873B /* Pods-FridgeWatch.release.xcconfig */,
+				BA950584F96AED9918E3A151 /* Pods-FridgeWatchTests.debug.xcconfig */,
+				72A62C2CB30D554DAA0EB964 /* Pods-FridgeWatchTests.release.xcconfig */,
+				070A3122728496E2A49E1232 /* Pods-FridgeWatchUITests.debug.xcconfig */,
+				25F37E09CE7CE88E78DFCDC9 /* Pods-FridgeWatchUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1267,10 +1257,13 @@
 			buildConfigurationList = C453E1CB214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatch" */;
 			buildPhases = (
 				C4B566EF214AEB780029F25B /* Carthage */,
+				04E81D63B5AD009BC70246E4 /* [CP] Check Pods Manifest.lock */,
 				C4B566F0214AEB8E0029F25B /* R.Swift */,
 				C453E19F214ADBED0091E2B2 /* Sources */,
 				C453E1A0214ADBED0091E2B2 /* Frameworks */,
 				C453E1A1214ADBED0091E2B2 /* Resources */,
+				136E1CA8C290A45E704952F0 /* [CP] Copy Pods Resources */,
+				F3A550DE1595407139CD8F0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1281,31 +1274,16 @@
 			productReference = C453E1A3214ADBED0091E2B2 /* FridgeWatch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C453E1B6214ADBEE0091E2B2 /* FridgeWatchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C453E1CE214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */;
-			buildPhases = (
-				C453E1B3214ADBEE0091E2B2 /* Sources */,
-				C453E1B4214ADBEE0091E2B2 /* Frameworks */,
-				C453E1B5214ADBEE0091E2B2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C453E1B9214ADBEE0091E2B2 /* PBXTargetDependency */,
-			);
-			name = FridgeWatchTests;
-			productName = FridgeWatchTests;
-			productReference = C453E1B7214ADBEE0091E2B2 /* FridgeWatchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		C453E1C1214ADBEE0091E2B2 /* FridgeWatchUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C453E1D1214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchUITests" */;
 			buildPhases = (
+				58E46322737E092F2E178A95 /* [CP] Check Pods Manifest.lock */,
 				C453E1BE214ADBEE0091E2B2 /* Sources */,
 				C453E1BF214ADBEE0091E2B2 /* Frameworks */,
 				C453E1C0214ADBEE0091E2B2 /* Resources */,
+				715471D974E2F2D87A91668F /* [CP] Embed Pods Frameworks */,
+				BCB2176A38016D3B8467D59F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1317,28 +1295,54 @@
 			productReference = C453E1C2214ADBEE0091E2B2 /* FridgeWatchUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C4A7CB72217F93370047B020 /* FridgeWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C4A7CB7A217F93370047B020 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */;
+			buildPhases = (
+				C469C8AD2180699D0048A0A4 /* Carthage */,
+				22080BA866AB4C90F65E70F0 /* [CP] Check Pods Manifest.lock */,
+				C4A7CB6F217F93370047B020 /* Sources */,
+				C4A7CB70217F93370047B020 /* Frameworks */,
+				C4A7CB71217F93370047B020 /* Resources */,
+				69C631211A65725E68B5DC9A /* [CP] Embed Pods Frameworks */,
+				8CDAC2E68CEF47D064FE65E4 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C4A7CB79217F93370047B020 /* PBXTargetDependency */,
+			);
+			name = FridgeWatchTests;
+			productName = FridgeWatchTests;
+			productReference = C4A7CB73217F93370047B020 /* FridgeWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C453E19B214ADBED0091E2B2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Peter Christian Glade";
 				TargetAttributes = {
 					C453E1A2214ADBED0091E2B2 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
-					};
-					C453E1B6214ADBEE0091E2B2 = {
-						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
-						TestTargetID = C453E1A2214ADBED0091E2B2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					C453E1C1214ADBEE0091E2B2 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1000;
+						TestTargetID = C453E1A2214ADBED0091E2B2;
+					};
+					C4A7CB72217F93370047B020 = {
+						CreatedOnToolsVersion = 10.0;
 						TestTargetID = C453E1A2214ADBED0091E2B2;
 					};
 				};
@@ -1357,7 +1361,7 @@
 			projectRoot = "";
 			targets = (
 				C453E1A2214ADBED0091E2B2 /* FridgeWatch */,
-				C453E1B6214ADBEE0091E2B2 /* FridgeWatchTests */,
+				C4A7CB72217F93370047B020 /* FridgeWatchTests */,
 				C453E1C1214ADBEE0091E2B2 /* FridgeWatchUITests */,
 			);
 		};
@@ -1389,14 +1393,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C453E1B5214ADBEE0091E2B2 /* Resources */ = {
+		C453E1C0214ADBEE0091E2B2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C453E1C0214ADBEE0091E2B2 /* Resources */ = {
+		C4A7CB71217F93370047B020 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1406,6 +1410,202 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		04E81D63B5AD009BC70246E4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FridgeWatch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		136E1CA8C290A45E704952F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-resources.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22080BA866AB4C90F65E70F0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FridgeWatchTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58E46322737E092F2E178A95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FridgeWatchUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69C631211A65725E68B5DC9A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-frameworks.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		715471D974E2F2D87A91668F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-frameworks.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CDAC2E68CEF47D064FE65E4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-resources.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchTests/Pods-FridgeWatchTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCB2176A38016D3B8467D59F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-resources.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MicroBlink.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatchUITests/Pods-FridgeWatchUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C469C8AD2180699D0048A0A4 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftSoup.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		C4B566EF214AEB780029F25B /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1454,6 +1654,28 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/rswift generate \"$SRCROOT\"\n";
 		};
+		F3A550DE1595407139CD8F0F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-frameworks.sh",
+				"${PODS_ROOT}/PPBlinkOCR/MicroBlink.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MicroBlink.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FridgeWatch/Pods-FridgeWatch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1480,7 +1702,7 @@
 				C472BF7E21681BC00074A62D /* Platform.isSimulator.swift in Sources */,
 				C41CDEA3216BF1B800C4FABA /* FoodItemColl_CellViewModel.swift in Sources */,
 				C47E5C11217CAF5900331787 /* UIDevice+modelName.swift in Sources */,
-				C41CDEA1216BD45F00C4FABA /* BulkEditingMode.swift in Sources */,
+				C41CDEA1216BD45F00C4FABA /* BulkChange.swift in Sources */,
 				C48787902156C270000DE66A /* EndpointTarget.swift in Sources */,
 				C453E1EA214AE1D80091E2B2 /* ModuleFactory.swift in Sources */,
 				C417E5CE215BDB290007A5E5 /* GTINSucheResponse.swift in Sources */,
@@ -1554,7 +1776,6 @@
 				C4E1CA8F215ABD34001A02FD /* GoogleImageResponse.swift in Sources */,
 				C472BF69216547130074A62D /* UIView+pop.swift in Sources */,
 				C4F5CC3C2168DAF500EDB98B /* ItemDetail_ViewModelType.swift in Sources */,
-				C41CDEA7216D051200C4FABA /* BulkChangeItem.swift in Sources */,
 				C49CBF85217A29DC00C5ABBC /* TextCellController.swift in Sources */,
 				C417E5D2215BDC040007A5E5 /* ProductDataResponse.swift in Sources */,
 				C49CBFBE217B8D3300C5ABBC /* Info_ViewModel.swift in Sources */,
@@ -1625,15 +1846,8 @@
 				C4A23EBB2151541B00FBB0C6 /* ScanResults_View.swift in Sources */,
 				C49CBF46217929BD00C5ABBC /* Settings_TableController.swift in Sources */,
 				C4132F0C21628BDE000FBE07 /* Date+relativCompare.swift in Sources */,
+				C4D2BDE62180BD6A0018045B /* NewNotificationManager.swift in Sources */,
 				C4B566ED214AE9B50029F25B /* CoordinatorFactory.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C453E1B3214ADBEE0091E2B2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C453E1BC214ADBEE0091E2B2 /* FridgeWatchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1645,18 +1859,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4A7CB6F217F93370047B020 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4A7CB76217F93370047B020 /* FridgeWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C453E1B9214ADBEE0091E2B2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C453E1A2214ADBED0091E2B2 /* FridgeWatch */;
-			targetProxy = C453E1B8214ADBEE0091E2B2 /* PBXContainerItemProxy */;
-		};
 		C453E1C4214ADBEE0091E2B2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C453E1A2214ADBED0091E2B2 /* FridgeWatch */;
 			targetProxy = C453E1C3214ADBEE0091E2B2 /* PBXContainerItemProxy */;
+		};
+		C4A7CB79217F93370047B020 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C453E1A2214ADBED0091E2B2 /* FridgeWatch */;
+			targetProxy = C4A7CB78217F93370047B020 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1796,6 +2018,7 @@
 		};
 		C453E1CC214ADBEE0091E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC20AD26A0911898C3B47AC0 /* Pods-FridgeWatch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1818,6 +2041,7 @@
 		};
 		C453E1CD214ADBEE0091E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1590F59470FEFB8427D5873B /* Pods-FridgeWatch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1838,58 +2062,9 @@
 			};
 			name = Release;
 		};
-		C453E1CF214ADBEE0091E2B2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AJXPA827PK;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
-			};
-			name = Debug;
-		};
-		C453E1D0214ADBEE0091E2B2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AJXPA827PK;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
-			};
-			name = Release;
-		};
 		C453E1D2214ADBEE0091E2B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 070A3122728496E2A49E1232 /* Pods-FridgeWatchUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1910,6 +2085,7 @@
 		};
 		C453E1D3214ADBEE0091E2B2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 25F37E09CE7CE88E78DFCDC9 /* Pods-FridgeWatchUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1925,6 +2101,53 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FridgeWatch;
+			};
+			name = Release;
+		};
+		C4A7CB7B217F93370047B020 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA950584F96AED9918E3A151 /* Pods-FridgeWatchTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
+			};
+			name = Debug;
+		};
+		C4A7CB7C217F93370047B020 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72A62C2CB30D554DAA0EB964 /* Pods-FridgeWatchTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AJXPA827PK;
+				INFOPLIST_FILE = FridgeWatchTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = de.iLem0n.FridgeWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FridgeWatch.app/FridgeWatch";
 			};
 			name = Release;
 		};
@@ -1949,20 +2172,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C453E1CE214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C453E1CF214ADBEE0091E2B2 /* Debug */,
-				C453E1D0214ADBEE0091E2B2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C453E1D1214ADBEE0091E2B2 /* Build configuration list for PBXNativeTarget "FridgeWatchUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C453E1D2214ADBEE0091E2B2 /* Debug */,
 				C453E1D3214ADBEE0091E2B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C4A7CB7A217F93370047B020 /* Build configuration list for PBXNativeTarget "FridgeWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4A7CB7B217F93370047B020 /* Debug */,
+				C4A7CB7C217F93370047B020 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

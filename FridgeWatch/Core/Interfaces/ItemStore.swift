@@ -106,4 +106,30 @@ class ItemStore: NSObject {
             }
         })
     }
+    
+    func getProductNames(for itemIDs: [String], _ completion: @escaping (Result<[String: String], StoreError>) -> Void) {
+        all { itemsResult in
+            switch itemsResult {
+            case .success(let items):
+                var dict: [String: String] = [:]
+                
+                items.filter({ itemIDs.contains($0.id) }).forEach {
+                    dict[$0.id] = $0.productID
+                }
+                
+                Stores.products.all { productsResult in
+                    switch productsResult {
+                    case .success(let allProducts):
+                        allProducts.filter({ dict.values.contains($0.id) }).forEach {
+                            dict.fil
+                        }
+                    case .failure(let error):
+                        completion(.failure(.realmError(error)))
+                    }
+                }
+            case .failure(let error):
+                completion(.failure(.realmError(error)))
+            }
+        }
+    }
 }

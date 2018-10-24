@@ -9,6 +9,9 @@
 import Foundation
 
 protocol StorageCoordinatorType: CoordinatorType {
+    ///  called when we want to scan new products
     var onScanFlowRequest: (() -> Void)? { get set }
+    
+    ///  called when we need the settings flow
     var onSettingsRequest: (() -> Void)? { get set }
 }

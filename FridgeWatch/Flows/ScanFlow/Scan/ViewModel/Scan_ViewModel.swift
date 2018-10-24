@@ -131,17 +131,20 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
             .disposed(by: disposeBag)
         
         //  Pseudo data in simulator
-        if Platform.isSimulator {
-            Stores.products.product(withID: "8718114715162") { [weak self] in
-                guard let strong = self else { return }
-                switch $0 {
-                case .success(let product):
-                    strong.productSubject.onNext(product)
-                case .failure(let error):
-                    strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
-                }
-            }                        
+        if Platform.isSimulator { setPseudoData() }
+    }
+    
+    private func setPseudoData() {
+        Stores.products.product(withID: "8718114715162") { [weak self] in
+            guard let strong = self else { return }
+            switch $0 {
+            case .success(let product):
+                strong.productSubject.onNext(product)
+            case .failure(let error):
+                strong.message.onNext(Message(type: .error, title: "Database Error", message: error.localizedDescription))
+            }
         }
+        dateSubject.onNext(Date().addingTimeInterval(60*60*24))
     }
     
     private func linkResultsTableData() {
@@ -189,6 +192,9 @@ final class Scan_ViewModel: NSObject, Scan_ViewModelType, ScanResults_ViewModelT
         
         scannedItemsSubject.onNext(scannedItems)
         resetScanData()
+        
+        //  Pseudo data in simulator
+        if Platform.isSimulator { setPseudoData() }
     }
     
     func removeItem(at indexPath: IndexPath) {

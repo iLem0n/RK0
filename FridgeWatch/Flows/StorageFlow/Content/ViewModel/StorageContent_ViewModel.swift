@@ -175,6 +175,7 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         }
     }
     
+    
     func sectionHeader(for section: Int) -> String? {
         guard
             let sections = try? sectionsSubject.value(),
@@ -184,23 +185,42 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
         return sections[section].header
     }
     
+    /**
+     Arranges the given items in seperate sections based on the relative date from now.
+     
+     - parameter items: An array of items to arrange in sections
+     - returns: An array of section models which contains the arranged items
+     */
     private func sections(for items: [FoodItem]) -> [StorageContent_SectionModel] {
+        
+        //  inner section sorting closure
         let innerSort: (FoodItem, FoodItem) -> Bool = { $0.bestBeforeDate < $1.bestBeforeDate }
         
+        //  warning sections
+        //  temporary dictionary to sort the items into month
         var dict: [MonthKey: [FoodItem]] = [:]
+        
+        //  filter for items which date is today or in the past
         let overdueItems = items
             .filter({ !$0.bestBeforeDate!.isSameDay(Date()) && $0.bestBeforeDate < Date() })
         
+        //  filter for items which will go bad within the next 3  days
         let redItems = items
             .filter({ $0.bestBeforeDate.isWithin(days: 3) })
         
+        //  filter for items which will go bad within the next 7 days
         let yellowItems = items
             .filter({ !redItems.contains($0) })
             .filter({ $0.bestBeforeDate.isWithin(days: 7) })
         
-        for item in items {
-            guard !overdueItems.contains(item), !redItems.contains(item), !yellowItems.contains(item) else { continue }
-            
+        
+        //  Arrange all other items by monthkey
+        let allOther = items
+            .filter({ !overdueItems.contains($0) })
+            .filter({ !redItems.contains($0) })
+            .filter({ !yellowItems.contains($0) })
+        
+        for item in allOther {
             let monthKey = MonthKey(date: item.bestBeforeDate)
             if dict.keys.contains(monthKey) {
                 dict[monthKey]?.append(item)
@@ -209,6 +229,7 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             }
         }
         
+        //  put it all together
         var result: [StorageContent_SectionModel] = []
         if overdueItems.count > 0 {
             result.append(StorageContent_SectionModel(header: "Overdue", items: overdueItems.sorted(by: innerSort), footer: ""))
@@ -222,21 +243,27 @@ final class StorageContent_ViewModel: NSObject, StorageContent_ViewModelType {
             result.append(StorageContent_SectionModel(header: "Next \(7) Days", items: yellowItems.sorted(by: innerSort), footer: ""))
         }
         
-        result.append(contentsOf: dict
-            .keys
-            .sorted { $0 < $1 }
-            .map { key in
-                var cal = Calendar(identifier: .gregorian)
-                cal.locale = Locale.current
-                let monthSymbol = cal.monthSymbols[key.month - 1]
-                let monthItems = dict[key]!.sorted { $0.bestBeforeDate.day < $1.bestBeforeDate.day }
-                var footer: String = ""
-                if monthItems.count == 0 {
-                    footer = "No items found. Either you filter is to restrictive or there are no items, yet."
-                }
-                return StorageContent_SectionModel(header: "\(monthSymbol) \(key.year)", items: monthItems.sorted(by: innerSort), footer: footer)
-        })
+        let allOthersSections = allOther
+            .arrangeByMonth()
+            .map({ (montkey, items) -> StorageContent_SectionModel in
+                let symbol = Calendar.current.localizedMonthSymbol(montkey.month)!
+                return StorageContent_SectionModel(header: "\(symbol) \(montkey.year)", items: items, footer: "")
+            })
+        
+        result.append(contentsOf: allOthersSections)
         
         return result
+    }
+}
+
+extension Calendar {
+    func localizedMonthSymbol(_ month: Int) -> String? {
+        guard month > 0 && month < 12 else { return nil }
+        
+        //  copy calendar to avoid side effects (mutating)
+        var cal = self
+        cal.locale = Locale.current
+        
+        return cal.monthSymbols[month - 1]
     }
 }
