@@ -1,24 +1,26 @@
 # Rx
-github "Alamofire/Alamofire" "4.7.3"
-github "RxSwiftCommunity/RxGesture" "2.0.1"
-github "RxSwiftCommunity/RxDataSources" "3.1.0"
-github "ReactiveX/RxSwift" "4.3.1"
-github "antitypical/Result" "3.2.4"
+github "Alamofire/Alamofire"
+github "RxSwiftCommunity/RxGesture"
+github "RxSwiftCommunity/RxDataSources" 
+github "ReactiveX/RxSwift" 
+github "antitypical/Result" 
+github "mxcl/PromiseKit"
 
 # Database
 github "realm/realm-cocoa"
 
 # network abstraction layer
-github "Moya/Moya" "11.0.2"
-github "bignerdranch/Freddy" "3.0.3"
-github "scinfu/SwiftSoup" "1.7.5"
+github "Moya/Moya" 
+github "bignerdranch/Freddy"
+github "daltoniam/Starscream" >= 3.0.2
+github "scinfu/SwiftSoup"
 
 # Visualisation
-github "SwiftKickMobile/SwiftMessages" "6.0.0"
-github "mac-cain13/R.swift.Library" "v4.0.0"
-github "SwipeCellKit/SwipeCellKit" "2.5.0"
-github "iLem0n/AMTooltip" 
+github "SwiftKickMobile/SwiftMessages" 
+github "mac-cain13/R.swift.Library"
+github "SwipeCellKit/SwipeCellKit"
+#github "iLem0n/AMTooltip" 
 
 # Logging
-github "SwiftyBeaver/SwiftyBeaver" "1.6.1"
+github "SwiftyBeaver/SwiftyBeaver"
 

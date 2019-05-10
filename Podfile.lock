@@ -1,0 +1,20 @@
+PODS:
+  - PPBlinkOCR (4.0.0)
+  - Starscream (3.0.5)
+
+DEPENDENCIES:
+  - PPBlinkOCR (~> 4.0.0)
+  - Starscream (~> 3.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PPBlinkOCR
+    - Starscream
+
+SPEC CHECKSUMS:
+  PPBlinkOCR: 2a6a4baae938e82d3314ecbf46643e8327af9e1a
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+
+PODFILE CHECKSUM: 49e77383f3ba9ab45d1f3c01fa9992136b8e6e1f
+
+COCOAPODS: 1.5.3

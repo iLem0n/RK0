@@ -1,0 +1,153 @@
+/*
+ AwnserType :
+  y/n -> einfache yes/no Frage
+  scan -> Bild machen, scan Produkt-Nummer (future)
+  ar -> zeige Ar (future)
+
+ abruch:
+  nur loggen oder abbruch kriterium?
+
+ifYes :
+  was passiert wen erfüllt (zusatz)
+
+ifNO
+  was passiert wen nicht erfüllt
+
+
+
+  typ angeben -> header?
+
+  */
+
+
+[
+  {
+    "id": 1,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": "typ angeben",
+    "ifNo": null,
+    "frage": "Ist der Fehler typenspezifisch?"
+  },
+  {
+    "id": 2,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": "typ angeben",
+    "ifNo": null,
+    "frage": "Ist der Fehler SA/LA spezifisch?"
+  },
+  {
+    "id": 3,
+    "anwserType": "scan",
+    "abbruch": false,
+    "ifYes": "open cam",
+    "ifNo": "wiederholen",
+    "frage": "Gut/Schlecht-Vergleich oder einfaches Ausschlussverfahren durchgeführt? (z.B. Kreuzverbau)"
+  },
+  {
+    "id": 4,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Kann der Fehler aufgrund einer Nacharbeit entstanden sein"
+  },
+  {
+    "id": 5,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Könnte zwischen Umweltbedingungen und Fehler ein Zusammenhang vorhanden sein?"
+  },
+  {
+    "id": 6,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Sind die fahrzeugspez. freigegebenen Bauteile verbaut ?"
+  },
+  {
+    "id": 7,
+    "anwserType": "link",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Wird gemäß den Verbauvorschriften montiert/produziert?"
+  },
+  {
+    "id": 8,
+    "anwserType": "y/n",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Werden die Montage-/Prüflehren verwendet?"
+  },
+  {
+    "id": 9,
+    "anwserType": "link",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Sind die Montage-Prüflehren i.O.?"
+  },
+  {
+    "id": 10,
+    "anwserType": "link",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Ist das Anschraubdrehmoment i.O.?"
+  },
+  {
+    "id": 11,
+    "anwserType": "link",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Ist der Fehler unmittelbar nach einer Änderung aufgetreten?"
+  },
+  {
+    "id": 12,
+    "anwserType": "ar",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Sind die Teile i.O.? (Haus bzw. Zulieferteile)"
+  },
+  {
+    "id": 13,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Wurde das Bauteil am Prüfcubing geprüft?"
+  },
+  {
+    "id": 13,
+    "anwserType": "y/n",
+    "abbruch": true,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Ist der QMT / K-Rohbau/Lack informiert worden?"
+  },
+  {
+    "id": 14,
+    "anwserType": "y/n",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "Sind Sofortmaßnahmen eingeleitet? Information Schicht und hallenüber-greifend weitergegeben?"
+  },
+
+  {
+    "id": 15,
+    "anwserType": "done",
+    "abbruch": false,
+    "ifYes": null,
+    "ifNo": null,
+    "frage": "PQM-Meldung wird vom System angelegt"
+  }
+]

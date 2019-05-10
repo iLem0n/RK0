@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="hDy-qe-Gyh">
+            <objects>
+                <viewController id="Nyg-Op-7To" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ESF-lU-4mf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jmT-xh-XVz"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ByN-c6-6bk"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ula-JX-n9Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1398" y="166"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CYG-hf-bYf">
+            <objects>
+                <navigationController storyboardIdentifier="ScanNavigation" id="81L-jz-pPp" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W39-3m-2RU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Nyg-Op-7To" kind="relationship" relationship="rootViewController" id="E2o-Ad-jlq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49F-XO-11s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1510" y="106"/>
+        </scene>
+        <!--Scan Controller-->
+        <scene sceneID="Fbv-33-QLZ">
+            <objects>
+                <viewController storyboardIdentifier="ScanView" id="eNK-PP-oio" customClass="Scan_Controller" customModule="RK01" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hZH-Gy-WIo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esN-t6-ur2">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <connections>
+                                    <segue destination="O0X-QZ-3Qg" kind="embed" identifier="showCameraView" id="4Wg-m3-wO3"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01G-2P-DRm" customClass="BadgeButton" customModule="RK01" customModuleProvider="target">
+                                <rect key="frame" x="359" y="59" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="9sa-DB-1pI"/>
+                                    <constraint firstAttribute="width" secondItem="01G-2P-DRm" secondAttribute="height" multiplier="1:1" id="mM7-b3-LyN"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="flashButton"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qiD-VM-bR7">
+                                <rect key="frame" x="20" y="752" width="374" height="90"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yko-KN-YFQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zi8-yV-Vbv">
+                                        <rect key="frame" x="0.0" y="45" width="374" height="45"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="hjE-IB-rRK"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QVg-VM-Aa2" firstAttribute="trailing" secondItem="esN-t6-ur2" secondAttribute="trailing" id="QAN-Fk-jwY"/>
+                            <constraint firstItem="qiD-VM-bR7" firstAttribute="leading" secondItem="QVg-VM-Aa2" secondAttribute="leading" constant="20" id="SSX-cT-8vz"/>
+                            <constraint firstItem="QVg-VM-Aa2" firstAttribute="trailing" secondItem="01G-2P-DRm" secondAttribute="trailing" constant="15" id="Skk-kq-AUA"/>
+                            <constraint firstItem="esN-t6-ur2" firstAttribute="top" secondItem="QVg-VM-Aa2" secondAttribute="top" id="Ufi-mg-Ex8"/>
+                            <constraint firstItem="QVg-VM-Aa2" firstAttribute="trailing" secondItem="qiD-VM-bR7" secondAttribute="trailing" constant="20" id="agh-oB-jCc"/>
+                            <constraint firstItem="QVg-VM-Aa2" firstAttribute="bottom" secondItem="esN-t6-ur2" secondAttribute="bottom" id="fg4-MJ-evw"/>
+                            <constraint firstItem="esN-t6-ur2" firstAttribute="leading" secondItem="QVg-VM-Aa2" secondAttribute="leading" id="iTq-Z7-UA1"/>
+                            <constraint firstItem="01G-2P-DRm" firstAttribute="width" secondItem="01G-2P-DRm" secondAttribute="height" multiplier="1:1" id="k1V-IF-Ctz"/>
+                            <constraint firstItem="QVg-VM-Aa2" firstAttribute="bottom" secondItem="qiD-VM-bR7" secondAttribute="bottom" constant="20" id="mkQ-1i-WYM"/>
+                            <constraint firstItem="01G-2P-DRm" firstAttribute="top" secondItem="QVg-VM-Aa2" secondAttribute="top" constant="15" id="qr7-EU-L8q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QVg-VM-Aa2"/>
+                    </view>
+                    <connections>
+                        <outlet property="flashButton" destination="01G-2P-DRm" id="MAV-WD-nWy"/>
+                        <outlet property="manualInputTextField" destination="yko-KN-YFQ" id="Rv3-Zv-oXN"/>
+                        <outlet property="sendButton" destination="Zi8-yV-Vbv" id="Aw0-SC-yGl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLB-hy-dP1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="363.768115942029" y="105.13392857142857"/>
+        </scene>
+        <!--Scan Camera Controller-->
+        <scene sceneID="ojX-FN-VOQ">
+            <objects>
+                <viewController storyboardIdentifier="CameraView" id="O0X-QZ-3Qg" customClass="Scan_CameraController" customModule="RK01" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hE8-fk-ubv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JCM-Kk-U9h" customClass="FocusView" customModule="RK01" customModuleProvider="target">
+                                <rect key="frame" x="87" y="325" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="aU2-ER-vij"/>
+                    </view>
+                    <connections>
+                        <outlet property="roiView" destination="JCM-Kk-U9h" id="iTj-Oo-MBI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iCV-AX-Ptd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1274" y="105"/>
+        </scene>
+        <!--Read Foto Controller-->
+        <scene sceneID="upO-Ml-tct">
+            <objects>
+                <viewController storyboardIdentifier="ReadFoto" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sJZ-4d-FQ7" customClass="ReadFotoController" customModule="RK01" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JOe-Ar-c8y">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="69v-bf-jwD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqP-Az-xVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-375" y="104"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="flashButton" width="100" height="100"/>
+    </resources>
+</document>
